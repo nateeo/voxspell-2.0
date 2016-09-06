@@ -48,6 +48,7 @@ public class Festival {
             @Override
             protected Void call() throws Exception {
                 tts(word, tryAgain);
+                return null;
             }
         };
 
@@ -69,6 +70,7 @@ public class Festival {
             command += "\"Please spell " + word;
         }
         command += ".\" | festival --tts --language " + voiceType;
+        return command;
     }
 
     private void tts(Word word, boolean tryAgain) {

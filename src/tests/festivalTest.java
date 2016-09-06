@@ -3,6 +3,7 @@ package tests;
 import org.junit.Before;
 import org.junit.Test;
 import voxspell.Festival;
+import voxspell.Word;
 
 import static org.junit.Assert.assertEquals;
 
@@ -34,7 +35,7 @@ public class festivalTest {
         Word word = new Word("word");
         String command = festival.commandBuilder(word, false);
         assertEquals("Expect a non-try-again read to be correct",
-                "echo \"Please spell word\" | festival --tts --language english",
+                "echo \"Please spell word.\" | festival --tts --language english",
                 command);
     }
 
