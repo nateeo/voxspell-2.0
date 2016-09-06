@@ -9,13 +9,43 @@ import java.io.IOException;
  */
 public class festival {
     Task<Void> task;
-    private String voiceType = "";
+    static final String DEFAULT = "english";
+    static final String WELSH = "welsh";
+    static final String SPANISH = "spanish";
+    private String voiceType = DEFAULT;
 
-    public void read(final Word word) {
+    /**
+     * type = "english" | "welsh" | "spanish" to configure the voice of festival
+     * @param type
+     */
+    public void setVoiceType(String type) { // TODO: remove one voice
+        if (type.equals(DEFAULT) || type.equals(WELSH) || type.equals(SPANISH)) {
+            voiceType = type;
+        } else {
+            System.out.println("Invalid type, setting to default");
+            voiceType = DEFAULT;
+        }
+    }
+
+    /**
+     * @return A nicely formatted  string of the current voiceType
+     */
+    public String getVoiceType() {
+        String voiceTypeDisplay = voiceType.substring(0, 1).toUpperCase() + voiceType.substring(1);
+        return voiceTypeDisplay;
+    }
+
+    /**
+     * Reads a word using festival.
+     * word is the Word object to read. tryAgain flag to see if user is attempting the word again.
+     * @param word
+     * @param tryAgain
+     */
+    public void read(final Word word, final boolean tryAgain) {
         task = new Task<Void>() {
             @Override
             protected Void call() throws Exception {
-                tts(word);
+                tts(word, tryAgain);
             }
         };
 
@@ -24,8 +54,16 @@ public class festival {
         thread.start();
     }
 
-    private void tts(Word word) {
-        String command = "echo \"Please spell " + word + "\" | festival --tts";
+    private void tts(Word word, boolean tryAgain) {
+
+        String command = "echo ";
+        if (tryAgain) {
+            command += "\"Try again. " + word + ". " + word;
+        } else {
+            command += "\"Please spell " + word;
+        }
+        command += ".\" | festival --tts --language " + voiceType;
+
         ProcessBuilder builder = new ProcessBuilder("bash", "-c", command);
         try {
             Process process = builder.start();
