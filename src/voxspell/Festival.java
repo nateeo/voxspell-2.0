@@ -5,13 +5,14 @@ import javafx.concurrent.Task;
 import java.io.IOException;
 
 /**
+ * This class wraps bash functions that call festival text-to-speech command
  * Created by nateeo on 6/09/16.
  */
-public class festival {
+public class Festival {
     Task<Void> task;
-    static final String DEFAULT = "english";
-    static final String WELSH = "welsh";
-    static final String SPANISH = "spanish";
+    public static final String DEFAULT = "english";
+    public static final String WELSH = "welsh";
+    public static final String SPANISH = "spanish";
     private String voiceType = DEFAULT;
 
     /**
@@ -40,6 +41,7 @@ public class festival {
      * word is the Word object to read. tryAgain flag to see if user is attempting the word again.
      * @param word
      * @param tryAgain
+     * @return command String that was used in the process builder
      */
     public void read(final Word word, final boolean tryAgain) {
         task = new Task<Void>() {
@@ -54,8 +56,12 @@ public class festival {
         thread.start();
     }
 
-    private void tts(Word word, boolean tryAgain) {
-
+    /**
+     * Builds bash command for festival
+     * @param word
+     * @return command
+     */
+    public String commandBuilder(Word word, boolean tryAgain) {
         String command = "echo ";
         if (tryAgain) {
             command += "\"Try again. " + word + ". " + word;
@@ -63,7 +69,10 @@ public class festival {
             command += "\"Please spell " + word;
         }
         command += ".\" | festival --tts --language " + voiceType;
+    }
 
+    private void tts(Word word, boolean tryAgain) {
+        String command = commandBuilder(word, tryAgain);
         ProcessBuilder builder = new ProcessBuilder("bash", "-c", command);
         try {
             Process process = builder.start();
