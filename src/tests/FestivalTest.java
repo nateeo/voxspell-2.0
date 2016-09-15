@@ -2,13 +2,13 @@ package tests;
 
 import org.junit.Before;
 import org.junit.Test;
-import voxspell.Festival;
-import voxspell.Word;
+import voxspell.engine.Festival;
+import voxspell.engine.Word;
 
 import static org.junit.Assert.assertEquals;
 
 /**
- * Test suite for the voxspell.Festival module
+ * Test suite for the voxspell.engine.Festival module
  * Created by nateeo on 6/09/16.
  */
 public class FestivalTest {

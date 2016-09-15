@@ -1,11 +1,11 @@
 package tests;
 
-import voxspell.Word;
-import voxspell.WordList;
+import voxspell.engine.Word;
+import voxspell.engine.WordList;
 
 import java.util.ArrayList;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  *

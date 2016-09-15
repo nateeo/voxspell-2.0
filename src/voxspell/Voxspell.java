@@ -10,12 +10,12 @@ import java.lang.reflect.Field;
 import java.util.HashMap;
 
 public class Voxspell extends Application {
-    private static int WINDOW_WIDTH = 800;
-    private static int WINDOW_HEIGHT = 600;
+    private static int WINDOW_WIDTH = 600;
+    private static int WINDOW_HEIGHT = 400;
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("main.fxml"));
+    public void start(Stage primaryStage) throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource("scenes/main.fxml"));
         primaryStage.setTitle("VOXSPELL");
         primaryStage.setScene(new Scene(root, WINDOW_WIDTH, WINDOW_HEIGHT));
         primaryStage.show();

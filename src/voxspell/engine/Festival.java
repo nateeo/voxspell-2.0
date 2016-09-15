@@ -1,4 +1,4 @@
-package voxspell;
+package voxspell.engine;
 
 import javafx.concurrent.Task;
 

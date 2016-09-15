@@ -1,20 +1,30 @@
-package voxspell;
+package voxspell.scenes;
 
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
+import voxspell.engine.LevelData;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+/**
+ * Controller class for the application entry / level selection screen (main.fxml)
+ */
 public class Controller implements Initializable {
     private static String ON_HOVER = "-fx-background-color: #83B496";
     private static String ON_EXIT = "-fx-background-color: #b6e7c9";
     private ArrayList<Button> buttons = new ArrayList<Button>();
 
+    // initialize buttons from FXML
     @FXML
     private Button level1;
     @FXML
@@ -36,8 +46,11 @@ public class Controller implements Initializable {
     @FXML
     private Button level10;
 
-    // add buttons to list
-
+    /**
+     * parse button text into level number
+     * @param text
+     * @return level
+     */
     private int getLevelNumber(String text) {
         String number = text.substring(text.length() - 1);
         if (number.equals("0")) {
@@ -46,21 +59,42 @@ public class Controller implements Initializable {
         return Integer.parseInt(number);
     }
 
+    /**
+     * level selection handler to handle level selection button presses
+     */
     class levelSelect implements EventHandler<MouseEvent> {
         public void handle(MouseEvent event) {
             String text = ((Button)event.getSource()).getText();
             int level = getLevelNumber(text);
             System.out.println("Going to level " + level);
-            // TODO use level to get wordlist and move to spelling scene
+            LevelData.setLevel(level);
+            Stage stage;
+            Parent root = null;
+            stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
+
+            try {
+                root = FXMLLoader.load(getClass().getResource("spelling.fxml"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
         }
     }
 
+    /**
+     * onHover handler for button styling
+     */
     class hoverHandler implements EventHandler<MouseEvent> {
         public void handle(MouseEvent event) {
             ((Button)event.getSource()).setStyle(ON_HOVER);
         }
     }
 
+    /**
+     * onExit handler for button styling
+     */
     class exitHandler implements EventHandler<MouseEvent> {
         public void handle(MouseEvent event) {
             ((Button)event.getSource()).setStyle(ON_EXIT);
