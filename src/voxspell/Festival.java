@@ -4,6 +4,8 @@ import javafx.concurrent.Task;
 
 import java.io.IOException;
 
+// TODO: Festival voice changes
+
 /**
  * This class wraps bash functions that call festival text-to-speech command
  * Created by nateeo on 6/09/16.

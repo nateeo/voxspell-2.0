@@ -11,7 +11,7 @@ import static org.junit.Assert.assertEquals;
  * Test suite for the voxspell.Festival module
  * Created by nateeo on 6/09/16.
  */
-public class festivalTest {
+public class FestivalTest {
     private Festival festival;
 
     @Before
