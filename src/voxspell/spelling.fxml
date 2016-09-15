@@ -12,12 +12,12 @@
       <TextArea fx:id="outputTextArea" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
-            <TextField fx:id="input" alignment="CENTER" minHeight="100.0" prefHeight="100.0" prefWidth="469.0">
+            <TextField fx:id="input" alignment="CENTER" prefHeight="100.0" prefWidth="469.0">
                <font>
                   <Font size="18.0" />
                </font>
             </TextField>
-            <Button fx:id="submitButton" alignment="CENTER" mnemonicParsing="false" prefHeight="109.0" prefWidth="139.0" style="-fx-background-color: #b6e7c9;" text="Go!">
+            <Button fx:id="submitButton" alignment="CENTER" mnemonicParsing="false" prefHeight="99.0" prefWidth="139.0" style="-fx-background-color: #b6e7c9;" text="Go!">
                <font>
                   <Font name="Comic Sans MS" size="18.0" />
                </font>
