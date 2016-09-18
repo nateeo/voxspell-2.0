@@ -8,7 +8,7 @@ import java.io.IOException;
 
 /**
  * This class wraps bash functions that call festival text-to-speech command
- * Created by nateeo on 6/09/16.
+ * Created by nhur714 on 6/09/16.
  */
 public class Festival {
     Task<Void> task;

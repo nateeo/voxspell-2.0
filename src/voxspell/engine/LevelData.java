@@ -1,9 +1,9 @@
 package voxspell.engine;
 
 /**
- * Static (singleton) link class between the two JavaFX scenes and a save file to access and update common level data
+ * Static ('singleton') class to store global application state
  *
- * Created by nateeo on 16/09/16.
+ * Created by nhur714 on 16/09/16.
  */
 public class LevelData {
     private static int level = -1;

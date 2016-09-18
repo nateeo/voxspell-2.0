@@ -9,7 +9,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * Test suite for the voxspell.engine.Festival module
- * Created by nateeo on 6/09/16.
+ * Created by nhur714 on 6/09/16.
  */
 public class FestivalTest {
     private Festival festival;
