@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import voxspell.engine.DataIO;
 import voxspell.engine.LevelData;
 
 import java.io.IOException;
@@ -17,12 +18,15 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 /**
- * Controller class for the application entry / level selection screen (main.fxml)
+ * MainController class for the application entry / level selection screen (main.fxml)
  */
-public class Controller implements Initializable {
+public class MainController implements Initializable {
     private static String ON_HOVER = "-fx-background-color: #83B496";
     private static String ON_EXIT = "-fx-background-color: #b6e7c9";
     private ArrayList<Button> buttons = new ArrayList<Button>();
+
+    // data IO
+    DataIO data = new DataIO();
 
     // initialize buttons from FXML
     @FXML
@@ -125,6 +129,15 @@ public class Controller implements Initializable {
             button.setOnMouseClicked(levelSelectionHandler);
             button.setOnMouseEntered(hoverHandler);
             button.setOnMouseExited(exitHandler);
+        }
+
+        System.out.println(buttons.size());
+
+        // disabled all locked levels
+        int maxLevel = data.highestLevelEnabled();
+        System.out.println(maxLevel);
+        for (int i = 9; i > maxLevel - 1; i--) {
+            buttons.get(i).setDisable(true);
         }
     }
 }
