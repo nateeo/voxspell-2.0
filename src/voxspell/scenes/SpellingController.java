@@ -88,8 +88,11 @@ public class SpellingController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // Initialize words and level label using levelData
         int level = LevelData.getLevel();
+
         WordList wordList = new WordList(level);
         words = wordList.getWords();
+        currentWord = words.get(0);
+
         levelLabel.setText("Level " + level);
 
         // set up outputTextArea
@@ -118,7 +121,19 @@ public class SpellingController implements Initializable {
     private void submit() {
         String userInput = inputTextField.getText().trim();
         if (!userInput.matches("[a-zA-Z]+")) {
-            outputTextArea.setText("Oops, wrong input. Please try again!");
+            boolean wordHasApostrophe = currentWord.toString().contains("'");
+            boolean userInputHasApostrophe = userInput.contains("'");
+            if (wordHasApostrophe && !userInputHasApostrophe) {
+                // word contains an apostrophe but userInput does not
+                outputTextArea.setText("Oops, that's wrong. The word has an apostrophe (') ");
+            } else if (!wordHasApostrophe && userInputHasApostrophe) {
+                // word does not contain an apostrophe but userInput does
+                outputTextArea.setText("Oops, that's wrong. The word does NOT have an apostrophe (')");
+            } else {
+                // invalid input
+                outputTextArea.setText("Oops, you entered something wrong. Try again");
+            }
+
             inputTextField.clear();
             inputTextField.requestFocus();
         }
