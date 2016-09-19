@@ -11,10 +11,13 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import voxspell.engine.*;
+import voxspell.engine.Festival.Operations;
 
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+
+// TODO: save next unlocked level and voice data
 
 /**
  * Controller for the spelling quiz scene
@@ -57,7 +60,7 @@ public class SpellingController implements Initializable {
         @Override
         public void handle(MouseEvent mouseEvent) {
             // call to festival to repeat word
-            festival.read(currentWord, false);
+            festival.read(currentWord, Operations.LISTEN_AGAIN);
         }
     }
 
@@ -114,6 +117,8 @@ public class SpellingController implements Initializable {
     }
 
     private void readWord(Word word) {
+        Operations op = currentFaulted ? Operations.TRY_AGAIN : Operations.SPELL;
+        festival.read(word, op);
         System.out.println(word); // in place of festival
 
     }

@@ -10,7 +10,10 @@ import java.util.Collections;
  */
 public class DataIO {
     private ArrayList<Integer> enabledLevels;
+    private String voice;
+
     private File LEVEL_DATA = new File(".levelData.ser");
+    private File VOICE_DATA = new File(".voiceData.ser");
 
     public DataIO() {
         load();
@@ -37,10 +40,21 @@ public class DataIO {
         return Collections.max(enabledLevels);
     }
 
+    public String getVoice() {
+        return voice;
+    }
+
     public void save() {
         try {
             ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(LEVEL_DATA));
             os.writeObject(enabledLevels);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(VOICE_DATA));
+            os.writeObject(voice);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -58,6 +72,20 @@ public class DataIO {
             }
         } catch (FileNotFoundException e) {
             enabledLevels = new ArrayList<Integer>();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            ObjectInputStream is = new ObjectInputStream(new FileInputStream(VOICE_DATA));
+            voice = (String) is.readObject();
+            if (voice == null) {
+                voice = Festival.DEFAULT;
+            }
+        } catch (FileNotFoundException e) {
+            voice = Festival.DEFAULT;
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {

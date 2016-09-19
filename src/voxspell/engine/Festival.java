@@ -2,7 +2,7 @@ package voxspell.engine;
 
 import javafx.concurrent.Task;
 
-import java.io.IOException;
+import java.io.*;
 
 // TODO: Festival voice changes
 
@@ -12,17 +12,22 @@ import java.io.IOException;
  */
 public class Festival {
     Task<Void> task;
-    public static final String DEFAULT = "english";
-    public static final String WELSH = "welsh";
-    public static final String SPANISH = "spanish";
-    private String voiceType = DEFAULT;
+    // voices
+    public static final String DEFAULT = "kal_diphone";
+    public static final String NZ = "akl_nz_jdt_diphone";
+
+    // types of sentences
+    public enum Operations {
+        SPELL, CORRECT, TRY_AGAIN, LISTEN_AGAIN, WRONG
+    }
+    private String voiceType = LevelData.getVoice();
 
     /**
-     * type = "english" | "welsh" | "spanish" to configure the voice of festival
+     * type = Festival.DEFAULT | Festival.NZ to configure the voice of festival
      * @param type
      */
     public void setVoiceType(String type) { // TODO: remove one voice
-        if (type.equals(DEFAULT) || type.equals(WELSH) || type.equals(SPANISH)) {
+        if (type.equals(Festival.DEFAULT) | type.equals(Festival.NZ)) {
             voiceType = type;
         } else {
             System.out.println("Invalid type, setting to default");
@@ -34,22 +39,22 @@ public class Festival {
      * @return A nicely formatted  string of the current voiceType
      */
     public String getVoiceType() {
-        String voiceTypeDisplay = voiceType.substring(0, 1).toUpperCase() + voiceType.substring(1);
-        return voiceTypeDisplay;
+        return voiceType;
     }
 
     /**
      * Reads a word using festival.
      * word is the Word object to read. tryAgain flag to see if user is attempting the word again.
      * @param word
-     * @param tryAgain
+     * @param op
      * @return command String that was used in the process builder
      */
-    public void read(final Word word, final boolean tryAgain) {
+    public void read(final Word word, final Operations op) {
         task = new Task<Void>() {
             @Override
             protected Void call() throws Exception {
-                tts(word, tryAgain);
+                System.out.println("read task called");
+                tts(word, op);
                 return null;
             }
         };
@@ -59,30 +64,41 @@ public class Festival {
         thread.start();
     }
 
-    /**
-     * Builds bash command for festival
-     * @param word
-     * @return command
-     */
-    public String commandBuilder(Word word, boolean tryAgain) {
-        String command = "echo ";
-        if (tryAgain) {
-            command += "\"Try again. " + word + ". " + word;
-        } else {
-            command += "\"Please spell " + word;
+    private void tts(Word word, Operations op) {
+        ProcessBuilder builder = new ProcessBuilder("festival");
+        Process process = null;
+        try {
+            process = builder.start();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        command += ".\" | festival --tts --language " + voiceType;
-        return command;
+        PrintWriter stdin = new PrintWriter(process.getOutputStream());
+        String sentence = sentenceBuilder(word, op);
+        stdin.println("(voice_" + voiceType + ")");
+        //System.out.println("(voice_" + voiceType + ")");
+        stdin.println("(SayText \"" + sentence + "\"");
+        //System.out.println("(SayText \"" + sentence + "\")");
+        stdin.close();
     }
 
-    private void tts(Word word, boolean tryAgain) {
-        String command = commandBuilder(word, tryAgain);
-        ProcessBuilder builder = new ProcessBuilder("bash", "-c", command);
-        try {
-            Process process = builder.start();
-            process.waitFor();
-        } catch (IOException | InterruptedException e) {
-            System.out.println("text-to-speech error");
+    /**
+     * build the correct sentence for tts
+     * @param word
+     * @param op
+     */
+    private String sentenceBuilder(Word word, Operations op) {
+        switch (op) {
+            case SPELL:
+                return "Please spell " + word;
+            case CORRECT:
+                return "That is right!";
+            case LISTEN_AGAIN:
+                return "The word is " + word + ". " + word;
+            case TRY_AGAIN:
+                return "Try spelling it again. " + word + ". " + word;
+            case WRONG:
+                return "Sorry, that is wrong";
         }
+        return "Something went wrong";
     }
 }

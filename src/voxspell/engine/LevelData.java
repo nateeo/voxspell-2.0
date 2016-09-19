@@ -7,10 +7,15 @@ import java.util.ArrayList;
  *
  * Created by nhur714 on 16/09/16.
  */
+
+/**
+ * TODO: save voice and max level
+ */
 public class LevelData {
     private static int level = -1;
     private static DataIO data = new DataIO();
     private static ArrayList<Word> currentWordList;
+    private static String voice = data.getVoice();
 
     /**
      * set currentWordList
@@ -53,4 +58,17 @@ public class LevelData {
         return data.highestLevelEnabled();
     }
 
+    /**
+     * set voice
+     */
+    public static void setVoice(String toSet) {
+        voice = toSet;
+    }
+
+    /**
+     * get voice
+     */
+    public static String getVoice() {
+        return voice;
+    }
 }
