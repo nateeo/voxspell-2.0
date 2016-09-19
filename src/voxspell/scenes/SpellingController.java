@@ -52,10 +52,10 @@ public class SpellingController implements Initializable {
     /**
      * listener to handle listen-again requests
      */
-    class listenAgainHandler implements EventHandler<ActionEvent> {
+    class listenAgainHandler implements EventHandler<MouseEvent> {
 
         @Override
-        public void handle(ActionEvent actionEvent) {
+        public void handle(MouseEvent mouseEvent) {
             // call to festival to repeat word
             festival.read(currentWord, false);
         }
@@ -107,6 +107,7 @@ public class SpellingController implements Initializable {
         // add listeners
         submitButton.setOnMouseClicked(new submitHandler());
         inputTextField.setOnAction(new enterSubmitHandler());
+        listenAgainButton.setOnMouseClicked(new listenAgainHandler());
 
         // start quiz
         readWord(currentWord);
@@ -119,9 +120,22 @@ public class SpellingController implements Initializable {
 
     private void submit() {
         String userInput = inputTextField.getText().trim();
-        boolean valid = checkInput(userInput);
+        boolean valid = checkInputValid(userInput);
         if (valid) {
-            // check word
+            boolean correct = checkWord(userInput);
+            if (correct && !currentFaulted) {
+                currentWord.incrementMastered();
+                nextWord();
+            } else if (correct && currentFaulted) {
+                currentWord.incrementFaulted();
+                nextWord();
+            } else if (!correct && !currentFaulted) {
+                currentFaulted = true;
+                readWord(currentWord);
+            } else { // !correct && currentFaulted
+                currentWord.incrementFailed();
+                nextWord();
+            }
 
         } else {
             // invalid input
@@ -135,7 +149,7 @@ public class SpellingController implements Initializable {
      * @param userInput
      * @return
      */
-    private boolean checkInput(String userInput) {
+    private boolean checkInputValid(String userInput) {
         if (!userInput.matches("[a-zA-Z]+")) {
             boolean wordHasApostrophe = currentWord.toString().contains("'");
             boolean userInputHasApostrophe = userInput.contains("'");
@@ -154,6 +168,26 @@ public class SpellingController implements Initializable {
             }
         }
         return true;
+    }
+
+    /**
+     * check if user input is spelt correctly
+     */
+    private boolean checkWord(String userInput) {
+        return userInput.trim().equalsIgnoreCase(currentWord.toString());
+    }
+
+    /**
+     * get next word as currentWord
+     */
+    private void nextWord() {
+        int index = words.indexOf(currentWord);
+        if (index < 9) {
+            currentWord = words.get(index + 1);
+            readWord(currentWord);
+        } else {
+            // TODO: finished
+        }
     }
 
     /**
