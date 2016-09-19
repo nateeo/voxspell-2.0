@@ -8,7 +8,7 @@ import java.io.Serializable;
  *
  * Created by harrylimp on 6/09/16.
  */
-public class Word implements Serializable{
+public class Word implements Serializable {
 
     private String word;
     private int mastered;
@@ -17,6 +17,30 @@ public class Word implements Serializable{
 
     public Word(String wordIn) {
         word = wordIn;
+    }
+
+    public void incrementMastered() {
+        mastered++;
+    }
+
+    public void incrementFaulted() {
+        faulted++;
+    }
+
+    public void incrementFailed() {
+        failed++;
+    }
+
+    public int getMastered() {
+        return mastered;
+    }
+
+    public int getFaulted() {
+        return faulted;
+    }
+
+    public int getFailed() {
+        return failed;
     }
 
     @Override
