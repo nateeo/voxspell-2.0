@@ -44,6 +44,15 @@ public class Word implements Serializable {
     }
 
     @Override
+    public boolean equals(Object other) {
+        if (other instanceof Word) {
+            return other.toString().equals(this.toString());
+        } else {
+            return false;
+        }
+    }
+
+    @Override
     public String toString() {
         return word;
     }

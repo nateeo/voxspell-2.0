@@ -72,7 +72,10 @@
       <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
          <children>
             <TextArea fx:id="outputTextArea" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
-            <Button fx:id="listenAgainButton" mnemonicParsing="false" prefHeight="206.0" prefWidth="139.0" text="Next level" />
+            <Button fx:id="listenAgainButton" mnemonicParsing="false" prefHeight="206.0" prefWidth="139.0" text="Hear again">
+               <font>
+                  <Font name="Comic Sans MS" size="18.0" />
+               </font></Button>
          </children></HBox>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
          <children>

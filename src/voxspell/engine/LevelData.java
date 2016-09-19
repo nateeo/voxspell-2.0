@@ -1,5 +1,7 @@
 package voxspell.engine;
 
+import java.util.ArrayList;
+
 /**
  * Static ('singleton') class to store global application state
  *
@@ -8,6 +10,21 @@ package voxspell.engine;
 public class LevelData {
     private static int level = -1;
     private static DataIO data = new DataIO();
+    private static ArrayList<Word> currentWordList;
+
+    /**
+     * set currentWordList
+     */
+    public static void setCurrentWordList(ArrayList<Word> words) {
+        currentWordList = words;
+    }
+
+    /**
+     * get currentWordList
+     */
+    public static ArrayList<Word> getCurrentWordList() {
+        return currentWordList;
+    }
 
     /**
      * set current session's selected level

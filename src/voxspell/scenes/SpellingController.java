@@ -33,8 +33,6 @@ public class SpellingController implements Initializable {
     @FXML
     private TextArea outputTextArea;
     @FXML
-    private Label statisticsLabel;
-    @FXML
     private Label rightLabel;
     @FXML
     private Label wrongLabel;
@@ -46,8 +44,10 @@ public class SpellingController implements Initializable {
     private DataIO data = new DataIO();
     private Festival festival = new Festival();
 
+    // current quiz
     private ArrayList<Word> words;
     private Word currentWord;
+    private boolean currentFaulted = false;
 
     /**
      * listener to handle listen-again requests
@@ -91,6 +91,7 @@ public class SpellingController implements Initializable {
 
         WordList wordList = new WordList(level);
         words = wordList.getWords();
+        LevelData.setCurrentWordList(words); // set global application state
         currentWord = words.get(0);
 
         levelLabel.setText("Level " + level);
@@ -106,6 +107,53 @@ public class SpellingController implements Initializable {
         // add listeners
         submitButton.setOnMouseClicked(new submitHandler());
         inputTextField.setOnAction(new enterSubmitHandler());
+
+        // start quiz
+        readWord(currentWord);
+    }
+
+    private void readWord(Word word) {
+        System.out.println(word); // in place of festival
+
+    }
+
+    private void submit() {
+        String userInput = inputTextField.getText().trim();
+        boolean valid = checkInput(userInput);
+        if (valid) {
+            // check word
+
+        } else {
+            // invalid input
+            inputTextField.clear();
+            inputTextField.requestFocus();
+        }
+    }
+
+    /**
+     * checks userInput for apostrophes and valid characters, returning true if valid
+     * @param userInput
+     * @return
+     */
+    private boolean checkInput(String userInput) {
+        if (!userInput.matches("[a-zA-Z]+")) {
+            boolean wordHasApostrophe = currentWord.toString().contains("'");
+            boolean userInputHasApostrophe = userInput.contains("'");
+            if (wordHasApostrophe && !userInputHasApostrophe) {
+                // word contains an apostrophe but userInput does not
+                outputTextArea.setText("Oops, that's wrong. The word has an apostrophe (')");
+                return false;
+            } else if (!wordHasApostrophe && userInputHasApostrophe) {
+                // word does not contain an apostrophe but userInput does
+                outputTextArea.setText("Oops, that's wrong. The word does NOT have an apostrophe (')");
+                return false;
+            } else {
+                // invalid input
+                outputTextArea.setText("Oops, you entered something wrong. Try again.");
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
@@ -116,26 +164,7 @@ public class SpellingController implements Initializable {
         rightLabel.setText("0");
         wrongLabel.setText("0");
         progressLabel.setText("1");
-    }
 
-    private void submit() {
-        String userInput = inputTextField.getText().trim();
-        if (!userInput.matches("[a-zA-Z]+")) {
-            boolean wordHasApostrophe = currentWord.toString().contains("'");
-            boolean userInputHasApostrophe = userInput.contains("'");
-            if (wordHasApostrophe && !userInputHasApostrophe) {
-                // word contains an apostrophe but userInput does not
-                outputTextArea.setText("Oops, that's wrong. The word has an apostrophe (') ");
-            } else if (!wordHasApostrophe && userInputHasApostrophe) {
-                // word does not contain an apostrophe but userInput does
-                outputTextArea.setText("Oops, that's wrong. The word does NOT have an apostrophe (')");
-            } else {
-                // invalid input
-                outputTextArea.setText("Oops, you entered something wrong. Try again");
-            }
-
-            inputTextField.clear();
-            inputTextField.requestFocus();
-        }
+        currentFaulted = false;
     }
 }
