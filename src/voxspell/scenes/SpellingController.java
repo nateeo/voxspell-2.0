@@ -125,15 +125,19 @@ public class SpellingController implements Initializable {
             boolean correct = checkWord(userInput);
             if (correct && !currentFaulted) {
                 currentWord.incrementMastered();
+                incrementLabel(rightLabel);
                 nextWord();
             } else if (correct && currentFaulted) {
                 currentWord.incrementFaulted();
+                currentFaulted = false;
                 nextWord();
             } else if (!correct && !currentFaulted) {
                 currentFaulted = true;
+                incrementLabel(wrongLabel); // wrong as soon as faulted
                 readWord(currentWord);
             } else { // !correct && currentFaulted
                 currentWord.incrementFailed();
+                currentFaulted = false;
                 nextWord();
             }
 
@@ -181,13 +185,25 @@ public class SpellingController implements Initializable {
      * get next word as currentWord
      */
     private void nextWord() {
+        inputTextField.clear();
+        inputTextField.requestFocus();
         int index = words.indexOf(currentWord);
         if (index < 9) {
+            incrementLabel(progressLabel);
             currentWord = words.get(index + 1);
             readWord(currentWord);
         } else {
             // TODO: finished
         }
+    }
+
+    /**
+     * increments a label's value
+     * @param label
+     */
+    private void incrementLabel(Label label) {
+        int current = Integer.parseInt(label.getText());
+        label.setText(Integer.toString(current + 1));
     }
 
     /**
