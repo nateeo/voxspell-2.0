@@ -99,6 +99,10 @@
                       </GridPane>
                </children>
             </HBox>
+            <Button fx:id="resetButton" alignment="CENTER" mnemonicParsing="false" style="-fx-background-color: #ff2525;" text="Reset">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
          </children>
       </VBox>
     </children>

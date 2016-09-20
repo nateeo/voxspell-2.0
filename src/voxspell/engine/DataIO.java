@@ -26,6 +26,7 @@ public class DataIO {
     public void enableLevel(int level) {
        if (!enabledLevels.contains(level)) { // add to enabled list if not already enabled
            enabledLevels.add(level);
+           save();
        }
     }
 
@@ -91,5 +92,13 @@ public class DataIO {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Reset levels
+     */
+    public void delete() {
+        LEVEL_DATA.delete();
+        enabledLevels = new ArrayList<Integer>();
     }
 }

@@ -49,6 +49,8 @@ public class MainController implements Initializable {
     private Button level9;
     @FXML
     private Button level10;
+    @FXML
+    private Button resetButton;
 
     /**
      * parse button text into level number
@@ -105,6 +107,13 @@ public class MainController implements Initializable {
         }
     }
 
+    class resetHandler implements EventHandler<MouseEvent> {
+        public void handle(MouseEvent event) {
+            data.delete();
+            disable(1); // disable all levels except the first
+        }
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -112,6 +121,7 @@ public class MainController implements Initializable {
         EventHandler<MouseEvent> levelSelectionHandler = new levelSelect();
         EventHandler<MouseEvent> hoverHandler = new hoverHandler();
         EventHandler<MouseEvent> exitHandler = new exitHandler();
+        EventHandler<MouseEvent> resetHandler = new resetHandler();
 
         // add buttons to list, then iterate through list assigning listeners
         buttons.add(level1);
@@ -131,10 +141,14 @@ public class MainController implements Initializable {
             button.setOnMouseExited(exitHandler);
         }
 
-        System.out.println(buttons.size());
+        resetButton.setOnMouseClicked(resetHandler);
 
-        // disabled all locked levels
-        int maxLevel = data.highestLevelEnabled();
+        disable(data.highestLevelEnabled());
+
+
+    }
+
+    private void disable(int maxLevel) {
         System.out.println(maxLevel);
         for (int i = 9; i > maxLevel - 1; i--) {
             buttons.get(i).setDisable(true);

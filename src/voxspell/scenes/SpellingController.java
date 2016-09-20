@@ -199,6 +199,9 @@ public class SpellingController implements Initializable {
             readWord(currentWord);
         } else {
             // TODO: finished
+            if (Integer.parseInt(rightLabel.getText()) >= 9 && LevelData.getLevel() < 10) {
+                data.enableLevel(LevelData.getLevel() + 1);
+            }
         }
     }
 
