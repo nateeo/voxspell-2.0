@@ -10,16 +10,12 @@ import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import voxspell.engine.LevelData;
@@ -45,7 +41,7 @@ public class SessionController implements Initializable {
     @FXML
     private ListView<String> listView;
     @FXML
-    private TextArea endMessage;
+    private Label endMessage;
 
     private static ArrayList<String> correctList = new ArrayList<>();
 
@@ -79,15 +75,12 @@ public class SessionController implements Initializable {
     public void displayText() {
         ArrayList<Word> currentWords = LevelData.getCurrentWordList();
         int correct = 0;
-        int incorrect = 0;
         for (Word word : currentWords) {
             if (word.getMastered() == 1) {
                 correct++;
-            } else {
-                incorrect++;
             }
         }
-        endMessage.setText("Congratulations, you got " + correct + " out of " + incorrect + "!");
+        endMessage.setText("Congratulations, you got " + correct + " out of 10!");
     }
 
     public void showPieChart() {
@@ -106,6 +99,21 @@ public class SessionController implements Initializable {
                 new javafx.scene.chart.PieChart.Data("Incorrect", incorrect * 10)
         );
         piechart.setData(list);
+
+        applyCustomColorSequence(
+                list,
+                "green",
+                "red"
+        );
+        
+    }
+
+    private void applyCustomColorSequence(ObservableList<PieChart.Data> pieChartData, String... pieColors) {
+        int i = 0;
+        for (PieChart.Data data : pieChartData) {
+            data.getNode().setStyle("-fx-pie-color: " + pieColors[i % pieColors.length] + ";");
+            i++;
+        }
     }
 
     public void showListView() {
@@ -126,17 +134,17 @@ public class SessionController implements Initializable {
             }
         });
     }
+
     static class ColorRectCell extends ListCell<String> {
         @Override
         public void updateItem(String item, boolean empty) {
             super.updateItem(item, empty);
-            Rectangle rect = new Rectangle(100, 20);
             if (item != null) {
                 setText(item);
                 if (correctList.contains(item)) {
                     setBackground(new Background(new BackgroundFill(Color.GREEN, CornerRadii.EMPTY, Insets.EMPTY)));
                 } else {
-                    setBackground(new Background(new BackgroundFill(Color.DARKRED, CornerRadii.EMPTY, Insets.EMPTY)));
+                    setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
                 }
             }
         }

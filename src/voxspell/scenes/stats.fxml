@@ -11,15 +11,29 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="voxspell.scenes.StatsController">
 <children>
-   <PieChart layoutX="26.0" layoutY="86.0" prefHeight="289.0" prefWidth="309.0" />
-   <Button fx:id="returnButton" layoutX="495.0" layoutY="15.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="86.0" text="Go back" />
-   <BarChart layoutX="327.0" layoutY="86.0" prefHeight="289.0" prefWidth="248.0">
-      <xAxis>
-         <CategoryAxis side="BOTTOM" />
-      </xAxis>
-      <yAxis>
-         <NumberAxis prefHeight="248.0" prefWidth="27.0" side="LEFT" />
-      </yAxis>
-   </BarChart>
+   <PieChart fx:id="piechart" layoutX="12.0" layoutY="69.0" legendVisible="false" prefHeight="320.0" prefWidth="337.0" />
+   <Button fx:id="returnButton" layoutX="12.0" layoutY="14.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="86.0" text="Go back" />
+      <MenuButton fx:id="menuButton" layoutX="432.0" layoutY="22.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" text="Select Level">
+        <items>
+          <MenuItem fx:id="levelOne" mnemonicParsing="false" text="Level 1" />
+          <MenuItem fx:id="levelTwo" mnemonicParsing="false" text="Level 2" />
+            <MenuItem fx:id="levelThree" mnemonicParsing="false" text="Level 3" />
+            <MenuItem fx:id="levelFour" mnemonicParsing="false" text="Level 4" />
+            <MenuItem fx:id="levelFive" mnemonicParsing="false" text="Level 5" />
+            <MenuItem fx:id="levelSix" mnemonicParsing="false" text="Level 6" />
+            <MenuItem fx:id="levelSeven" mnemonicParsing="false" text="Level 7" />
+            <MenuItem fx:id="levelEight" mnemonicParsing="false" text="Level 8" />
+            <MenuItem fx:id="levelNine" mnemonicParsing="false" text="Level 9" />
+            <MenuItem fx:id="levelTen" mnemonicParsing="false" onAction="#newStats" onMenuValidation="#newStats" text="Level 10" />
+        </items>
+      </MenuButton>
+      <BarChart layoutX="373.0" layoutY="70.0" prefHeight="299.0" prefWidth="207.0">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis side="LEFT" />
+        </yAxis>
+      </BarChart>
 </children>
 </AnchorPane>

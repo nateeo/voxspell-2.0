@@ -1,20 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import javafx.scene.chart.*?>
-<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.chart.PieChart?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.*?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="voxspell.scenes.SessionController">
     <children>
         <AnchorPane layoutY="-1.0" prefHeight="400.0" prefWidth="402.0">
             <children>
-                <PieChart fx:id="piechart" layoutX="2.0" layoutY="64.0" mouseTransparent="true" prefHeight="333.0" prefWidth="411.0" />
+                <PieChart fx:id="piechart" layoutX="2.0" layoutY="64.0" legendVisible="false" mouseTransparent="true" prefHeight="333.0" prefWidth="411.0" />
+            <Label fx:id="endMessage" layoutX="14.0" layoutY="14.0" prefHeight="48.0" prefWidth="387.0" text="Label" textAlignment="CENTER">
+               <font>
+                  <Font name="KacstNaskh" size="19.0" />
+               </font></Label>
             </children>
         </AnchorPane>
           <ListView fx:id="listView" layoutX="423.0" layoutY="273.0" prefHeight="119.0" prefWidth="170.0" />
@@ -45,6 +48,5 @@
             </Button>
          </children>
       </VBox>
-      <TextArea fx:id="endMessage" layoutX="6.0" layoutY="13.0" prefHeight="48.0" prefWidth="411.0" />
     </children>
 </AnchorPane>
