@@ -62,6 +62,8 @@ public class MainController implements Initializable {
     private MenuButton voiceMenuButton;
     @FXML
     private Button viewStatsButton;
+    @FXML
+    private Button unlockAllButton;
 
     /**
      * parse button text into level number
@@ -161,10 +163,19 @@ public class MainController implements Initializable {
         }
     }
 
+    /**
+     * handler for resetting labels
+     */
     class resetHandler implements EventHandler<MouseEvent> {
         public void handle(MouseEvent event) {
             data.delete();
             disable(1); // disable all levels except the first
+        }
+    }
+
+    class enableAllHandler implements EventHandler<MouseEvent> {
+        public void handle(MouseEvent event) {
+            enableAll();
         }
     }
 
@@ -177,6 +188,7 @@ public class MainController implements Initializable {
         EventHandler<MouseEvent> exitHandler = new exitHandler();
         EventHandler<MouseEvent> resetHandler = new resetHandler();
         EventHandler<MouseEvent> statsSelectHandler = new statsSelectHandler();
+        EventHandler<MouseEvent> enableAllHandler = new enableAllHandler();
 
         // add buttons to list, then iterate through list assigning listeners
         buttons.add(level1);
@@ -199,6 +211,8 @@ public class MainController implements Initializable {
         // initialise buttons
         resetButton.setOnMouseClicked(resetHandler);
         viewStatsButton.setOnMouseClicked(statsSelectHandler);
+        unlockAllButton.setOnMouseClicked(enableAllHandler);
+
 
         // disable locked levels
         disable(data.highestLevelEnabled());
@@ -220,6 +234,12 @@ public class MainController implements Initializable {
         System.out.println(maxLevel);
         for (int i = 9; i > maxLevel - 1; i--) {
             buttons.get(i).setDisable(true);
+        }
+    }
+
+    private void enableAll() {
+        for (int i = 0; i < 10; i++) {
+            buttons.get(i).setDisable(false);
         }
     }
 }
