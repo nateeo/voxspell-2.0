@@ -207,6 +207,10 @@ public class SpellingController implements Initializable {
             }
             // save level stats
             data.addWordList(words, LevelData.getLevel());
+            //testong
+            ArrayList<ArrayList<Word>> wordData = data.getWordData();
+            System.out.println("WORD DATA LVL 1 SIZE: " + wordData.get(0).size());
+            System.out.println(wordData.get(0).get(1).toString() + wordData.get(0).get(1).getMastered());
         }
     }
 

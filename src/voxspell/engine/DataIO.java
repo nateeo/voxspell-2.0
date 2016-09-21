@@ -85,12 +85,12 @@ public class DataIO {
 
     /**
      * wordData if to save word data as well
-     * @param wordData
+     * @param toSaveWordData
      */
-    public void saveAll(boolean wordData) {
+    public void saveAll(boolean toSaveWordData) {
         saveObject(LEVEL_DATA, enabledLevels);
         saveObject(VOICE_DATA, voice);
-        if (wordData) {
+        if (toSaveWordData) {
             saveObject(WORD_DATA, wordData);
         }
     }
@@ -162,5 +162,6 @@ public class DataIO {
         for (int i = 0; i < 10; i++) {
             free.add(new ArrayList<Word>());
         }
+        wordData = free;
     }
 }
