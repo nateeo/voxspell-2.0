@@ -89,7 +89,7 @@ public class Festival {
             writer.newLine();
             writer.write("(Parameter.set 'Duration_Stretch 1.5)");
             writer.newLine();
-            writer.write(sentence);
+            writer.write("(SayText " + sentence + ")");
             writer.flush();
         } catch (IOException e) {
             e.printStackTrace();

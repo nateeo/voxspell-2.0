@@ -127,7 +127,6 @@ public class SpellingController implements Initializable {
     private void readWord(Word word) {
         Operations op = currentFaulted ? Operations.TRY_AGAIN : Operations.SPELL;
         festival.read(word, op);
-        System.out.println(word); // in place of festival
 
     }
 
