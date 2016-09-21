@@ -6,13 +6,18 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
@@ -39,13 +44,17 @@ public class SessionController implements Initializable {
     private PieChart piechart;
     @FXML
     private ListView<String> listView;
+    @FXML
+    private TextArea endMessage;
+
+    private static ArrayList<String> correctList = new ArrayList<>();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         returnButton.setOnMouseClicked(new SessionController.returnHandler());
-
-        //showPieChart();
-        //showListView();
+        showPieChart();
+        showListView();
+        displayText();
     }
 
     class returnHandler implements EventHandler<MouseEvent> {
@@ -65,6 +74,20 @@ public class SessionController implements Initializable {
             stage.setScene(scene);
             stage.show();
         }
+    }
+
+    public void displayText() {
+        ArrayList<Word> currentWords = LevelData.getCurrentWordList();
+        int correct = 0;
+        int incorrect = 0;
+        for (Word word : currentWords) {
+            if (word.getMastered() == 1) {
+                correct++;
+            } else {
+                incorrect++;
+            }
+        }
+        endMessage.setText("Congratulations, you got " + correct + " out of " + incorrect + "!");
     }
 
     public void showPieChart() {
@@ -87,34 +110,35 @@ public class SessionController implements Initializable {
 
     public void showListView() {
         ArrayList<Word> currentWords = LevelData.getCurrentWordList();
-        ListView<String> list = new ListView<>();
         ObservableList<String> words = FXCollections.observableArrayList();
         for (Word word : currentWords) {
             words.add(word.toString());
-        }
-        list.setItems(words);
-        list.setCellFactory(new Callback<ListView<String>, ListCell<String>>() {
-            class ColorRectCell extends ListCell<String> {
-                @Override
-                public void updateItem(String item, boolean empty) {
-                    super.updateItem(item, empty);
-                    Rectangle rect = new Rectangle(100, 20);
-                    int position = LevelData.getCurrentWordList().indexOf(item);
-                    Word word = LevelData.getCurrentWordList().get(position);
-                    if (word.getMastered() == 1) {
-                        rect.setFill(Color.GREEN);
-                        setGraphic(rect);
-                    } else {
-                        rect.setFill(Color.RED);
-                        setGraphic(rect);
-                    }
-                }
+            if (word.getMastered() == 1) {
+                correctList.add(word.toString());
             }
+        }
+        listView.setItems(words);
 
+        listView.setCellFactory(new Callback<ListView<String>, ListCell<String>>() {
             @Override
             public ListCell<String> call(ListView<String> list) {
                 return new ColorRectCell();
             }
         });
+    }
+    static class ColorRectCell extends ListCell<String> {
+        @Override
+        public void updateItem(String item, boolean empty) {
+            super.updateItem(item, empty);
+            Rectangle rect = new Rectangle(100, 20);
+            if (item != null) {
+                setText(item);
+                if (correctList.contains(item)) {
+                    setBackground(new Background(new BackgroundFill(Color.GREEN, CornerRadii.EMPTY, Insets.EMPTY)));
+                } else {
+                    setBackground(new Background(new BackgroundFill(Color.DARKRED, CornerRadii.EMPTY, Insets.EMPTY)));
+                }
+            }
+        }
     }
 }
