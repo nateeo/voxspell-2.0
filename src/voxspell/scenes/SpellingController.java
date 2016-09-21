@@ -17,7 +17,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-// TODO: save next unlocked level and voice data
+// TODO: saveAll next unlocked level and voice data
 
 /**
  * Controller for the spelling quiz scene
@@ -200,10 +200,13 @@ public class SpellingController implements Initializable {
             currentWord = words.get(index + 1);
             readWord(currentWord);
         } else {
-            // TODO: finished
+            // TODO: finished, GO TO NEXT LEVEL
+            // enable next level
             if (Integer.parseInt(rightLabel.getText()) >= 9 && LevelData.getLevel() < 10) {
                 data.enableLevel(LevelData.getLevel() + 1);
             }
+            // save level stats
+            data.addWordList(words, LevelData.getLevel());
         }
     }
 

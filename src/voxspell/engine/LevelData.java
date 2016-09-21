@@ -9,7 +9,7 @@ import java.util.ArrayList;
  */
 
 /**
- * TODO: save voice and max level
+ * TODO: saveAll voice and max level
  */
 public class LevelData {
     private static int level = -1;
@@ -63,6 +63,7 @@ public class LevelData {
      */
     public static void setVoice(String toSet) {
         voice = toSet;
+        data.setVoice(voice); // update file
     }
 
     /**

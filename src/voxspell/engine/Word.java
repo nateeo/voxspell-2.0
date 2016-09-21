@@ -43,6 +43,16 @@ public class Word implements Serializable {
         return failed;
     }
 
+    /**
+     * add another word's stats to this one
+     * @param other
+     */
+    public void merge(Word other) {
+        mastered = mastered + other.mastered;
+        faulted = faulted + other.faulted;
+        failed = failed + other.failed;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other instanceof Word) {
