@@ -87,8 +87,7 @@ public class Festival {
         try {
             writer.write("(voice_" + voiceType + ")");
             writer.newLine();
-            writer.newLine();
-            writer.write("(SayText " + sentence + ")");
+            writer.write("(SayText " + "\"" + sentence + "\"" + ")");
             writer.flush();
         } catch (IOException e) {
             e.printStackTrace();
