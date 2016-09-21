@@ -2,6 +2,11 @@ package voxspell.engine;
 
 import javafx.concurrent.Task;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
 // TODO: Festival voice changes
 
 /**
@@ -13,6 +18,9 @@ public class Festival {
     // voices
     public static final String DEFAULT = "kal_diphone";
     public static final String NZ = "akl_nz_jdt_diphone";
+
+    // scm file for festival
+    public File SCM_FILE = new File(".festival.scm");
 
     // types of sentences
     public enum Operations {
@@ -64,21 +72,39 @@ public class Festival {
 
     private void tts(Word word, Operations op) {
         // TODO: FESTIVAL
-       /* ProcessBuilder builder = new ProcessBuilder("festival");
-        Process process = null;
+       String sentence = sentenceBuilder(word, op);
+        BufferedWriter writer = null;
+        if (SCM_FILE.exists()) {
+            SCM_FILE.delete(); // reset
+        }
+
+        // write to scm file
         try {
-            process = builder.start();
+            writer = new BufferedWriter(new FileWriter(SCM_FILE, true));
         } catch (IOException e) {
             e.printStackTrace();
         }
-        PrintWriter stdin = new PrintWriter(process.getOutputStream());
-        String sentence = sentenceBuilder(word, op);
-        stdin.println("(voice_" + voiceType + ")");
-        //System.out.println("(voice_" + voiceType + ")");
-        stdin.println("(SayText \"" + sentence + "\"");
-        //System.out.println("(SayText \"" + sentence + "\")");
-        stdin.close();
-        */
+        try {
+            writer.write("(voice_" + voiceType + ")");
+            writer.newLine();
+            writer.write("(Parameter.set 'Duration_Stretch 1.5)");
+            writer.newLine();
+            writer.write(sentence);
+            writer.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        ProcessBuilder processBuilder = new ProcessBuilder("bash", "-c", "festival -b " + SCM_FILE.toString());
+        try {
+            Process process = processBuilder.start();
+            process.waitFor();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     /**
