@@ -101,6 +101,26 @@ public class MainController implements Initializable {
     }
 
     /**
+     * handle change to stats scene
+     */
+    class statsSelectHandler implements EventHandler<MouseEvent> {
+        public void handle(MouseEvent event) {
+            Stage stage;
+            Parent root = null;
+            stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
+
+            try {
+                root = FXMLLoader.load(getClass().getResource("stats.fxml"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
+    }
+
+    /**
      * voice MenuButton handler for voice changing
      */
     class voiceMenuButtonHandler implements EventHandler<ActionEvent> {
@@ -156,6 +176,7 @@ public class MainController implements Initializable {
         EventHandler<MouseEvent> hoverHandler = new hoverHandler();
         EventHandler<MouseEvent> exitHandler = new exitHandler();
         EventHandler<MouseEvent> resetHandler = new resetHandler();
+        EventHandler<MouseEvent> statsSelectHandler = new statsSelectHandler();
 
         // add buttons to list, then iterate through list assigning listeners
         buttons.add(level1);
@@ -175,8 +196,11 @@ public class MainController implements Initializable {
             button.setOnMouseExited(exitHandler);
         }
 
+        // initialise buttons
         resetButton.setOnMouseClicked(resetHandler);
+        viewStatsButton.setOnMouseClicked(statsSelectHandler);
 
+        // disable locked levels
         disable(data.highestLevelEnabled());
 
         // initialise voice menu
