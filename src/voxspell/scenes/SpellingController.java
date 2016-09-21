@@ -3,16 +3,21 @@ package voxspell.scenes;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import voxspell.engine.*;
 import voxspell.engine.Festival.Operations;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -115,6 +120,7 @@ public class SpellingController implements Initializable {
         listenAgainButton.setOnMouseClicked(new listenAgainHandler());
 
         // start quiz
+        listenAgainButton.setDisable(false);
         readWord(currentWord);
     }
 
@@ -207,10 +213,7 @@ public class SpellingController implements Initializable {
             }
             // save level stats
             data.addWordList(words, LevelData.getLevel());
-            //testong
-            ArrayList<ArrayList<Word>> wordData = data.getWordData();
-            System.out.println("WORD DATA LVL 1 SIZE: " + wordData.get(0).size());
-            System.out.println(wordData.get(0).get(1).toString() + wordData.get(0).get(1).getMastered());
+            goToEnd();
         }
     }
 
@@ -233,5 +236,20 @@ public class SpellingController implements Initializable {
         progressLabel.setText("1");
         outOfLabel.setText("out of " + words.size());
         currentFaulted = false;
+    }
+
+    private void goToEnd() {
+        Stage stage;
+        Parent root = null;
+        stage = (Stage) submitButton.getScene().getWindow();
+
+        try {
+            root = FXMLLoader.load(getClass().getResource("endSession.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 }
