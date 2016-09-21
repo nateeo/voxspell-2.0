@@ -87,6 +87,7 @@ public class Festival {
         try {
             writer.write("(voice_" + voiceType + ")");
             writer.newLine();
+            writer.write("Parameter.set 'Duration_Stretch 1.2")
             writer.write("(SayText " + "\"" + sentence + "\"" + ")");
             writer.flush();
         } catch (IOException e) {
