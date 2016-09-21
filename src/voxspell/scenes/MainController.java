@@ -1,5 +1,6 @@
 package voxspell.scenes;
 
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -7,9 +8,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import voxspell.engine.DataIO;
+import voxspell.engine.Festival;
 import voxspell.engine.LevelData;
 
 import java.io.IOException;
@@ -21,8 +25,11 @@ import java.util.ResourceBundle;
  * MainController class for the application entry / level selection screen (main.fxml)
  */
 public class MainController implements Initializable {
-    private static String ON_HOVER = "-fx-background-color: #83B496";
-    private static String ON_EXIT = "-fx-background-color: #b6e7c9";
+    private static final String ON_HOVER = "-fx-background-color: #83B496";
+    private static final String ON_EXIT = "-fx-background-color: #b6e7c9";
+
+    private static final String NZ_VOICE_CHOICE = "NZ Voice";
+    private static final String DEFAULT_VOICE_CHOICE = "Default Voice";
     private ArrayList<Button> buttons = new ArrayList<Button>();
 
     // data IO
@@ -51,6 +58,10 @@ public class MainController implements Initializable {
     private Button level10;
     @FXML
     private Button resetButton;
+    @FXML
+    private MenuButton voiceMenuButton;
+    @FXML
+    private Button viewStatsButton;
 
     /**
      * parse button text into level number
@@ -86,6 +97,29 @@ public class MainController implements Initializable {
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
+        }
+    }
+
+    /**
+     * voice MenuButton handler for voice changing
+     */
+    class voiceMenuButtonHandler implements EventHandler<ActionEvent> {
+        @Override
+        public void handle(ActionEvent actionEvent) {
+            switch((String)((MenuItem)actionEvent.getSource()).getUserData()) { // userData is voice type
+                case Festival.DEFAULT:
+                    LevelData.setVoice(Festival.DEFAULT);
+                    voiceMenuButton.setText(DEFAULT_VOICE_CHOICE);
+                    break;
+                case Festival.NZ:
+                    LevelData.setVoice(Festival.NZ);
+                    voiceMenuButton.setText(NZ_VOICE_CHOICE);
+                    break;
+                default:
+                    LevelData.setVoice(Festival.DEFAULT); // set to default if invalid voice
+                    voiceMenuButton.setText(DEFAULT_VOICE_CHOICE);
+                    break;
+            }
         }
     }
 
@@ -145,7 +179,17 @@ public class MainController implements Initializable {
 
         disable(data.highestLevelEnabled());
 
+        // initialise voice menu
+        voiceMenuButton.setText("Change voice");
+        EventHandler<ActionEvent> voiceMenuButtonHandler = new voiceMenuButtonHandler();
+        MenuItem defaultVoice = new MenuItem(DEFAULT_VOICE_CHOICE);
+        defaultVoice.setUserData(Festival.DEFAULT);
+        MenuItem nzVoice = new MenuItem(NZ_VOICE_CHOICE);
+        nzVoice.setUserData(Festival.NZ);
+        voiceMenuButton.getItems().setAll(defaultVoice, nzVoice);
 
+        defaultVoice.setOnAction(voiceMenuButtonHandler);
+        nzVoice.setOnAction(voiceMenuButtonHandler);
     }
 
     private void disable(int maxLevel) {

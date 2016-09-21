@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.layout.*?>
@@ -99,10 +99,32 @@
                       </GridPane>
                </children>
             </HBox>
-            <Button fx:id="resetButton" alignment="CENTER" mnemonicParsing="false" style="-fx-background-color: #ff2525;" text="Reset">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor></Button>
+            <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <MenuButton fx:id="voiceMenuButton" mnemonicParsing="false" text="MenuButton">
+                    <items>
+                      <MenuItem mnemonicParsing="false" text="Action 1" />
+                      <MenuItem mnemonicParsing="false" text="Action 2" />
+                    </items>
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </MenuButton>
+                  <Button fx:id="viewStatsButton" mnemonicParsing="false" text="View stats">
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="resetButton" alignment="CENTER" mnemonicParsing="false" style="-fx-background-color: #ff2525;" text="Reset levels">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
          </children>
       </VBox>
     </children>

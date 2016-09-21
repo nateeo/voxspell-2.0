@@ -41,6 +41,8 @@ public class SpellingController implements Initializable {
     private Label wrongLabel;
     @FXML
     private Label progressLabel;
+    @FXML
+    private Label outOfLabel;
 
 
     // plug in engine modules
@@ -222,7 +224,7 @@ public class SpellingController implements Initializable {
         rightLabel.setText("0");
         wrongLabel.setText("0");
         progressLabel.setText("1");
-
+        outOfLabel.setText("out of " + words.size());
         currentFaulted = false;
     }
 }

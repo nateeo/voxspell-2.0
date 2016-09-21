@@ -61,7 +61,7 @@
                            <HBox.margin>
                               <Insets right="3.0" />
                            </HBox.margin></Label>
-                        <Label text="out of 10" />
+                        <Label fx:id="outOfLabel" text="out of 10" />
                      </children>
                   </HBox>
                </children>
