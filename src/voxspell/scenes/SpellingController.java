@@ -98,13 +98,19 @@ public class SpellingController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // Initialize words and level label using levelData
         int level = LevelData.getLevel();
+        WordList wordList;
+        if (LevelData.isReview()) { // get faulted/wrong words from the level
+            words = LevelData.getReviewWords(level);
+        } else {
+            wordList = new WordList(level);
+            words = wordList.getWords();
+        }
 
-        WordList wordList = new WordList(level);
-        words = wordList.getWords();
+
         LevelData.setCurrentWordList(words); // set global application state
         currentWord = words.get(0);
 
-        levelLabel.setText("Level " + level);
+        levelLabel.setText("Level " + level + (LevelData.isReview() ? " review" : ""));
 
         // set up outputTextArea
         outputTextArea.setEditable(false);
