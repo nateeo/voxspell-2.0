@@ -81,7 +81,7 @@ public class LevelData {
      */
     public static ArrayList<Word> getReviewWords(int level) {
         ArrayList<Word> wordList = new ArrayList<Word>();
-        for (Word word : data.getWordData().get(level)) {
+        for (Word word : data.getWordData().get(level - 1)) {
             if (word.getFailed() > 0 || word.getFaulted() > 0) {
                 wordList.add(word);
             }
