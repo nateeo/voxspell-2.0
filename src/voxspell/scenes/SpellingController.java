@@ -138,6 +138,8 @@ public class SpellingController implements Initializable {
 
     private void submit() {
         String userInput = inputTextField.getText().trim();
+        inputTextField.clear();
+        inputTextField.requestFocus();
         boolean valid = checkInputValid(userInput);
         if (valid) {
             boolean correct = checkWord(userInput);
@@ -161,8 +163,6 @@ public class SpellingController implements Initializable {
 
         } else {
             // invalid input
-            inputTextField.clear();
-            inputTextField.requestFocus();
         }
     }
 
