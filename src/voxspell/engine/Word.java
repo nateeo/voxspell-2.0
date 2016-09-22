@@ -48,7 +48,7 @@ public class Word implements Serializable {
     }
 
     public int getFailed() {
-        return failed;
+        return failed + faulted;
     }
 
     /**

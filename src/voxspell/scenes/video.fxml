@@ -11,29 +11,29 @@
       <MediaView fx:id="mv" fitHeight="200.0" fitWidth="200.0" BorderPane.alignment="CENTER" />
    </center>
    <bottom>
-      <HBox prefHeight="109.0" prefWidth="600.0" spacing="5.0" BorderPane.alignment="CENTER">
+      <HBox prefHeight="76.0" prefWidth="600.0" spacing="20.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="playButton" mnemonicParsing="false" onAction="#play" prefHeight="129.0" prefWidth="91.0">
+            <Button fx:id="playButton" mnemonicParsing="false" onAction="#play" prefHeight="75.0" prefWidth="75.0" text="PLAY">
                <font>
                   <Font size="16.0" />
                </font></Button>
-            <Button fx:id="pauseButton" mnemonicParsing="false" onAction="#pause" prefHeight="147.0" prefWidth="98.0" text="PAUSE">
+            <Button fx:id="pauseButton" mnemonicParsing="false" onAction="#pause" prefHeight="75.0" prefWidth="75.0" text="PAUSE">
                <font>
                   <Font size="16.0" />
                </font></Button>
-            <Button fx:id="fastforwardButton" mnemonicParsing="false" onAction="#fast" prefHeight="132.0" prefWidth="93.0" text="FAST">
+            <Button fx:id="fastforwardButton" mnemonicParsing="false" onAction="#fast" prefHeight="75.0" prefWidth="84.0" text="FASTER">
                <font>
                   <Font size="16.0" />
                </font></Button>
-            <Button fx:id="slowdownButton" mnemonicParsing="false" onAction="#slow" prefHeight="136.0" prefWidth="96.0" text="SLOW">
+            <Button fx:id="slowdownButton" mnemonicParsing="false" onAction="#slow" prefHeight="75.0" prefWidth="94.0" text="SLOWER">
                <font>
                   <Font size="16.0" />
                </font></Button>
-            <Button fx:id="reloadButton" mnemonicParsing="false" onAction="#reload" prefHeight="127.0" prefWidth="100.0" text="RELOAD">
+            <Button fx:id="reloadButton" mnemonicParsing="false" onAction="#reload" prefHeight="75.0" prefWidth="96.0" text="RELOAD">
                <font>
                   <Font size="16.0" />
                </font></Button>
-            <Button fx:id="exitButton" mnemonicParsing="false" prefHeight="135.0" prefWidth="100.0" text="EXIT">
+            <Button fx:id="exitButton" mnemonicParsing="false" prefHeight="75.0" prefWidth="75.0" text="EXIT">
                <font>
                   <Font size="16.0" />
                </font>
