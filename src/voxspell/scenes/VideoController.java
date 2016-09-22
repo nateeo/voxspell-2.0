@@ -59,19 +59,19 @@ public class VideoController implements Initializable {
 
         exitButton.setOnMouseClicked(new VideoController.returnHandler());
 
-        Image image1 = new Image(getClass().getResourceAsStream("playPic.png"));
+        Image image1 = new Image(getClass().getResourceAsStream("assets/playPic.png"));
         Button playButton = new Button();
         playButton.setGraphic(new ImageView(image1));
-        Image image2 = new Image(getClass().getResourceAsStream("pausePic.png"));
+        Image image2 = new Image(getClass().getResourceAsStream("assets/pausePic.png"));
         Button pauseButton = new Button();
         pauseButton.setGraphic(new ImageView(image2));
-        Image image3 = new Image(getClass().getResourceAsStream("fastPic.png"));
+        Image image3 = new Image(getClass().getResourceAsStream("assets/fastPic.png"));
         Button fastforwardButton = new Button();
         fastforwardButton.setGraphic(new ImageView(image3));
-        Image image4 = new Image(getClass().getResourceAsStream("backPic.png"));
+        Image image4 = new Image(getClass().getResourceAsStream("assets/backPic.png"));
         Button slowdownButton = new Button();
         slowdownButton.setGraphic(new ImageView(image4));
-        Image image5 = new Image(getClass().getResourceAsStream("reloadPic.png"));
+        Image image5 = new Image(getClass().getResourceAsStream("assets/reloadPic.png"));
         Button reloadButton = new Button();
         reloadButton.setGraphic(new ImageView(image5));
 

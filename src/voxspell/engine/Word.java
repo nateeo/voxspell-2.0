@@ -31,6 +31,14 @@ public class Word implements Serializable {
         failed++;
     }
 
+    public String getWord() {
+        return word;
+    }
+
+    public void setWord(String word) {
+        this.word = word;
+    }
+
     public int getMastered() {
         return mastered;
     }

@@ -103,7 +103,8 @@ public class DataIO {
         voice = (String) loadObject(VOICE_DATA, Festival.DEFAULT);
         wordData = (ArrayList<ArrayList<Word>>) loadObject(WORD_DATA, new ArrayList<ArrayList<Word>>());
         if (wordData.isEmpty()) {
-            initialiseWordData(); // initialise if wordData is empty;
+            System.out.println("it's empty");
+            initialiseWordData();  // initialise if wordData is empty;
         }
     }
 
