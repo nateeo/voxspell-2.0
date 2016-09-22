@@ -1,5 +1,6 @@
 package voxspell.scenes;
 
+import javafx.concurrent.WorkerStateEvent;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -52,7 +53,7 @@ public class SpellingController implements Initializable {
 
     // plug in engine modules
     private DataIO data = new DataIO();
-    private Festival festival = new Festival();
+    private Festival festival = new Festival(new festivalListener());
 
     // current quiz
     private ArrayList<Word> words;
@@ -68,6 +69,18 @@ public class SpellingController implements Initializable {
         public void handle(MouseEvent mouseEvent) {
             // call to festival to repeat word
             festival.read(currentWord, Operations.LISTEN_AGAIN);
+        }
+    }
+
+    /**
+     * listener to handle festival completing a tts
+     */
+    class festivalListener implements EventHandler<WorkerStateEvent> {
+
+        @Override
+        public void handle(WorkerStateEvent event) {
+            submitButton.setDisable(false);
+            // TODO: disable entering and set loading
         }
     }
 
@@ -137,6 +150,7 @@ public class SpellingController implements Initializable {
             message = "Please try spelling the word again";
         }
         outputTextArea.setText(message);
+        submitButton.setDisable(true);
         festival.read(word, op);
 
     }

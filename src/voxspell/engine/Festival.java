@@ -1,6 +1,8 @@
 package voxspell.engine;
 
 import javafx.concurrent.Task;
+import javafx.concurrent.WorkerStateEvent;
+import javafx.event.EventHandler;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -14,10 +16,17 @@ import java.io.IOException;
  * Created by nhur714 on 6/09/16.
  */
 public class Festival {
+
+    public Festival(EventHandler<WorkerStateEvent> toAdd) {
+        listener = toAdd;
+    }
+
     Task<Void> task;
     // voices
     public static final String DEFAULT = "kal_diphone";
     public static final String NZ = "akl_nz_jdt_diphone";
+
+    private EventHandler<WorkerStateEvent> listener;
 
     // scm file for festival
     public File SCM_FILE = new File(".festival.scm");
@@ -64,6 +73,8 @@ public class Festival {
                 return null;
             }
         };
+
+        task.setOnSucceeded(listener);
 
         Thread thread = new Thread(task);
         thread.setDaemon(true);
