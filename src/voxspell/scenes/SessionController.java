@@ -48,6 +48,7 @@ public class SessionController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         returnButton.setOnMouseClicked(new SessionController.returnHandler());
+        reviewButton.setOnMouseClicked(new SessionController.statsHandler());
         showPieChart();
         showListView();
         displayText();
@@ -63,6 +64,25 @@ public class SessionController implements Initializable {
 
             try {
                 root = FXMLLoader.load(getClass().getResource("main.fxml"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
+    }
+
+    class statsHandler implements EventHandler<MouseEvent> {
+
+        @Override
+        public void handle(MouseEvent mouseEvent) {
+            Stage stage;
+            Parent root = null;
+            stage = (Stage) ((Button)mouseEvent.getSource()).getScene().getWindow();
+
+            try {
+                root = FXMLLoader.load(getClass().getResource("stats.fxml"));
             } catch (IOException e) {
                 e.printStackTrace();
             }

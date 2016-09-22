@@ -9,7 +9,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.BarChart;
 import javafx.scene.chart.PieChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
@@ -22,6 +24,7 @@ import voxspell.engine.LevelData;
 import voxspell.engine.Word;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -59,31 +62,17 @@ public class StatsController implements Initializable {
     private MenuItem levelNine;
     @FXML
     private MenuItem levelTen;
+    @FXML
+    private BarChart<String,Number> barChart;
 
+    private DataIO data = new DataIO();
+
+    private ArrayList<ArrayList<Word>> wordData = data.getWordData();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        returnButton.setOnMouseClicked(new returnHandler());
-        showPieChart(LevelData.getLevel());
-
-        //initialise menubutton
-        menuButton.setText("Level " + LevelData.getLevel());
-        EventHandler<ActionEvent> levelMenuButtonHandler = new levelMenuButtonHandler();
-
-    }
-
-
-
-    class levelMenuButtonHandler implements EventHandler<ActionEvent> {
-        @Override
-        public void handle(ActionEvent actionEvent) {
-            switch((String)((MenuItem)actionEvent.getSource()).getUserData()) { // userData is voice type
-                case "levelOne":
-                    break;
-                default:
-                    break;
-            }
-        }
+        data = new DataIO();
+        updateBarChart("1");
     }
 
     class returnHandler implements EventHandler<MouseEvent> {
@@ -105,46 +94,52 @@ public class StatsController implements Initializable {
         }
     }
 
-    /*
-    get current level (or default level)
-    depending on level chosen get stats for that level
-    display as required
-     */
-    public void showPieChart(int level) {
+    class resetHandler implements EventHandler<MouseEvent> {
 
-        ArrayList<ArrayList<Word>> allWords = new DataIO().getWordData();
-        ArrayList<Word> currentWords = allWords.get(level-1);
+        @Override
+        public void handle(MouseEvent mouseEvent) {
+            String levelSelected = ((MenuItem)mouseEvent.getSource()).getText();
+            updateBarChart(levelSelected);
+            updateTextArea(levelSelected);
+        }
+    }
+
+    class levelHandler implements EventHandler<MouseEvent> {
+
+        @Override
+        public void handle(MouseEvent mouseEvent) {
+            String levelSelected = ((MenuItem)mouseEvent.getSource()).getText();
+            updateBarChart(levelSelected);
+            updateTextArea(levelSelected);
+        }
+    }
+
+    public void updateBarChart(String level) {
+        ArrayList<Word> selectedWords = extractWords(Integer.parseInt(level));
         int correct = 0;
-        int incorrect = 0;
-        for (Word word : currentWords) {
+        int wrong = 0;
+        for (Word word : selectedWords) {
             correct += word.getMastered();
-            incorrect += word.getFaulted() + word.getFailed();
+            wrong += word.getFaulted() + word.getFailed();
+            System.out.println(word.toString() + word.getMastered() + " | " + word.getFaulted() + " | " + word.getFailed());
         }
+        double correctPercentage = ((double)correct/(correct+wrong)) * 100;
+        XYChart.Series series = new XYChart.Series();
+        System.out.println(correctPercentage);
+        series.setName("HELLO");
+        series.getData().add(new XYChart.Data("correct", correctPercentage));
+        series.getData().add(new XYChart.Data("wrong", 100 - correctPercentage));
 
-        ObservableList<javafx.scene.chart.PieChart.Data> list = FXCollections.observableArrayList(
-                new javafx.scene.chart.PieChart.Data("Correct", (double)correct/(correct+incorrect)),
-                new javafx.scene.chart.PieChart.Data("Incorrect", (double)incorrect/(correct+incorrect))
-        );
-        piechart.setData(list);
+        barChart.getData().addAll(series);
+    }
 
-        applyCustomColorSequence(
-                list,
-                "green",
-                "red"
-        );
+    public void updateTextArea(String level) {
 
     }
 
-    private void applyCustomColorSequence(ObservableList<PieChart.Data> pieChartData, String... pieColors) {
-        int i = 0;
-        for (PieChart.Data data : pieChartData) {
-            data.getNode().setStyle("-fx-pie-color: " + pieColors[i % pieColors.length] + ";");
-            i++;
-        }
+    private ArrayList<Word> extractWords(int level) {
+        return wordData.get(level-1);
     }
 
-    public void newStats() {
-
-    }
 
 }
