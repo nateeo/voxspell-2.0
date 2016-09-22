@@ -29,7 +29,7 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button fx:id="retryButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="170.0" text="Retry Level">
+            <Button fx:id="retryLevelButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="170.0" text="Retry Level">
                <font>
                   <Font size="18.0" />
                </font>

@@ -220,7 +220,13 @@ public class SpellingController implements Initializable {
                 // word does not contain an apostrophe but userInput does
                 outputTextArea.setText("Oops, that's wrong. The word does NOT have an apostrophe (')");
                 return false;
-            } else {
+            } else if (wordHasApostrophe && userInputHasApostrophe) {
+                return true;
+            } else if (currentWord.toString().contains(" ") && userInput.contains(" ")) {
+                // valid if word and input both contain spaces
+                return true;
+            }
+            else {
                 // invalid input
                 outputTextArea.setText("Oops, you entered something wrong. Try again.");
                 return false;
@@ -243,7 +249,7 @@ public class SpellingController implements Initializable {
         inputTextField.clear();
         inputTextField.requestFocus();
         int index = words.indexOf(currentWord);
-        if (index < 9) {
+        if (index < words.size() - 1) {
             incrementLabel(progressLabel);
             currentWord = words.get(index + 1);
             readWord(currentWord);

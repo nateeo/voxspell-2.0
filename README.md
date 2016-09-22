@@ -21,12 +21,20 @@ characters will not count as a wrong spelling and you will be allowed to try aga
 Some words contain apostrophes - if your spelling does not contain it while the word does, you will
 be told and asked to retry without penalty (and vice versa).
 
+Scoring 9 or more on a level enables you to watch a video reward.
+
 ###reviewing
-You can review all the words you got wrong at the end of each level you have completed.
+You can review all the words you got wrong at the end of each level you have completed. You can also review
+the words you got wrong in the previous review quiz. Unless you were reviewing after scoring 9/10, you cannot
+access the next level by simply reviewing.
+If you qualify for the next level (getting 9 out of 10 on the quiz) and then review the one word you got wrong,
+you still have access to the video reward and next level.
 
 ###statistics
 The stats are intended for parents/teachers to review the words that the user has gotten wrong. A brief
-display of the words spelt during the current level will appear at the end. Full statistics of all
+display of the words spelt during the current level will appear at the end. 
+
+Full statistics of all
 sessions are available. These are resettable.
 
 ##project structure
@@ -34,20 +42,19 @@ sessions are available. These are resettable.
 ```
 src
     ├── tests ** test suite for selected classes **
-    │   ├── FestivalTest.java
-    │   ├── VoxspellTestSuite.java
-    │   └── WordListTest.java
     └── voxspell
         ├── Voxspell.java                           // entry point for application
         ├── engine ** package for back-end / functionality **
         │   ├── DataIO.java                         // deals with file IO and saving
         │   ├── Festival.java                       // deals with festival tts and voice changing
         │   ├── LevelData.java                      // static link class to store global application state (levels, etc.)
+        │   ├── SceneManager.java                   // class that handles scene transfers
         │   ├── Word.java                           // class to represent a word
         │   └── WordList.java                       // class to parse file and get lists of words
         └── scenes ** package for front-end and controllers **
+            ├── assets ** folder for images **
             ├── MainController.java                 // controller for main/welcome scene
-            ├── SessionController.java              // end of level controller
+            ├── EndSessionController.java           // end of level controller
             ├── SpellingController.java             // controller for spelling scene
             ├── StatsController.java                // controller for statistic scene
             ├── VideoController.java                // controller for video reward scene

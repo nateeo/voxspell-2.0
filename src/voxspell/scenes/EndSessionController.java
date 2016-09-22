@@ -57,7 +57,9 @@ public class EndSessionController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        LevelData.setIsReview(false);
+        if (LevelData.isReview()) {
+            reviewButton.setText("Review again");
+        }
         ArrayList<Word> currentWords = LevelData.getCurrentWordList();
         correct = 0;
         incorrect = 0;
@@ -69,21 +71,33 @@ public class EndSessionController implements Initializable {
             }
         }
         returnButton.setOnMouseClicked(new returnHandler());
-        reviewButton.setOnMouseClicked(new reviewHandler());
         viewStatsButton.setOnMouseClicked(new statsHandler());
         retryLevelButton.setOnMouseClicked(new retryLevelHandler());
 
+        if (incorrect > 0) {
+            reviewButton.setOnMouseClicked(new reviewHandler());
+        } else {
+            reviewButton.setDisable(true);
+        }
+
         // enable next stuff
-        if (correct >= 9) {
+        if (correct >= 9 && !LevelData.isReview() || currentWords.size() == 1 && LevelData.isReview()) {
+            // only enable reward/next level if original quiz was 9/10 and they reviewed 1 word only (or no review)
             playVideoButton.setOnMouseClicked(new videoHandler());
-            nextLevelButton.setOnMouseClicked(new nextLevelHandler());
+            if (!(LevelData.getLevel() == 10)) {
+                nextLevelButton.setOnMouseClicked(new nextLevelHandler());
+            } else {
+                // disable next level on 10
+                nextLevelButton.setDisable(true);
+            }
         } else {
             nextLevelButton.setDisable(true);
             playVideoButton.setVisible(false);
         }
+        displayText();
+        LevelData.setIsReview(false);
         showPieChart();
         showListView();
-        displayText();
     }
 
     class returnHandler implements EventHandler<MouseEvent> {
@@ -116,6 +130,7 @@ public class EndSessionController implements Initializable {
         @Override
         public void handle(MouseEvent event) {
             LevelData.setLevel(LevelData.getLevel() + 1); // safe as button will be disabled if no next level
+            SceneManager.goTo("spelling.fxml");
         }
     }
 
@@ -136,9 +151,10 @@ public class EndSessionController implements Initializable {
     }
 
     public void displayText() {
-        endMessage.setText("Well done!");
-        if (correct <= 9) {
-            playVideoButton.setDisable(true);
+        if (LevelData.isReview()) {
+            endMessage.setText("Review results");
+        } else {
+            endMessage.setText("Well done!");
         }
     }
 
