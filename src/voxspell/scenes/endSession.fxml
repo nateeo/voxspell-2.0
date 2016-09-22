@@ -1,20 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.*?>
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="voxspell.scenes.EndSessionController">
+
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="voxspell.scenes.EndSessionController">
     <children>
         <AnchorPane layoutY="-1.0" prefHeight="400.0" prefWidth="402.0">
             <children>
-                <PieChart fx:id="piechart" layoutX="2.0" layoutY="64.0" legendVisible="false" mouseTransparent="true" prefHeight="333.0" prefWidth="411.0" />
+                <PieChart fx:id="piechart" labelsVisible="false" layoutX="2.0" layoutY="64.0" legendVisible="false" mouseTransparent="true" prefHeight="333.0" prefWidth="411.0" style="-fx-border-width: 5px;" />
             <Label fx:id="endMessage" layoutX="14.0" layoutY="14.0" prefHeight="48.0" prefWidth="201.0" text="Label" textAlignment="CENTER">
                <font>
                   <Font name="KacstNaskh" size="19.0" />
                </font></Label>
-            <Button fx:id="playVideoButton" layoutX="229.0" layoutY="13.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="170.0" text="Play Video">
+            <Button fx:id="playVideoButton" layoutX="240.0" layoutY="12.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="170.0" style="-fx-background-color: #add8e6;" text="Play Video">
                <font>
                   <Font size="18.0" />
                </font>
@@ -24,26 +28,26 @@
           <ListView fx:id="listView" layoutX="423.0" layoutY="273.0" prefHeight="119.0" prefWidth="170.0" />
       <VBox layoutX="423.0" layoutY="11.0" prefHeight="251.0" prefWidth="170.0" spacing="3.0">
          <children>
-                <Button fx:id="nextLevelButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="170.0" text="Next Level">
+                <Button fx:id="nextLevelButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="170.0" style="-fx-background-color: b6e7c9; -fx-border-color: lime; -fx-border-width: 2px;" text="Next Level">
                <font>
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button fx:id="retryLevelButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="170.0" text="Retry Level">
+            <Button fx:id="retryLevelButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="170.0" style="-fx-background-color: add8e6; -fx-border-color: paleturquoise; -fx-border-width: 2px;" text="Retry Level">
                <font>
                   <Font size="18.0" />
                </font>
             </Button>
-                <Button fx:id="reviewButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="170.0" text="Review Words">
+                <Button fx:id="reviewButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="170.0" style="-fx-background-color: add8e6;" text="Review Words">
                <font>
                   <Font size="18.0" />
                </font></Button>
-                <Button fx:id="returnButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="170.0" text="Main Menu">
+                <Button fx:id="returnButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="170.0" style="-fx-background-color: add8e6;" text="Main Menu">
                <font>
                   <Font size="18.0" />
                </font>
             </Button>
-                <Button fx:id="viewStatsButton" mnemonicParsing="false" onAction="#showPieChart" prefHeight="50.0" prefWidth="170.0" text="View More Stats">
+                <Button fx:id="viewStatsButton" mnemonicParsing="false" onAction="#showPieChart" prefHeight="50.0" prefWidth="170.0" style="-fx-background-color: add8e6;" text="View More Stats">
                <font>
                   <Font size="18.0" />
                </font></Button>

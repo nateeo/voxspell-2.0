@@ -14,6 +14,7 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import voxspell.engine.DataIO;
 import voxspell.engine.LevelData;
 import voxspell.engine.SceneManager;
@@ -28,6 +29,8 @@ import java.util.ResourceBundle;
  */
 public class StatsController implements Initializable {
 
+    @FXML
+    private AnchorPane anchorPane;
     @FXML
     private Button returnButton;
     @FXML
@@ -51,6 +54,9 @@ public class StatsController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        anchorPane.setBackground(SceneManager.makeBackground());
+
         data = new DataIO();
         updateBarChart("1");
         updateTableView("1");

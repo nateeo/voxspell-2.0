@@ -12,6 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
@@ -30,7 +31,8 @@ import java.util.ResourceBundle;
  */
 public class EndSessionController implements Initializable {
 
-
+    @FXML
+    private AnchorPane anchorPane;
     @FXML
     private Button reviewButton;
     @FXML
@@ -57,6 +59,9 @@ public class EndSessionController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        anchorPane.setBackground(SceneManager.makeBackground());
+
         if (LevelData.isReview()) {
             reviewButton.setText("Review again");
         }
@@ -167,8 +172,8 @@ public class EndSessionController implements Initializable {
 
         applyCustomColorSequence(
                 list,
-                "green",
-                "red"
+                "forestgreen",
+                "orangered"
         );
         
     }

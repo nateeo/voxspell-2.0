@@ -129,6 +129,7 @@ public class SpellingController implements Initializable {
         currentWord = words.get(0);
 
         levelLabel.setText("Level " + level + (LevelData.isReview() ? " review" : ""));
+        levelLabel.setStyle("-fx-text-alignment: center; -fx-font-size: 40px");
 
         // set up outputTextArea
         outputTextArea.setEditable(false);
