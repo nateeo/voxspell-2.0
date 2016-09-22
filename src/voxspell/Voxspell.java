@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import voxspell.engine.SceneManager;
 
 import java.lang.reflect.Field;
 import java.util.HashMap;
@@ -15,6 +16,7 @@ public class Voxspell extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        SceneManager.setStage(primaryStage);
         Parent root = FXMLLoader.load(getClass().getResource("scenes/main.fxml")); // change this to your scene
         primaryStage.setTitle("VOXSPELL");
         primaryStage.setScene(new Scene(root, WINDOW_WIDTH, WINDOW_HEIGHT));

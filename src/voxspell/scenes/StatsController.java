@@ -6,24 +6,17 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.XYChart;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
 import voxspell.engine.DataIO;
 import voxspell.engine.LevelData;
+import voxspell.engine.SceneManager;
 import voxspell.engine.Word;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -73,6 +66,7 @@ public class StatsController implements Initializable {
                 String level = newValue.substring(5).trim();
                 System.out.println("updating the bar chart");
                 updateBarChart(level);
+                updateTableView(level);
             }
         });
 
@@ -85,18 +79,7 @@ public class StatsController implements Initializable {
 
         @Override
         public void handle(MouseEvent mouseEvent) {
-            Stage stage;
-            Parent root = null;
-            stage = (Stage) ((Button)mouseEvent.getSource()).getScene().getWindow();
-
-            try {
-                root = FXMLLoader.load(getClass().getResource("main.fxml"));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
+            SceneManager.goTo("main.fxml");
         }
     }
 
@@ -104,16 +87,15 @@ public class StatsController implements Initializable {
 
         @Override
         public void handle(MouseEvent mouseEvent) {
+            String levelSelected = (Integer.toString(LevelData.getLevel()));
             data.resetStats();
             wordData = data.getWordData();
-            String levelSelected = (Integer.toString(LevelData.getLevel()));
             updateBarChart(levelSelected);
             updateTableView(levelSelected);
         }
     }
 
     public void updateBarChart(String level) {
-
         barChart.getData().clear();
         ArrayList<Word> selectedWords = extractWords(Integer.parseInt(level));
         int correct = 0;
@@ -123,10 +105,18 @@ public class StatsController implements Initializable {
             wrong += word.getFaulted() + word.getFailed();
             System.out.println(word.toString() + word.getMastered() + " | " + word.getFaulted() + " | " + word.getFailed());
         }
-        double correctPercentage = ((double)correct/(correct+wrong)) * 100;
+        double correctPercentage;
+        double wrongPercentage;
+        if (correct + wrong == 0) {
+            correctPercentage = 0; // safe
+            wrongPercentage = 0;
+        } else {
+            correctPercentage = ((double)correct / (correct + wrong) * 100);
+            wrongPercentage = 100 - correctPercentage;
+        }
         XYChart.Series series = new XYChart.Series();
         series.getData().add(new XYChart.Data("correct", correctPercentage));
-        series.getData().add(new XYChart.Data("wrong", 100 - correctPercentage));
+        series.getData().add(new XYChart.Data("wrong", wrongPercentage));
         barChart.getData().addAll(series);
     }
 
@@ -143,6 +133,7 @@ public class StatsController implements Initializable {
             words.add(word);
         }
         tableView.setItems(words);
+        tableView.setPlaceholder(new Label("Level not completed!"));
 
     }
 

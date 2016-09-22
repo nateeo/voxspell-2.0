@@ -4,10 +4,7 @@ import javafx.concurrent.WorkerStateEvent;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -16,11 +13,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import voxspell.engine.*;
 import voxspell.engine.Festival.Operations;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -286,17 +281,6 @@ public class SpellingController implements Initializable {
     }
 
     private void goToEnd() {
-        Stage stage;
-        Parent root = null;
-        stage = (Stage) submitButton.getScene().getWindow();
-
-        try {
-            root = FXMLLoader.load(getClass().getResource("endSession.fxml"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        SceneManager.goTo("endSession.fxml");
     }
 }

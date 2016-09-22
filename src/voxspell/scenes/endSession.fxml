@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.chart.*?>
-<?import javafx.scene.layout.*?>
 <?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.*?>
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="voxspell.scenes.SessionController">
     <children>
         <AnchorPane layoutY="-1.0" prefHeight="400.0" prefWidth="402.0">
@@ -28,20 +24,20 @@
                   <Font size="18.0" />
                </font>
             </Button>
-                <Button fx:id="reviewButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="170.0" text="Next Level">
+                <Button fx:id="nextLevelButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="170.0" text="Next Level">
                <font>
                   <Font size="18.0" />
                </font>
             </Button>
-                <Button fx:id="reviewButton2" mnemonicParsing="false" onAction="#showPieChart" prefHeight="50.0" prefWidth="170.0" text="Review Words">
+                <Button fx:id="reviewButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="170.0" text="Review Words">
                <font>
                   <Font size="18.0" />
                </font></Button>
-                <Button fx:id="reviewButton1" mnemonicParsing="false" onAction="#showPieChart" prefHeight="50.0" prefWidth="170.0" text="View Stats">
+                <Button fx:id="viewStatsButton" mnemonicParsing="false" onAction="#showPieChart" prefHeight="50.0" prefWidth="170.0" text="View Stats">
                <font>
                   <Font size="18.0" />
                </font></Button>
-            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="170.0" text="Play Video">
+            <Button fx:id="playVideoButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="170.0" text="Play Video">
                <font>
                   <Font size="18.0" />
                </font>

@@ -10,7 +10,10 @@ import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -36,6 +39,12 @@ public class SessionController implements Initializable {
     private Button reviewButton;
     @FXML
     private Button returnButton;
+    @FXML
+    private Button nextLevelButton;
+    @FXML
+    private Button viewStatsButton;
+    @FXML
+    private Button playVideoButton;
     @FXML
     private PieChart piechart;
     @FXML
