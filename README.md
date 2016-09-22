@@ -1,7 +1,33 @@
 # voxspell
 #### A spelling application targeted at native English learners aged 7-10
 developed for Java 7 with <3 by Nathan and Harry
+this version is for evaluation purposes and has a Developer only unlock all level mode (see usage guide)
 
+##quick start
+Download/clone as .zip, extract and run the run.sh script
+(requires Oracle Java 1.7 and festival text-to-speech)
+
+##brief usage guide
+
+###levels
+Only level 1 is unlocked on first launch. The next level is automatically and permanently unlocked when
+at least 9 out of 10 words are spelt correctly on the previous level. You can pick any unlocked level
+to start the quiz on. The developer only button temporarily enables all levels. You can reset all
+of your unlocked levels with the reset button.
+
+###spelling
+You can listen to the word again without penalty by clicking the "Hear again" button. Entering invalid
+characters will not count as a wrong spelling and you will be allowed to try again without penalty.
+Some words contain apostrophes - if your spelling does not contain it while the word does, you will
+be told and asked to retry without penalty (and vice versa).
+
+###reviewing
+You can review all the words you got wrong at the end of each level you have completed.
+
+###statistics
+The stats are intended for parents/teachers to review the words that the user has gotten wrong. A brief
+display of the words spelt during the current level will appear at the end. Full statistics of all
+sessions are available. These are resettable.
 
 ##project structure
 
@@ -12,16 +38,22 @@ src
     │   ├── VoxspellTestSuite.java
     │   └── WordListTest.java
     └── voxspell
-        ├── Voxspell.java                                     // entry point for application
+        ├── Voxspell.java                           // entry point for application
         ├── engine ** package for back-end / functionality **
-        │   ├── DataIO.java                                   // deals with file IO and saving
-        │   ├── Festival.java                                 // deals with festival tts and voice changing
-        │   ├── LevelData.java                                // static link class to store global application state (levels, etc.)
-        │   ├── Word.java                                     // class to represent a word
-        │   └── WordList.java                                 // class to parse file and get lists of words
+        │   ├── DataIO.java                         // deals with file IO and saving
+        │   ├── Festival.java                       // deals with festival tts and voice changing
+        │   ├── LevelData.java                      // static link class to store global application state (levels, etc.)
+        │   ├── Word.java                           // class to represent a word
+        │   └── WordList.java                       // class to parse file and get lists of words
         └── scenes ** package for front-end and controllers **
-            ├── MainController.java                           // controller for main/welcome scene
-            ├── SpellingController.java                       // controller for spelling scene
-            ├── main.fxml                                     // main/welcome scene for level selection
-            └── spelling.fxml                                 // spelling scene for quizzes
+            ├── MainController.java                 // controller for main/welcome scene
+            ├── SessionController.java              // end of level controller
+            ├── SpellingController.java             // controller for spelling scene
+            ├── StatsController.java                // controller for statistic scene
+            ├── VideoController.java                // controller for video reward scene
+            ├── endSession.fxml                     // scene on reaching the end of a level
+            ├── main.fxml                           // main/welcome scene for level selection
+            ├── spelling.fxml                       // spelling scene for quizzes
+            ├── stats.fxml                          // statistics scene
+            └── video.fxml                          // video reward scene
 ```

@@ -131,7 +131,12 @@ public class SpellingController implements Initializable {
     }
 
     private void readWord(Word word) {
+        String message = "Please spell the word";
         Operations op = currentFaulted ? Operations.TRY_AGAIN : Operations.SPELL;
+        if (op == Operations.TRY_AGAIN) {
+            message = "Please try spelling the word again";
+        }
+        outputTextArea.setText(message);
         festival.read(word, op);
 
     }
