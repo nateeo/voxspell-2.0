@@ -12,6 +12,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -60,6 +62,8 @@ public class SpellingController implements Initializable {
     private Word currentWord;
     private boolean currentFaulted = false;
 
+    private boolean disableEnter = false;
+
     /**
      * listener to handle listen-again requests
      */
@@ -67,7 +71,7 @@ public class SpellingController implements Initializable {
 
         @Override
         public void handle(MouseEvent mouseEvent) {
-            // call to festival to repeat word
+            setLoading(true);
             festival.read(currentWord, Operations.LISTEN_AGAIN);
         }
     }
@@ -79,8 +83,7 @@ public class SpellingController implements Initializable {
 
         @Override
         public void handle(WorkerStateEvent event) {
-            submitButton.setDisable(false);
-            // TODO: disable entering and set loading
+            setLoading(false);
         }
     }
 
@@ -91,7 +94,11 @@ public class SpellingController implements Initializable {
 
         @Override
         public void handle(ActionEvent actionEvent) {
-            submit();
+            if (!disableEnter) {
+                submit();
+            } else {
+                // do nothing
+            }
         }
     }
 
@@ -102,7 +109,6 @@ public class SpellingController implements Initializable {
 
         @Override
         public void handle(MouseEvent mouseEvent) {
-            // get user input and check/sanitize
             submit();
         }
     }
@@ -149,10 +155,27 @@ public class SpellingController implements Initializable {
         if (op == Operations.TRY_AGAIN) {
             message = "Please try spelling the word again";
         }
+        // debug
+        System.out.println(word);
+        // debug end
         outputTextArea.setText(message);
-        submitButton.setDisable(true);
+        setLoading(true);
         festival.read(word, op);
 
+    }
+
+    private void setLoading(boolean isLoading) {
+        if (isLoading) {
+            submitButton.setDisable(true);
+            submitButton.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("assets/loading.gif"))));
+            submitButton.setText("");
+            disableEnter = true;
+        } else {
+            submitButton.setDisable(false);
+            submitButton.setGraphic(null);
+            submitButton.setText("Go!");
+            disableEnter = false;
+        }
     }
 
     private void submit() {
