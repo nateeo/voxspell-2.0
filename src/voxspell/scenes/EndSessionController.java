@@ -109,6 +109,9 @@ public class EndSessionController implements Initializable {
             }
         }
         endMessage.setText("Congratulations, you got " + correct + " out of 10!");
+        if (correct <= 9) {
+            playVideoButton.setDisable(true);
+        }
     }
 
     public void showPieChart() {
