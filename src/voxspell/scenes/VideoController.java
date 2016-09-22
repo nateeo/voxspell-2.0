@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
@@ -30,8 +31,14 @@ public class VideoController implements Initializable {
     @FXML
     private Button exitButton;
 
+    @FXML
+    private VBox vBox;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        vBox.setBackground(SceneManager.makeBackground());
+
         String path = new File("./lib/PC10.mp4").getAbsolutePath();
         me = new Media(new File(path).toURI().toString());
         mp = new MediaPlayer(me);
@@ -60,6 +67,7 @@ public class VideoController implements Initializable {
 
         @Override
         public void handle(MouseEvent mouseEvent) {
+            mp.stop();
             SceneManager.goTo("main.fxml");
         }
     }

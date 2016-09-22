@@ -82,10 +82,6 @@ public class StatsController implements Initializable {
             }
         });
 
-
-
-        updateTableView("1");
-
     }
 
     class returnHandler implements EventHandler<MouseEvent> {
@@ -116,7 +112,6 @@ public class StatsController implements Initializable {
         for (Word word : selectedWords) {
             correct += word.getMastered();
             wrong += word.getFaulted() + word.getFailed();
-            System.out.println(word.toString() + word.getMastered() + " | " + word.getFaulted() + " | " + word.getFailed());
         }
         double correctPercentage;
         double wrongPercentage;
