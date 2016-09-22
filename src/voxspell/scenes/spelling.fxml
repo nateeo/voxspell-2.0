@@ -90,7 +90,7 @@
             <TextField fx:id="inputTextField" alignment="CENTER" prefHeight="108.0" prefWidth="461.0" promptText="Type here..." HBox.hgrow="ALWAYS" />
             <Button fx:id="listenAgainButton" mnemonicParsing="false" prefHeight="100.0" prefWidth="122.0" style="-fx-background-color: #ADD8E6;" text="Hear again">
                <font>
-                  <Font name="Comic Sans MS" size="12.0" />
+                  <Font name="Comic Sans MS" size="18.0" />
                </font>
                <cursor>
                   <Cursor fx:constant="HAND" />

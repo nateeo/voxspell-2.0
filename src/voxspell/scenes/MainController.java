@@ -22,8 +22,9 @@ import java.util.ResourceBundle;
  * MainController class for the application entry / level selection screen (main.fxml)
  */
 public class MainController implements Initializable {
-    private static final String ON_HOVER = "-fx-background-color: #83B496";
-    private static final String ON_EXIT = "-fx-background-color: #b6e7c9";
+    private static final String BASE = "-fx-border-color: rgb(31,65,9); -fx-border-width: 5px; -fx-border-radius: 1px; -fx-background-color: #b6e7c9; ";
+    private static final String ON_HOVER = "-fx-background-color: #83B496;";
+    private static final String ON_EXIT = "-fx-background-color: #b6e7c9;";
 
     private static final String NZ_VOICE_CHOICE = "NZ Voice";
     private static final String DEFAULT_VOICE_CHOICE = "Default Voice";
@@ -127,7 +128,7 @@ public class MainController implements Initializable {
      */
     class hoverHandler implements EventHandler<MouseEvent> {
         public void handle(MouseEvent event) {
-            ((Button)event.getSource()).setStyle(ON_HOVER);
+            ((Button)event.getSource()).setStyle(BASE + ON_HOVER);
         }
     }
 
@@ -136,7 +137,7 @@ public class MainController implements Initializable {
      */
     class exitHandler implements EventHandler<MouseEvent> {
         public void handle(MouseEvent event) {
-            ((Button)event.getSource()).setStyle(ON_EXIT);
+            ((Button)event.getSource()).setStyle(BASE + ON_EXIT);
         }
     }
 
@@ -180,6 +181,7 @@ public class MainController implements Initializable {
         buttons.add(level10);
 
         for (Button button : buttons) {
+            button.setStyle(BASE);
             button.setOnMouseClicked(levelSelectionHandler);
             button.setOnMouseEntered(hoverHandler);
             button.setOnMouseExited(exitHandler);
