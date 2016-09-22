@@ -1,8 +1,5 @@
 package voxspell.scenes;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,19 +9,16 @@ import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
-import javafx.util.Callback;
 import voxspell.engine.DataIO;
-import voxspell.engine.Festival;
 import voxspell.engine.LevelData;
 import voxspell.engine.Word;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -63,6 +57,8 @@ public class StatsController implements Initializable {
     @FXML
     private MenuItem levelTen;
     @FXML
+    private Button resetButton;
+    @FXML
     private BarChart<String,Number> barChart;
 
     private DataIO data = new DataIO();
@@ -73,6 +69,7 @@ public class StatsController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         data = new DataIO();
         updateBarChart("1");
+        resetButton.setOnMouseClicked(new resetHandler());
     }
 
     class returnHandler implements EventHandler<MouseEvent> {
@@ -98,7 +95,9 @@ public class StatsController implements Initializable {
 
         @Override
         public void handle(MouseEvent mouseEvent) {
-            String levelSelected = ((MenuItem)mouseEvent.getSource()).getText();
+            data.resetStats();
+            wordData = data.getWordData();
+            String levelSelected = (Integer.toString(LevelData.getLevel()));
             updateBarChart(levelSelected);
             updateTextArea(levelSelected);
         }

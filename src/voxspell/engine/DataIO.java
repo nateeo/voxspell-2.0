@@ -121,6 +121,7 @@ public class DataIO {
     public void resetStats() {
         WORD_DATA.delete();
         wordData = new ArrayList<ArrayList<Word>>();
+        initialiseWordData();
     }
 
     // helper methods
