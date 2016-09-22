@@ -10,21 +10,26 @@
         <AnchorPane layoutY="-1.0" prefHeight="400.0" prefWidth="402.0">
             <children>
                 <PieChart fx:id="piechart" layoutX="2.0" layoutY="64.0" legendVisible="false" mouseTransparent="true" prefHeight="333.0" prefWidth="411.0" />
-            <Label fx:id="endMessage" layoutX="14.0" layoutY="14.0" prefHeight="48.0" prefWidth="387.0" text="Label" textAlignment="CENTER">
+            <Label fx:id="endMessage" layoutX="14.0" layoutY="14.0" prefHeight="48.0" prefWidth="201.0" text="Label" textAlignment="CENTER">
                <font>
                   <Font name="KacstNaskh" size="19.0" />
                </font></Label>
+            <Button fx:id="playVideoButton" layoutX="229.0" layoutY="13.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="170.0" text="Play Video">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
             </children>
         </AnchorPane>
           <ListView fx:id="listView" layoutX="423.0" layoutY="273.0" prefHeight="119.0" prefWidth="170.0" />
       <VBox layoutX="423.0" layoutY="11.0" prefHeight="251.0" prefWidth="170.0" spacing="3.0">
          <children>
-                <Button fx:id="returnButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="170.0" text="Go Back">
+                <Button fx:id="nextLevelButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="170.0" text="Next Level">
                <font>
                   <Font size="18.0" />
                </font>
             </Button>
-                <Button fx:id="nextLevelButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="170.0" text="Next Level">
+            <Button fx:id="retryLevelButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="170.0" text="Retry Level">
                <font>
                   <Font size="18.0" />
                </font>
@@ -33,15 +38,15 @@
                <font>
                   <Font size="18.0" />
                </font></Button>
-                <Button fx:id="viewStatsButton" mnemonicParsing="false" onAction="#showPieChart" prefHeight="50.0" prefWidth="170.0" text="View Stats">
-               <font>
-                  <Font size="18.0" />
-               </font></Button>
-            <Button fx:id="playVideoButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="170.0" text="Play Video">
+                <Button fx:id="returnButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="170.0" text="Main Menu">
                <font>
                   <Font size="18.0" />
                </font>
             </Button>
+                <Button fx:id="viewStatsButton" mnemonicParsing="false" onAction="#showPieChart" prefHeight="50.0" prefWidth="170.0" text="View More Stats">
+               <font>
+                  <Font size="18.0" />
+               </font></Button>
          </children>
       </VBox>
     </children>

@@ -75,13 +75,13 @@ public class LevelData {
     }
 
     /**
-     * Get words that have been faulted/failed on a specific level
+     * Get words that have been faulted/failed right after a quiz
      * @param level
      * @return
      */
     public static ArrayList<Word> getReviewWords(int level) {
         ArrayList<Word> wordList = new ArrayList<Word>();
-        for (Word word : data.getWordData().get(level - 1)) {
+        for (Word word : currentWordList) {
             if (word.getFailed() > 0 || word.getFaulted() > 0) {
                 wordList.add(word);
             }
