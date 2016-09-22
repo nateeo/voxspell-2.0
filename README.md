@@ -61,6 +61,12 @@ src
             ├── endSession.fxml                     // scene on reaching the end of a level
             ├── main.fxml                           // main/welcome scene for level selection
             ├── spelling.fxml                       // spelling scene for quizzes
-            ├── stats.fxml                          // statistics scene
-            └── video.fxml                          // video reward scene
+            ├── stats.fxml                          // s.
+            0.tatistics scene
+            └─.─ video.fxml                          // video reward scene
 ```
+
+## assets
+All assets are from royalty-free sources
+Loading gif: ajaxload.info
+Background: openclipart.org

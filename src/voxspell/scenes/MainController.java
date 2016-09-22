@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 import voxspell.engine.DataIO;
 import voxspell.engine.Festival;
 import voxspell.engine.LevelData;
@@ -32,6 +33,8 @@ public class MainController implements Initializable {
     DataIO data = new DataIO();
 
     // initialize buttons from FXML
+    @FXML
+    private VBox vBox;
     @FXML
     private Button level1;
     @FXML
@@ -155,7 +158,7 @@ public class MainController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        vBox.setBackground(SceneManager.makeBackground());
         // create listeners
         EventHandler<MouseEvent> levelSelectionHandler = new levelSelect();
         EventHandler<MouseEvent> hoverHandler = new hoverHandler();

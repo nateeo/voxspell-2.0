@@ -12,6 +12,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import voxspell.engine.*;
 import voxspell.engine.Festival.Operations;
@@ -46,6 +47,8 @@ public class SpellingController implements Initializable {
     private Label progressLabel;
     @FXML
     private Label outOfLabel;
+    @FXML
+    private VBox vBox;
 
 
     // plug in engine modules
@@ -111,6 +114,7 @@ public class SpellingController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // Initialize words and level label using levelData
+        vBox.setBackground(SceneManager.makeBackground());
         int level = LevelData.getLevel();
         WordList wordList;
         if (LevelData.isReview()) { // get faulted/wrong words from the level
@@ -145,15 +149,10 @@ public class SpellingController implements Initializable {
     }
 
     private void readWord(Word word) {
-        String message = "Please spell the word";
         Operations op = currentFaulted ? Operations.TRY_AGAIN : Operations.SPELL;
-        if (op == Operations.TRY_AGAIN) {
-            message = "Please try spelling the word again";
-        }
         // debug
         System.out.println(word);
         // debug end
-        outputTextArea.setText(message);
         setLoading(true);
         festival.read(word, op);
 
@@ -182,18 +181,22 @@ public class SpellingController implements Initializable {
             boolean correct = checkWord(userInput);
             if (correct && !currentFaulted) {
                 currentWord.incrementMastered();
+                output("Correct");
                 incrementLabel(rightLabel);
                 nextWord();
             } else if (correct && currentFaulted) {
                 currentWord.incrementFaulted();
+                output("That's right!");
                 currentFaulted = false;
                 nextWord();
             } else if (!correct && !currentFaulted) {
                 currentFaulted = true;
+                output("That's wrong. Try again");
                 incrementLabel(wrongLabel); // wrong as soon as faulted
                 readWord(currentWord);
             } else { // !correct && currentFaulted
                 currentWord.incrementFailed();
+                output("That's wrong. The word was " + "\"" + currentWord + "\"");
                 currentFaulted = false;
                 nextWord();
             }
@@ -214,11 +217,11 @@ public class SpellingController implements Initializable {
             boolean userInputHasApostrophe = userInput.contains("'");
             if (wordHasApostrophe && !userInputHasApostrophe) {
                 // word contains an apostrophe but userInput does not
-                outputTextArea.setText("Oops, that's wrong. The word has an apostrophe (')");
+                output("Oops, that's wrong. The word has an apostrophe (')");
                 return false;
             } else if (!wordHasApostrophe && userInputHasApostrophe) {
                 // word does not contain an apostrophe but userInput does
-                outputTextArea.setText("Oops, that's wrong. The word does NOT have an apostrophe (')");
+                output("Oops, that's wrong. The word does NOT have an apostrophe (')");
                 return false;
             } else if (wordHasApostrophe && userInputHasApostrophe) {
                 return true;
@@ -228,7 +231,7 @@ public class SpellingController implements Initializable {
             }
             else {
                 // invalid input
-                outputTextArea.setText("Oops, you entered something wrong. Try again.");
+                output("Oops, you entered something wrong. Try again.");
                 return false;
             }
         }
@@ -284,6 +287,10 @@ public class SpellingController implements Initializable {
         progressLabel.setText("1");
         outOfLabel.setText("out of " + words.size());
         currentFaulted = false;
+    }
+
+    private void output(String message) {
+        outputTextArea.setText("\n\n" + message);
     }
 
     private void goToEnd() {
