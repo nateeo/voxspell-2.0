@@ -136,6 +136,7 @@ public class SpellingController implements Initializable {
         inputTextField.requestFocus();
 
         // reset labels and buttons
+        listenAgainButton.setText("Hear\nagain");
         reset();
 
         // add listeners
