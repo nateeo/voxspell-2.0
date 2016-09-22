@@ -14,7 +14,7 @@
 <children>
    <PieChart fx:id="piechart" layoutX="12.0" layoutY="69.0" legendVisible="false" prefHeight="320.0" prefWidth="337.0" />
    <Button fx:id="returnButton" layoutX="180.0" layoutY="15.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="97.0" text="Main Menu" />
-      <BarChart fx:id="barChart" layoutX="14.0" layoutY="45.0" prefHeight="353.0" prefWidth="329.0">
+      <BarChart fx:id="barChart" layoutX="14.0" layoutY="45.0" prefHeight="353.0" prefWidth="329.0" title="\%" titleSide="LEFT">
         <xAxis>
           <CategoryAxis side="BOTTOM" />
         </xAxis>

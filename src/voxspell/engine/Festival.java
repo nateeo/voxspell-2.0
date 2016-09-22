@@ -98,7 +98,8 @@ public class Festival {
         try {
             writer.write("(voice_" + voiceType + ")");
             writer.newLine();
-            writer.write("Parameter.set 'Duration_Stretch 2");
+            writer.write("(Parameter.set 'Duration_Stretch 1.19)");
+            writer.newLine();
             writer.write("(SayText " + "\"" + sentence + "\"" + ")");
             writer.flush();
         } catch (IOException e) {
@@ -125,13 +126,13 @@ public class Festival {
     private String sentenceBuilder(Word word, Operations op) {
         switch (op) {
             case SPELL:
-                return "Please spell " + word;
+                return "Please spell," + word;
             case CORRECT:
                 return "That is right!";
             case LISTEN_AGAIN:
-                return "The word is " + word + ". " + word;
+                return "The word is " + word + ", " + word;
             case TRY_AGAIN:
-                return "Try spelling it again. " + word + ". " + word;
+                return "Try spelling it again, " + word + ", " + word;
             case WRONG:
                 return "Sorry, that is wrong";
         }

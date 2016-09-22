@@ -5,21 +5,15 @@ import javafx.beans.property.DoubleProperty;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
-import javafx.stage.Stage;
+import voxspell.engine.SceneManager;
 
 import java.io.File;
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -33,16 +27,6 @@ public class VideoController implements Initializable {
     private MediaPlayer mp;
     private Media me;
 
-    @FXML
-    private Button playButton;
-    @FXML
-    private Button pauseButton;
-    @FXML
-    private Button fastforwardButton;
-    @FXML
-    private Button slowdownButton;
-    @FXML
-    private Button reloadButton;
     @FXML
     private Button exitButton;
 
@@ -59,7 +43,7 @@ public class VideoController implements Initializable {
 
         exitButton.setOnMouseClicked(new VideoController.returnHandler());
 
-        Image image1 = new Image(getClass().getResourceAsStream("assets/playPic.png"));
+        /*(Image image1 = new Image(getClass().getResourceAsStream("assets/playPic.png"));
         playButton.setGraphic(new ImageView(image1));
         Image image2 = new Image(getClass().getResourceAsStream("assets/pausePic.png"));
         pauseButton.setGraphic(new ImageView(image2));
@@ -68,7 +52,7 @@ public class VideoController implements Initializable {
         Image image4 = new Image(getClass().getResourceAsStream("assets/backPic.png"));
         slowdownButton.setGraphic(new ImageView(image4));
         Image image5 = new Image(getClass().getResourceAsStream("assets/reloadPic.png"));
-        reloadButton.setGraphic(new ImageView(image5));
+        reloadButton.setGraphic(new ImageView(image5));*/
 
     }
 
@@ -76,18 +60,7 @@ public class VideoController implements Initializable {
 
         @Override
         public void handle(MouseEvent mouseEvent) {
-            Stage stage;
-            Parent root = null;
-            stage = (Stage) ((Button)mouseEvent.getSource()).getScene().getWindow();
-
-            try {
-                root = FXMLLoader.load(getClass().getResource("endSession.fxml"));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
+            SceneManager.goTo("main.fxml");
         }
     }
 
