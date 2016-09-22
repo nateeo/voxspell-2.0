@@ -22,6 +22,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import voxspell.engine.LevelData;
+import voxspell.engine.SceneManager;
 import voxspell.engine.Word;
 
 import java.io.IOException;
@@ -32,7 +33,7 @@ import java.util.ResourceBundle;
 /**
  * Created by harrylimp on 21/09/16.
  */
-public class SessionController implements Initializable {
+public class EndSessionController implements Initializable {
 
 
     @FXML
@@ -56,8 +57,9 @@ public class SessionController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        returnButton.setOnMouseClicked(new SessionController.returnHandler());
-        reviewButton.setOnMouseClicked(new SessionController.statsHandler());
+        returnButton.setOnMouseClicked(new EndSessionController.returnHandler());
+        reviewButton.setOnMouseClicked(new EndSessionController.statsHandler());
+        playVideoButton.setOnMouseClicked(new videoHandler());
         showPieChart();
         showListView();
         displayText();
@@ -86,18 +88,15 @@ public class SessionController implements Initializable {
 
         @Override
         public void handle(MouseEvent mouseEvent) {
-            Stage stage;
-            Parent root = null;
-            stage = (Stage) ((Button)mouseEvent.getSource()).getScene().getWindow();
+            SceneManager.goTo("stats.fxml");
+        }
+    }
 
-            try {
-                root = FXMLLoader.load(getClass().getResource("stats.fxml"));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
+    class videoHandler implements EventHandler<MouseEvent> {
+
+        @Override
+        public void handle(MouseEvent event) {
+            SceneManager.goTo("video.fxml");
         }
     }
 
