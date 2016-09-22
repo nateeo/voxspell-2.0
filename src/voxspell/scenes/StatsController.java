@@ -8,6 +8,8 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.BarChart;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -59,7 +61,11 @@ public class StatsController implements Initializable {
         levelList = FXCollections.observableArrayList("Level 1","Level 2", "Level 3", "Level 4", "Level 5",
                 "Level 6", "Level 7", "Level 8", "Level 9", "Level 10");
         levelChoice.setItems(levelList);
-        levelChoice.setValue("Level " + LevelData.getLevel());
+        if (LevelData.getLevel() == -1) {
+            levelChoice.setValue("Level 1");
+        } else {
+            levelChoice.setValue("Level " + LevelData.getLevel());
+        }
         levelChoice.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
@@ -70,7 +76,8 @@ public class StatsController implements Initializable {
             }
         });
 
-        //
+
+
         updateTableView("1");
 
     }
