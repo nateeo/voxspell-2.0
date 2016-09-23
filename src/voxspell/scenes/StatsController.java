@@ -77,7 +77,6 @@ public class StatsController implements Initializable {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 String level = newValue.substring(5).trim();
-                System.out.println("updating the bar chart");
                 updateBarChart(level);
                 updateTableView(level);
             }

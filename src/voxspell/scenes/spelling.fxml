@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
+
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="voxspell.scenes.SpellingController">
    <children>
       <VBox fx:id="vBox" prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
@@ -35,6 +38,9 @@
                                  <HBox.margin>
                                     <Insets left="5.0" right="17.0" />
                                  </HBox.margin>
+                                 <font>
+                                    <Font name="Comic Sans MS" size="13.0" />
+                                 </font>
                               </Label>
                               <Label fx:id="rightLabel" alignment="CENTER" text="0" textFill="#4ad31c">
                                  <font>
@@ -49,6 +55,9 @@
                                  <HBox.margin>
                                     <Insets left="5.0" right="10.0" />
                                  </HBox.margin>
+                                 <font>
+                                    <Font name="Comic Sans MS" size="13.0" />
+                                 </font>
                               </Label>
                               <Label fx:id="wrongLabel" text="0" textFill="#e41818" />
                            </children>
@@ -87,7 +96,10 @@
       </VBox>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
          <children>
-            <TextField fx:id="inputTextField" alignment="CENTER" prefHeight="108.0" prefWidth="461.0" promptText="Type here..." HBox.hgrow="ALWAYS" />
+            <TextField fx:id="inputTextField" alignment="CENTER" prefHeight="108.0" prefWidth="461.0" promptText="Type here..." HBox.hgrow="ALWAYS">
+               <font>
+                  <Font size="18.0" />
+               </font></TextField>
             <Button fx:id="listenAgainButton" mnemonicParsing="false" prefHeight="100.0" prefWidth="122.0" style="-fx-background-color: #ADD8E6;" text="Hear again">
                <font>
                   <Font name="Comic Sans MS" size="18.0" />

@@ -45,7 +45,7 @@ public class Festival {
         if (type.equals(Festival.DEFAULT) | type.equals(Festival.NZ)) {
             voiceType = type;
         } else {
-            System.out.println("Invalid type, setting to default");
+            // Invalid type, set to default
             voiceType = DEFAULT;
         }
     }
@@ -68,7 +68,6 @@ public class Festival {
         task = new Task<Void>() {
             @Override
             protected Void call() throws Exception {
-                System.out.println("read task called");
                 tts(word, op);
                 return null;
             }

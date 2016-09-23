@@ -85,7 +85,6 @@ public class MainController implements Initializable {
         public void handle(MouseEvent event) {
             String text = ((Button)event.getSource()).getText();
             int level = getLevelNumber(text);
-            System.out.println("Going to level " + level);
             LevelData.setLevel(level);
             SceneManager.goTo("spelling.fxml");
         }
@@ -210,7 +209,6 @@ public class MainController implements Initializable {
     }
 
     private void disable(int maxLevel) {
-        System.out.println(maxLevel);
         for (int i = 9; i > maxLevel - 1; i--) {
             buttons.get(i).setDisable(true);
         }

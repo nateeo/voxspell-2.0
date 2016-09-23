@@ -45,9 +45,6 @@ public class LevelData {
      * @return
      */
     public static int getLevel() {
-        if (level < 1 || level > 10) {
-            System.out.println("Error"); //debugging
-        }
         return level;
     }
 
@@ -82,7 +79,7 @@ public class LevelData {
     public static ArrayList<Word> getReviewWords(int level) {
         ArrayList<Word> wordList = new ArrayList<Word>();
         for (Word word : currentWordList) {
-            if (word.getFailed() > 0 || word.getFaulted() > 0) {
+            if (word.getMastered() == 0) {
                 wordList.add(word);
             }
         }

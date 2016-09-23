@@ -152,9 +152,6 @@ public class SpellingController implements Initializable {
 
     private void readWord(Word word) {
         Operations op = currentFaulted ? Operations.TRY_AGAIN : Operations.SPELL;
-        // debug
-        System.out.println(word);
-        // debug end
         setLoading(true);
         festival.read(word, op);
 
@@ -198,7 +195,7 @@ public class SpellingController implements Initializable {
                 readWord(currentWord);
             } else { // !correct && currentFaulted
                 currentWord.incrementFailed();
-                output("That's wrong. The word was " + "\"" + currentWord + "\"");
+                output("That's wrong. The word was\n" + "\"" + currentWord + "\"");
                 currentFaulted = false;
                 nextWord();
             }
@@ -287,12 +284,12 @@ public class SpellingController implements Initializable {
         rightLabel.setText("0");
         wrongLabel.setText("0");
         progressLabel.setText("1");
-        outOfLabel.setText("out of " + words.size());
+        outOfLabel.setText(" / " + words.size());
         currentFaulted = false;
     }
 
     private void output(String message) {
-        outputTextArea.setText("\n\n" + message);
+        outputTextArea.setText("\n" + message);
     }
 
     private void goToEnd() {

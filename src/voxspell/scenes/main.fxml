@@ -49,46 +49,73 @@
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
+                           <font>
+                              <Font name="Comic Sans MS" size="13.0" />
+                           </font>
                         </Button>
                               <Button fx:id="level4" mnemonicParsing="false" prefHeight="27.0" prefWidth="100.0" style="-fx-background-color: #b6e7c9;" text="Level 4" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
+                                  <font>
+                                      <Font name="Comic Sans MS" size="13.0" />
+                                  </font>
                         </Button>
                               <Button fx:id="level5" mnemonicParsing="false" prefHeight="27.0" prefWidth="100.0" style="-fx-background-color: #b6e7c9;" text="Level 5" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
+                                  <font>
+                                      <Font name="Comic Sans MS" size="13.0" />
+                                  </font>
                         </Button>
                               <Button fx:id="level3" mnemonicParsing="false" prefHeight="27.0" prefWidth="100.0" style="-fx-background-color: #b6e7c9;" text="Level 3" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
+                                  <font>
+                                      <Font name="Comic Sans MS" size="13.0" />
+                                  </font>
                         </Button>
                               <Button fx:id="level6" mnemonicParsing="false" prefHeight="27.0" prefWidth="100.0" style="-fx-background-color: #b6e7c9;" text="Level 6" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
+                                  <font>
+                                      <Font name="Comic Sans MS" size="13.0" />
+                                  </font>
                         </Button>
                               <Button fx:id="level8" mnemonicParsing="false" prefHeight="27.0" prefWidth="100.0" style="-fx-background-color: #b6e7c9;" text="Level 8" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
+                                  <font>
+                                      <Font name="Comic Sans MS" size="13.0" />
+                                  </font>
                         </Button>
                               <Button fx:id="level7" mnemonicParsing="false" prefHeight="27.0" prefWidth="100.0" style="-fx-background-color: #b6e7c9;" text="Level 7" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
+                                  <font>
+                                      <Font name="Comic Sans MS" size="13.0" />
+                                  </font>
                         </Button>
                               <Button fx:id="level9" mnemonicParsing="false" prefHeight="27.0" prefWidth="100.0" style="-fx-background-color: #b6e7c9;" text="Level 9" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
+                                  <font>
+                                      <Font name="Comic Sans MS" size="13.0" />
+                                  </font>
                         </Button>
                             <Button fx:id="level10" alignment="CENTER" mnemonicParsing="false" prefHeight="27.0" prefWidth="100.0" style="-fx-background-color: #b6e7c9;" text="Level 10" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
+                                <font>
+                                    <Font name="Comic Sans MS" size="13.0" />
+                                </font>
                         </Button>
                           </children>
                      <HBox.margin>
@@ -108,7 +135,7 @@
                         <Insets right="10.0" />
                      </HBox.margin>
                   </MenuButton>
-                  <Button fx:id="viewStatsButton" mnemonicParsing="false" text="View stats">
+                  <Button fx:id="viewStatsButton" mnemonicParsing="false" style="-fx-background-color: #add8e6;" text="View stats">
                      <HBox.margin>
                         <Insets right="10.0" />
                      </HBox.margin>
@@ -127,7 +154,7 @@
       </VBox>
       <HBox alignment="BOTTOM_RIGHT" prefHeight="25.0" prefWidth="600.0">
          <children>
-            <Button fx:id="unlockAllButton" alignment="CENTER_RIGHT" style="-fx-background-color: rgba(173,216,230,0.4);" text="(Evaluation) Unlock all levels">
+            <Button fx:id="unlockAllButton" alignment="CENTER" prefHeight="25.0" prefWidth="191.0" style="-fx-background-color: rgba(211,64,1,0.4);" text="Unlock all levels">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
