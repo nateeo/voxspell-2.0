@@ -1,7 +1,7 @@
 # voxspell
 #### A spelling application targeted at native English learners aged 7-10
-developed for Java 7 with <3 by Nathan and Harry
-this version is for evaluation purposes and has a Developer only unlock all level mode (see usage guide)
+developed for Java 8 with <3 by Nathan and Harry
+this version is for evaluation purposes and has a Evaluation-only unlock all level mode (see usage guide)
 
 ##quick start
 Download/clone as .zip, extract and run the run.sh script
@@ -61,9 +61,8 @@ src
             ├── endSession.fxml                     // scene on reaching the end of a level
             ├── main.fxml                           // main/welcome scene for level selection
             ├── spelling.fxml                       // spelling scene for quizzes
-            ├── stats.fxml                          // s.
-            0.tatistics scene
-            └─.─ video.fxml                          // video reward scene
+            ├── stats.fxml                          // statistics scene
+            └── video.fxml                          // video reward scene
 ```
 
 ## assets
