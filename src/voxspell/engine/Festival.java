@@ -98,7 +98,7 @@ public class Festival {
         try {
             writer.write("(voice_" + voiceType + ")");
             writer.newLine();
-            writer.write("(Parameter.set 'Duration_Stretch 1.19)");
+            writer.write("(Parameter.set 'Duration_Stretch 1.25)");
             writer.newLine();
             writer.write("(SayText " + "\"" + sentence + "\"" + ")");
             writer.flush();
@@ -130,7 +130,7 @@ public class Festival {
             case CORRECT:
                 return "That is right!";
             case LISTEN_AGAIN:
-                return "The word is " + word + ", " + word;
+                return word.toString();
             case TRY_AGAIN:
                 return "Try spelling it again, " + word + ", " + word;
             case WRONG:

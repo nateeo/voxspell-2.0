@@ -155,6 +155,10 @@ public class EndSessionController implements Initializable {
         }
     }
 
+    /**
+     * Displays the text that should be provided after the session has finished
+     * depending on whether it was in review mode or normal mode
+     */
     public void displayText() {
         if (LevelData.isReview()) {
             endMessage.setText("Review results");
@@ -163,6 +167,9 @@ public class EndSessionController implements Initializable {
         }
     }
 
+    /**
+     * PieChart is generated depending on the percentage of correct and incorrect answers.
+     */
     public void showPieChart() {
         ObservableList<PieChart.Data> list = FXCollections.observableArrayList(
                 new javafx.scene.chart.PieChart.Data("Correct", correct * 10),

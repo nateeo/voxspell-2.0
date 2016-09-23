@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
@@ -122,9 +123,11 @@ public class StatsController implements Initializable {
             correctPercentage = ((double)correct / (correct + wrong) * 100);
             wrongPercentage = 100 - correctPercentage;
         }
+
         XYChart.Series series = new XYChart.Series();
         series.getData().add(new XYChart.Data("correct", correctPercentage));
         series.getData().add(new XYChart.Data("wrong", wrongPercentage));
+
         barChart.getData().addAll(series);
     }
 

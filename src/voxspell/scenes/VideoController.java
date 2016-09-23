@@ -68,7 +68,7 @@ public class VideoController implements Initializable {
         @Override
         public void handle(MouseEvent mouseEvent) {
             mp.stop();
-            SceneManager.goTo("main.fxml");
+            SceneManager.goTo("endSession.fxml");
         }
     }
 

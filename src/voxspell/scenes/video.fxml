@@ -7,20 +7,20 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox fx:id="vBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-: limegreen; -fx-border-color: green; -fx-border-width: 5px;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="voxspell.scenes.VideoController">
+<VBox fx:id="vBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-: ;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="voxspell.scenes.VideoController">
    <children>
       <MediaView fx:id="mv" fitHeight="200.0" fitWidth="200.0">
          <VBox.margin>
-            <Insets bottom="50.0" top="50.0" />
+            <Insets bottom="50.0" right="1.0" top="50.0" />
          </VBox.margin></MediaView>
       <HBox prefHeight="70.0" prefWidth="570.0" spacing="12.0">
          <children>
             <Button mnemonicParsing="false" onAction="#play" prefHeight="95.0" prefWidth="85.0" style="-fx-background-color: b6e7c9; -fx-border-color: black; -fx-border-width: 4px;" text="PLAY" />
             <Button mnemonicParsing="false" onAction="#pause" prefHeight="96.0" prefWidth="85.0" style="-fx-background-color: b6e7c9; -fx-border-color: black; -fx-border-width: 4px;" text="PAUSE" />
             <Button mnemonicParsing="false" onAction="#fast" prefHeight="95.0" prefWidth="85.0" style="-fx-background-color: b6e7c9; -fx-border-color: black; -fx-border-width: 4px;" text="FAST" />
-            <Button mnemonicParsing="false" onAction="#slow" prefHeight="95.0" prefWidth="85.0" style="-fx-background-color: b6e7c9;" text="SLOW" />
-            <Button mnemonicParsing="false" onAction="#reload" prefHeight="95.0" prefWidth="85.0" style="-fx-background-color: b6e7c9;" text="RELOAD" />
-            <Button fx:id="exitButton" mnemonicParsing="false" prefHeight="95.0" prefWidth="85.0" style="-fx-background-color: firebrick;" text="EXIT" />
+            <Button mnemonicParsing="false" onAction="#slow" prefHeight="95.0" prefWidth="85.0" style="-fx-background-color: b6e7c9; -fx-border-color: black; -fx-border-width: 4px;" text="SLOW" />
+            <Button mnemonicParsing="false" onAction="#reload" prefHeight="95.0" prefWidth="85.0" style="-fx-background-color: b6e7c9; -fx-border-color: black; -fx-border-width: 4px;" text="RELOAD" />
+            <Button fx:id="exitButton" mnemonicParsing="false" prefHeight="95.0" prefWidth="85.0" style="-fx-background-color: firebrick; -fx-border-color: red; -fx-border-width: 4px;" text="EXIT" />
          </children>
          <VBox.margin>
             <Insets bottom="30.0" left="15.0" right="15.0" />

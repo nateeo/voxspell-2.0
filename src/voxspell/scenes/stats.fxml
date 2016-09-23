@@ -16,7 +16,7 @@
    <Button fx:id="returnButton" layoutX="180.0" layoutY="15.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="97.0" style="-fx-background-color: #b6e7c9;" text="Main Menu" />
       <Button fx:id="resetButton" layoutX="287.0" layoutY="15.0" mnemonicParsing="false" style="-fx-background-color: #ff1010;" text="Reset" />
       <ChoiceBox fx:id="levelChoice" layoutX="14.0" layoutY="15.0" prefHeight="25.0" prefWidth="157.0" style="-fx-background-color: b6e7c9;" />
-      <BarChart fx:id="barChart" alternativeRowFillVisible="false" horizontalZeroLineVisible="false" layoutX="6.0" layoutY="43.0" legendVisible="false" prefHeight="359.0" prefWidth="336.0" style="-fx-bar-fill: green;" titleSide="LEFT" verticalGridLinesVisible="false" verticalZeroLineVisible="false">
+      <BarChart fx:id="barChart" alternativeRowFillVisible="false" animated="false" horizontalZeroLineVisible="false" layoutX="6.0" layoutY="43.0" legendVisible="false" prefHeight="359.0" prefWidth="336.0" style="-fx-bar-fill: green; -fx-font-color: white; -fx-text-label-fill: green;" titleSide="LEFT" verticalGridLinesVisible="false" verticalZeroLineVisible="false">
         <xAxis>
           <CategoryAxis label="Result" side="BOTTOM" style="-fx-font-size: 14px; -fx-font-weight: bold;" />
         </xAxis>
