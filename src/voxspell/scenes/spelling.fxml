@@ -88,7 +88,7 @@
                <children>
                   <TextArea fx:id="outputTextArea" prefHeight="200.0" prefWidth="200.0" stylesheets="@assets/transparentTextArea.css" HBox.hgrow="ALWAYS">
                      <font>
-                        <Font name="Comic Sans MS" size="36.0" />
+                        <Font name="Comic Sans MS" size="24.0" />
                      </font></TextArea>
                </children>
             </HBox>
