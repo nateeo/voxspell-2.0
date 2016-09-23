@@ -43,10 +43,10 @@ public class VideoController implements Initializable {
         me = new Media(new File(path).toURI().toString());
         mp = new MediaPlayer(me);
         mv.setMediaPlayer(mp);
-        DoubleProperty width = mv.fitWidthProperty();
-        DoubleProperty height = mv.fitHeightProperty();
-        width.bind(Bindings.selectDouble(mv.sceneProperty(), "width"));
-        height.bind(Bindings.selectDouble(mv.sceneProperty(), "height"));
+        mv.setFitWidth(600);
+        mv.setPreserveRatio(true);
+        mp.setAutoPlay(true);
+
 
         exitButton.setOnMouseClicked(new VideoController.returnHandler());
 

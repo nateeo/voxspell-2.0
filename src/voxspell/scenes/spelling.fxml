@@ -68,13 +68,19 @@
                                  <HBox.margin>
                                     <Insets left="5.0" right="15.0" />
                                  </HBox.margin>
+                                 <font>
+                                    <Font name="Comic Sans MS" size="13.0" />
+                                 </font>
                               </Label>
                               <Label fx:id="progressLabel" text="X">
                                  <HBox.margin>
                                     <Insets right="3.0" />
                                  </HBox.margin>
                               </Label>
-                              <Label fx:id="outOfLabel" text="out of 10" />
+                              <Label fx:id="outOfLabel" text="out of 10">
+                                 <font>
+                                    <Font name="Comic Sans MS" size="13.0" />
+                                 </font></Label>
                            </children>
                         </HBox>
                      </children>
