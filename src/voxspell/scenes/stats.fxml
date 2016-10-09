@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import javafx.scene.chart.*?>
@@ -13,8 +14,14 @@
 
 <AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="voxspell.scenes.StatsController">
 <children>
-   <Button fx:id="returnButton" layoutX="180.0" layoutY="15.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="97.0" style="-fx-background-color: #b6e7c9;" text="Main Menu" />
-      <Button fx:id="resetButton" layoutX="287.0" layoutY="15.0" mnemonicParsing="false" style="-fx-background-color: #ff1010;" text="Reset" />
+   <Button fx:id="returnButton" layoutX="180.0" layoutY="15.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="97.0" style="-fx-background-color: #b6e7c9;" text="Main Menu">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button fx:id="resetButton" layoutX="287.0" layoutY="15.0" mnemonicParsing="false" style="-fx-background-color: #ff1010;" text="Reset">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
       <ChoiceBox fx:id="levelChoice" layoutX="14.0" layoutY="15.0" prefHeight="25.0" prefWidth="157.0" style="-fx-background-color: b6e7c9;" />
       <BarChart fx:id="barChart" alternativeRowFillVisible="false" animated="false" horizontalZeroLineVisible="false" layoutX="6.0" layoutY="43.0" legendVisible="false" prefHeight="359.0" prefWidth="336.0" style="-fx-bar-fill: green; -fx-font-color: white; -fx-text-label-fill: green;" titleSide="LEFT" verticalGridLinesVisible="false" verticalZeroLineVisible="false">
         <xAxis>

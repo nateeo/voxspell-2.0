@@ -26,8 +26,6 @@ public class MainController implements Initializable {
     private static final String ON_HOVER = "-fx-background-color: #83B496;";
     private static final String ON_EXIT = "-fx-background-color: #b6e7c9;";
 
-    private static final String NZ_VOICE_CHOICE = "NZ Voice";
-    private static final String DEFAULT_VOICE_CHOICE = "Default Voice";
     private ArrayList<Button> buttons = new ArrayList<Button>();
 
     // data IO
@@ -57,13 +55,9 @@ public class MainController implements Initializable {
     @FXML
     private Button level10;
     @FXML
-    private Button resetButton;
-    @FXML
-    private MenuButton voiceMenuButton;
-    @FXML
     private Button viewStatsButton;
     @FXML
-    private Button unlockAllButton;
+    private Button settingsButton;
 
     /**
      * parse button text into level number
@@ -102,25 +96,7 @@ public class MainController implements Initializable {
     /**
      * voice MenuButton handler for voice changing
      */
-    class voiceMenuButtonHandler implements EventHandler<ActionEvent> {
-        @Override
-        public void handle(ActionEvent actionEvent) {
-            switch((String)((MenuItem)actionEvent.getSource()).getUserData()) { // userData is voice type
-                case Festival.DEFAULT:
-                    LevelData.setVoice(Festival.DEFAULT);
-                    voiceMenuButton.setText(DEFAULT_VOICE_CHOICE);
-                    break;
-                case Festival.NZ:
-                    LevelData.setVoice(Festival.NZ);
-                    voiceMenuButton.setText(NZ_VOICE_CHOICE);
-                    break;
-                default:
-                    LevelData.setVoice(Festival.DEFAULT); // set to default if invalid voice
-                    voiceMenuButton.setText(DEFAULT_VOICE_CHOICE);
-                    break;
-            }
-        }
-    }
+
 
     /**
      * onHover handler for button styling
@@ -150,12 +126,6 @@ public class MainController implements Initializable {
         }
     }
 
-    class enableAllHandler implements EventHandler<MouseEvent> {
-        public void handle(MouseEvent event) {
-            enableAll();
-        }
-    }
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         vBox.setBackground(SceneManager.makeBackground());
@@ -163,9 +133,7 @@ public class MainController implements Initializable {
         EventHandler<MouseEvent> levelSelectionHandler = new levelSelect();
         EventHandler<MouseEvent> hoverHandler = new hoverHandler();
         EventHandler<MouseEvent> exitHandler = new exitHandler();
-        EventHandler<MouseEvent> resetHandler = new resetHandler();
         EventHandler<MouseEvent> statsSelectHandler = new statsSelectHandler();
-        EventHandler<MouseEvent> enableAllHandler = new enableAllHandler();
 
         // add buttons to list, then iterate through list assigning listeners
         buttons.add(level1);
@@ -186,37 +154,23 @@ public class MainController implements Initializable {
             button.setOnMouseExited(exitHandler);
         }
 
+        settingsButton.setOnMouseClicked((e) -> {
+            Settings settings = new Settings(buttons);
+            settings.show();
+        });
+
         // initialise buttons
-        resetButton.setOnMouseClicked(resetHandler);
         viewStatsButton.setOnMouseClicked(statsSelectHandler);
-        unlockAllButton.setOnMouseClicked(enableAllHandler);
 
 
         // disable locked levels
         disable(data.highestLevelEnabled());
 
-        // initialise voice menu
-        voiceMenuButton.setText("Change voice");
-        EventHandler<ActionEvent> voiceMenuButtonHandler = new voiceMenuButtonHandler();
-        MenuItem defaultVoice = new MenuItem(DEFAULT_VOICE_CHOICE);
-        defaultVoice.setUserData(Festival.DEFAULT);
-        MenuItem nzVoice = new MenuItem(NZ_VOICE_CHOICE);
-        nzVoice.setUserData(Festival.NZ);
-        voiceMenuButton.getItems().setAll(defaultVoice, nzVoice);
-
-        defaultVoice.setOnAction(voiceMenuButtonHandler);
-        nzVoice.setOnAction(voiceMenuButtonHandler);
     }
 
     private void disable(int maxLevel) {
         for (int i = 9; i > maxLevel - 1; i--) {
             buttons.get(i).setDisable(true);
-        }
-    }
-
-    private void enableAll() {
-        for (int i = 0; i < 10; i++) {
-            buttons.get(i).setDisable(false);
         }
     }
 }

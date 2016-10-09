@@ -16,6 +16,8 @@ import java.io.IOException;
  */
 public class SceneManager {
     private static Stage currentStage;
+    private static final String MAIN_BACKGROUND = "scenes/assets/trees2.png";
+    private static final String SECONDARY_BACKGROUND = "scenes/assets/trees.png";
 
     /**
      * Set stage to edit
@@ -25,11 +27,11 @@ public class SceneManager {
     }
 
     public static Background makeBackground() {
-        Image image = new Image(Voxspell.class.getResource("scenes/assets/trees.png").toExternalForm());
-        BackgroundSize backgroundSize = new BackgroundSize(100, 100, true, true, false, true);
-        BackgroundImage backgroundImage = new BackgroundImage(image, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize);
-        Background background = new Background(backgroundImage);
-        return background;
+        return backgroundChooser(MAIN_BACKGROUND);
+    }
+
+    public static Background makeAmbientBackground() {
+        return backgroundChooser(SECONDARY_BACKGROUND);
     }
     public static void goTo(String fxmlDestination) {
         if (currentStage != null) {
@@ -46,5 +48,13 @@ public class SceneManager {
             stage.setScene(scene);
             stage.show();
         }
+    }
+
+    private static Background backgroundChooser(String backgroundSource) {
+        Image image = new Image(Voxspell.class.getResource(backgroundSource).toExternalForm());
+        BackgroundSize backgroundSize = new BackgroundSize(100, 100, true, true, false, true);
+        BackgroundImage backgroundImage = new BackgroundImage(image, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize);
+        Background background = new Background(backgroundImage);
+        return background;
     }
 }

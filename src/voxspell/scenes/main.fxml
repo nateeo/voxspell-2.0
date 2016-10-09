@@ -126,27 +126,13 @@
             </HBox>
             <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <MenuButton fx:id="voiceMenuButton" mnemonicParsing="false" text="MenuButton">
-                    <items>
-                      <MenuItem mnemonicParsing="false" text="Action 1" />
-                      <MenuItem mnemonicParsing="false" text="Action 2" />
-                    </items>
+                  <Button fx:id="viewStatsButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" style="-fx-background-color: #add8e6;" text="View stats">
                      <HBox.margin>
                         <Insets right="10.0" />
                      </HBox.margin>
-                  </MenuButton>
-                  <Button fx:id="viewStatsButton" mnemonicParsing="false" style="-fx-background-color: #add8e6;" text="View stats">
-                     <HBox.margin>
-                        <Insets right="10.0" />
-                     </HBox.margin>
-                  </Button>
-                  <Button fx:id="resetButton" alignment="CENTER" mnemonicParsing="false" style="-fx-background-color: #ff2525;" text="Reset levels">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
-                     <HBox.margin>
-                        <Insets right="10.0" />
-                     </HBox.margin>
                   </Button>
                </children>
             </HBox>
@@ -154,15 +140,14 @@
       </VBox>
       <HBox alignment="BOTTOM_RIGHT" prefHeight="25.0" prefWidth="600.0">
          <children>
-            <Button fx:id="unlockAllButton" alignment="CENTER" prefHeight="25.0" prefWidth="191.0" style="-fx-background-color: rgba(211,64,1,0.4);" text="Unlock all levels">
+            <Button fx:id="settingsButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" style="-fx-background-color: #fff1a1;" text="Settings">
+               <HBox.margin>
+                  <Insets bottom="10.0" right="10.0" top="10.0" />
+               </HBox.margin>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
-               <HBox.margin>
-                  <Insets right="10.0" top="5.0" />
-               </HBox.margin>
             </Button>
-         </children>
-      </HBox>
+         </children></HBox>
     </children>
 </VBox>
