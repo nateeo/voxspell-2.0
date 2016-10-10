@@ -48,6 +48,7 @@ public class DataIO {
      */
     public void addAchievement(Achievement achievement) {
         achievements.add(achievement);
+        saveObject(ACHIEVEMENT_DATA, achievements);
     }
 
     /**

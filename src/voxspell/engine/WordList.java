@@ -13,6 +13,7 @@ import java.util.Collections;
  * user.
  *
  * Created by harrylimp on 6/09/16.
+ * Updated by nhur714 on 10/10/16.
  */
 public class WordList {
 
@@ -27,7 +28,7 @@ public class WordList {
     public WordList(int currentLevel) {
 
         level = currentLevel;
-        readFile();
+        readFile("./lib/NZCER-spelling-lists.txt");
         generateWords();
 
     }
@@ -57,10 +58,10 @@ public class WordList {
      * Reads the file containing words from all ten levels and
      * only stores the words required for testing for the specific level.
      */
-    private void readFile() {
+    private void readFile(String fileLoc) {
         BufferedReader reader = null;
         try {
-            File filename = new File("./lib/NZCER-spelling-lists.txt");
+            File filename = new File(fileLoc);
             reader = new BufferedReader(new FileReader(filename));
             String line;
             String findLevel = "%Level " + Integer.toString(level);

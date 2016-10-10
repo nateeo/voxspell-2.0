@@ -10,6 +10,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.AudioClip;
+import javafx.stage.Stage;
 import voxspell.engine.DataIO;
 import voxspell.engine.Festival;
 import voxspell.engine.LevelData;
@@ -33,6 +34,8 @@ public class MainController implements Initializable {
     DataIO data = new DataIO();
 
     // initialize buttons from FXML
+    @FXML
+    private Button achievementsButton;
     @FXML
     private VBox vBox;
     @FXML
@@ -72,6 +75,8 @@ public class MainController implements Initializable {
         }
         return Integer.parseInt(number);
     }
+
+    // legacy handlers (from java 1.7)
 
     /**
      * level selection handler to handle level selection button presses
@@ -168,6 +173,9 @@ public class MainController implements Initializable {
         disable(data.highestLevelEnabled());
         SceneManager.playMusic();
 
+
+        // achievements
+        achievementsButton.setOnMouseClicked((e) -> SceneManager.goTo("achievements.fxml"));
     }
 
     private void disable(int maxLevel) {

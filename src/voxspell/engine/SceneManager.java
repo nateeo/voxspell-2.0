@@ -12,7 +12,7 @@ import voxspell.Voxspell;
 import java.io.IOException;
 
 /**
- * class with method(s) to change the scene, and manage scene background
+ * class with method(s) to change the scene and manage scene background
  * Created by nhur714 on 22/09/16.
  */
 public class SceneManager {

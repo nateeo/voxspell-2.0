@@ -11,7 +11,7 @@ import java.io.Serializable;
 
 /**
  * Class to represent an achievement
- * Created by Nateeo on 10/10/2016.
+ * Created by nhur714 on 10/10/2016.
  */
 public class Achievement implements Serializable, Comparable<Achievement> {
     private String name;

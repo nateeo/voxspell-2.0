@@ -20,7 +20,7 @@ import java.util.ArrayList;
 
 /**
  * Settings popup to manage voice, sound and level data features
- * Created by Nateeo on 10/9/2016.
+ * Created by nhur714 on 10/9/2016.
  */
 public class Settings {
     Stage stage = new Stage();
