@@ -113,6 +113,7 @@ public class SpellingController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        SceneManager.stopMusic();
         // Initialize words and level label using levelData
         vBox.setBackground(SceneManager.makeBackground());
         int level = LevelData.getLevel();

@@ -3,6 +3,7 @@ package voxspell.engine;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.TreeSet;
 
 /**
  * Class to read and write data to files
@@ -12,10 +13,12 @@ public class DataIO {
     private ArrayList<Integer> enabledLevels;
     private String voice;
     private ArrayList<ArrayList<Word>> wordData;
+    private TreeSet<Achievement> achievements;
 
     private File LEVEL_DATA = new File(".levelData.ser");
     private File VOICE_DATA = new File(".voiceData.ser");
     private File WORD_DATA = new File(".wordData.ser");
+    private File ACHIEVEMENT_DATA = new File(".achievementData.ser");
 
     public DataIO() {
         loadAll();
@@ -30,6 +33,21 @@ public class DataIO {
            enabledLevels.add(level);
            saveAll(false);
        }
+    }
+
+    /**
+     * Get list of achievements
+     */
+    public TreeSet<Achievement> getAchievements() {
+        return achievements;
+    }
+
+    /**
+     * add an achievement and sort by rarity
+     * @param achievement
+     */
+    public void addAchievement(Achievement achievement) {
+        achievements.add(achievement);
     }
 
     /**
@@ -90,6 +108,7 @@ public class DataIO {
     public void saveAll(boolean toSaveWordData) {
         saveObject(LEVEL_DATA, enabledLevels);
         saveObject(VOICE_DATA, voice);
+        saveObject(ACHIEVEMENT_DATA, achievements);
         if (toSaveWordData) {
             saveObject(WORD_DATA, wordData);
         }
@@ -101,6 +120,7 @@ public class DataIO {
     private void loadAll() {
         enabledLevels = (ArrayList<Integer>) loadObject(LEVEL_DATA, new ArrayList<Integer>());
         voice = (String) loadObject(VOICE_DATA, Festival.DEFAULT);
+        achievements = (TreeSet<Achievement>) loadObject(ACHIEVEMENT_DATA, new ArrayList<Achievement>());
         wordData = (ArrayList<ArrayList<Word>>) loadObject(WORD_DATA, new ArrayList<ArrayList<Word>>());
         if (wordData.isEmpty()) {
             initialiseWordData();  // initialise if wordData is empty;
@@ -124,7 +144,15 @@ public class DataIO {
         initialiseWordData();
     }
 
-    // helper methods
+    /**
+     * reset achievements
+     */
+    public void resetAchievements() {
+        ACHIEVEMENT_DATA.delete();
+        achievements = new TreeSet<Achievement>();
+    }
+
+    // helper methods for file IO
 
     private void saveObject (File file, Object object) {
         try {

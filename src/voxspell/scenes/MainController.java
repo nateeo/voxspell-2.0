@@ -9,6 +9,7 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.AudioClip;
 import voxspell.engine.DataIO;
 import voxspell.engine.Festival;
 import voxspell.engine.LevelData;
@@ -165,6 +166,7 @@ public class MainController implements Initializable {
 
         // disable locked levels
         disable(data.highestLevelEnabled());
+        SceneManager.playMusic();
 
     }
 

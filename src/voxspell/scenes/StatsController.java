@@ -55,6 +55,7 @@ public class StatsController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        SceneManager.playMusic();
 
         anchorPane.setBackground(SceneManager.makeBackground());
 

@@ -19,6 +19,7 @@ import voxspell.engine.SceneManager;
 import java.util.ArrayList;
 
 /**
+ * Settings popup to manage voice, sound and level data features
  * Created by Nateeo on 10/9/2016.
  */
 public class Settings {
@@ -28,6 +29,7 @@ public class Settings {
     MenuButton voiceMenuButton = new MenuButton();
     Button resetButton = new Button();
     Button enableAllButton = new Button();
+    Button musicToggle = new Button();
 
     DataIO data = new DataIO();
 
@@ -44,14 +46,17 @@ public class Settings {
         stage.setTitle("Settings");
         stage.setResizable(false);
 
+        updateMusicToggle();
+
         resetButton.setText("Reset levels");
         resetButton.setStyle("-fx-background-color: red; -fx-cursor: hand");
+
         enableAllButton.setText("(Evaluation only)\nUnlock all levels");
         enableAllButton.setStyle("-fx-background-color: #cf7869; -fx-cursor: hand; -fx-font-size: 9");
 
         vBox.setAlignment(Pos.CENTER);
 
-        vBox.getChildren().addAll(voiceMenuButton, resetButton, enableAllButton);
+        vBox.getChildren().addAll(voiceMenuButton, musicToggle, resetButton, enableAllButton);
         vBox.setBackground(SceneManager.makeAmbientBackground());
         Scene scene = new Scene(vBox);
         stage.setScene(scene);
@@ -61,6 +66,13 @@ public class Settings {
 
     public void show() {
         stage.showAndWait();
+    }
+
+    private void updateMusicToggle() {
+        String musicText = SceneManager.enableMusic ? "Disable Music" : "Enable Music";
+        String musicColor = SceneManager.enableMusic ? "#ff7f7f" : "#7fbf7f";
+        musicToggle.setText(musicText);
+        musicToggle.setStyle("-fx-cursor: hand; -fx-background-color: " + musicColor);
     }
 
     class voiceMenuButtonHandler implements EventHandler<ActionEvent> {
@@ -99,6 +111,16 @@ public class Settings {
             for (Button button : buttons) {
                 button.setDisable(false);
             }
+        });
+
+        musicToggle.setOnMouseClicked((e) -> {
+            SceneManager.enableMusic = !SceneManager.enableMusic;
+            if (SceneManager.enableMusic) {
+                SceneManager.playMusic();
+            } else {
+                SceneManager.stopMusic();
+            }
+            updateMusicToggle();
         });
 
         resetButton.setOnMouseClicked(new resetHandler());

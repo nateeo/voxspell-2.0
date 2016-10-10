@@ -68,4 +68,5 @@ src
 ## assets
 All assets are from royalty-free sources
 Loading gif: ajaxload.info
-Background: openclipart.org
+Background (all backgrounds), achievement images: openclipart.org
+Welcome music: freemusicarchive.org

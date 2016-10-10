@@ -5,6 +5,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
+import javafx.scene.media.AudioClip;
 import javafx.stage.Stage;
 import voxspell.Voxspell;
 
@@ -18,6 +19,9 @@ public class SceneManager {
     private static Stage currentStage;
     private static final String MAIN_BACKGROUND = "scenes/assets/trees2.png";
     private static final String SECONDARY_BACKGROUND = "scenes/assets/trees.png";
+    private static AudioClip welcome = new AudioClip(Voxspell.class.getResource("scenes/assets/Welcome.mp3").toExternalForm());
+
+    public static boolean enableMusic = true;
 
     /**
      * Set stage to edit
@@ -26,6 +30,10 @@ public class SceneManager {
         currentStage = stage;
     }
 
+    /**
+     * Methods to make backgrounds for scenes
+     * @return
+     */
     public static Background makeBackground() {
         return backgroundChooser(MAIN_BACKGROUND);
     }
@@ -56,5 +64,21 @@ public class SceneManager {
         BackgroundImage backgroundImage = new BackgroundImage(image, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize);
         Background background = new Background(backgroundImage);
         return background;
+    }
+
+    /**
+     * Methods to control global music
+     */
+    public static void playMusic() {
+        if (enableMusic && !welcome.isPlaying()) {
+            welcome.setCycleCount(AudioClip.INDEFINITE);
+            welcome.play();
+        }
+    }
+
+    public static void stopMusic() {
+        if (welcome.isPlaying()) {
+            welcome.stop();
+        }
     }
 }
