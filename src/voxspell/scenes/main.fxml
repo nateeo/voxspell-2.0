@@ -126,6 +126,14 @@
             </HBox>
             <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0">
                <children>
+                  <Button alignment="CENTER" mnemonicParsing="false" text="Achievements">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <HBox.margin>
+                        <Insets right="10.0" top="10.0" />
+                     </HBox.margin>
+                  </Button>
                   <Button fx:id="viewStatsButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" style="-fx-background-color: #add8e6;" text="View stats">
                      <HBox.margin>
                         <Insets right="10.0" />

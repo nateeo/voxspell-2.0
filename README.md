@@ -1,7 +1,9 @@
-# voxspell
-#### A spelling application targeted at native English learners aged 7-10
-developed for Java 8 with <3 by Nathan and Harry
+# voxspell 2.0
+#### A spelling application targeted at native English learners aged 7-10, developed by Nathan Hur
+voxspell 1.0 (prototype) was developed by Nathan Hur and Harry Lim
+Some code written by Harry Lim remains in the application with permission.
 this version is for evaluation purposes and has a Evaluation-only unlock all level mode (see usage guide)
+
 
 ##quick start
 Download/clone as .zip, extract and run the run.sh script
@@ -30,6 +32,10 @@ access the next level by simply reviewing.
 If you qualify for the next level (getting 9 out of 10 on the quiz) and then review the one word you got wrong,
 you still have access to the video reward and next level.
 
+###achievements
+You can unlock achievements by completing levels and doing other things! Basically improving your spelling and
+advancing through the levels will net you achievements. For full information, see the manual.
+
 ###statistics
 The stats are intended for parents/teachers to review the words that the user has gotten wrong. A brief
 display of the words spelt during the current level will appear at the end. 
@@ -45,6 +51,7 @@ src
     └── voxspell
         ├── Voxspell.java                           // entry point for application
         ├── engine ** package for back-end / functionality **
+        │   ├── Achievement.java                    // represents an achievement
         │   ├── DataIO.java                         // deals with file IO and saving
         │   ├── Festival.java                       // deals with festival tts and voice changing
         │   ├── LevelData.java                      // static link class to store global application state (levels, etc.)
@@ -54,10 +61,13 @@ src
         └── scenes ** package for front-end and controllers **
             ├── assets ** folder for images **
             ├── MainController.java                 // controller for main/welcome scene
+            ├── AchievementsPopup.java              // popup to show unlocked achievement
+            ├── Settings.java                       // popup for voice/level settings
             ├── EndSessionController.java           // end of level controller
             ├── SpellingController.java             // controller for spelling scene
             ├── StatsController.java                // controller for statistic scene
             ├── VideoController.java                // controller for video reward scene
+            ├── achievements.fxml                   // scene to show all achievements
             ├── endSession.fxml                     // scene on reaching the end of a level
             ├── main.fxml                           // main/welcome scene for level selection
             ├── spelling.fxml                       // spelling scene for quizzes
