@@ -1,13 +1,15 @@
 # voxspell 2.0
 #### A spelling application targeted at native English learners aged 7-10, developed by Nathan Hur
-voxspell 1.0 (prototype) was developed by Nathan Hur and Harry Lim
-Some code written by Harry Lim remains in the application with permission.
-this version is for evaluation purposes and has a Evaluation-only unlock all level mode (see usage guide)
+voxspell 1.0 (prototype) was developed by Nathan Hur and Harry Lim.
+
+*Some code written by Harry Lim remains in the application with written permission.*
+
+This version is for evaluation purposes and has a Evaluation-only unlock all level mode (see usage guide)
 
 
 ##quick start
 Download/clone as .zip, extract and run the run.sh script
-(requires Oracle Java 1.7 and festival text-to-speech)
+(requires Oracle Java 1.8 and festival text-to-speech)
 
 ##brief usage guide
 
