@@ -120,7 +120,7 @@ public class DataIO {
     private void loadAll() {
         enabledLevels = (ArrayList<Integer>) loadObject(LEVEL_DATA, new ArrayList<Integer>());
         voice = (String) loadObject(VOICE_DATA, Festival.DEFAULT);
-        achievements = (TreeSet<Achievement>) loadObject(ACHIEVEMENT_DATA, new ArrayList<Achievement>());
+        achievements = (TreeSet<Achievement>) loadObject(ACHIEVEMENT_DATA, new TreeSet<Achievement>());
         wordData = (ArrayList<ArrayList<Word>>) loadObject(WORD_DATA, new ArrayList<ArrayList<Word>>());
         if (wordData.isEmpty()) {
             initialiseWordData();  // initialise if wordData is empty;
