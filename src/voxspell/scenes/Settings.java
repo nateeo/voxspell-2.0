@@ -1,5 +1,8 @@
 package voxspell.scenes;
 
+import java.io.File;
+import java.util.ArrayList;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -9,14 +12,14 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import voxspell.engine.DataIO;
 import voxspell.engine.Festival;
 import voxspell.engine.LevelData;
 import voxspell.engine.SceneManager;
-
-import java.util.ArrayList;
 
 /**
  * Settings popup to manage voice, sound and level data features
@@ -30,6 +33,7 @@ public class Settings {
     Button resetButton = new Button();
     Button enableAllButton = new Button();
     Button musicToggle = new Button();
+    Button changeList = new Button();
 
     DataIO data = new DataIO();
 
@@ -48,15 +52,18 @@ public class Settings {
 
         updateMusicToggle();
 
-        resetButton.setText("Reset levels");
+        resetButton.setText("Reset everything");
         resetButton.setStyle("-fx-background-color: red; -fx-cursor: hand");
 
         enableAllButton.setText("(Evaluation only)\nUnlock all levels");
         enableAllButton.setStyle("-fx-background-color: #cf7869; -fx-cursor: hand; -fx-font-size: 9");
 
+        changeList.setText("Change word list");
+        changeList.setStyle("-fx-background-color: #7f7fff; -fx-cursor: hand");
+        
         vBox.setAlignment(Pos.CENTER);
 
-        vBox.getChildren().addAll(voiceMenuButton, musicToggle, resetButton, enableAllButton);
+        vBox.getChildren().addAll(voiceMenuButton, changeList, musicToggle, resetButton, enableAllButton);
         vBox.setBackground(SceneManager.makeAmbientBackground());
         Scene scene = new Scene(vBox);
         stage.setScene(scene);
@@ -124,12 +131,23 @@ public class Settings {
         });
 
         resetButton.setOnMouseClicked(new resetHandler());
+        
+        changeList.setOnMouseClicked((e) -> {
+        	FileChooser fileChooser = new FileChooser();
+        	fileChooser.getExtensionFilters().add(new ExtensionFilter("Text Files", "*.txt"));
+        	File file = fileChooser.showOpenDialog(changeList.getScene().getWindow());
+        	if (file != null) {
+        		LevelData.currentWordFile = file.getPath();
+        	}
+        });
     }
 
     class resetHandler implements EventHandler<MouseEvent> {
         public void handle(MouseEvent event) {
             data.delete();
+            data.resetAchievements();
             disable(1); // disable all levels except the first
+            stage.close();
         }
     }
 

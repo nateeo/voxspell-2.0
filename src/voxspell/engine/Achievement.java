@@ -1,10 +1,13 @@
 package voxspell.engine;
 
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import voxspell.Voxspell;
 
 import java.io.Serializable;
@@ -21,7 +24,7 @@ public class Achievement implements Serializable, Comparable<Achievement> {
 
     public enum Rarity {
 
-        COMMON("white", 10),
+        COMMON("grey", 10),
         RARE("#3232ff", 50),
         EPIC("#9966cc", 100),
         LEGENDARY("#FFD700", 500);
@@ -41,11 +44,11 @@ public class Achievement implements Serializable, Comparable<Achievement> {
         }
     }
 
-    public Achievement(String name, String description, Rarity rarity, int points) {
+    public Achievement(String name, String description, Rarity rarity) {
         this.name = name;
         this.description = description;
         this.rarity = rarity;
-        this.points = points;
+        this.points = rarity.points();
     }
 
     /**
@@ -58,10 +61,11 @@ public class Achievement implements Serializable, Comparable<Achievement> {
 
         // initialise components
         ImageView image = new ImageView(new Image(Voxspell.class.getResource("scenes/assets/star.png").toExternalForm()));
-        image.prefWidth(100);
-        image.prefHeight(100);
+        image.setFitHeight(50);
+        image.setFitWidth(50);
         Label title = new Label(this.name);
-        title.setStyle("-fx-font-size: 18; -fx-font-color: " + rarity.color());
+        title.setStyle("-fx-font-size: 18");
+        title.setTextFill(Color.web(rarity.color()));
 
         Label description = new Label(this.description);
         description.setText(this.description);
@@ -69,7 +73,10 @@ public class Achievement implements Serializable, Comparable<Achievement> {
 
         vBox.getChildren().addAll(image, title, description);
         pane.getChildren().add(vBox);
-
+        vBox.setAlignment(Pos.CENTER);
+        vBox.setPadding(new Insets(10));
+        pane.setStyle("-fx-background-color: rgba(255,255,255,0.9); -fx-border-color: " + rarity.color + "; -fx-border-width: 3px;");
+        
         return pane;
     }
 

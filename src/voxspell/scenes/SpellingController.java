@@ -15,6 +15,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import voxspell.engine.*;
+import voxspell.engine.Achievement.Rarity;
 import voxspell.engine.Festival.Operations;
 
 import java.net.URL;

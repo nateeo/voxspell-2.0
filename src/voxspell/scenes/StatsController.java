@@ -4,6 +4,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -16,6 +17,8 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import voxspell.engine.Achievement;
+import voxspell.engine.Achievement.Rarity;
 import voxspell.engine.DataIO;
 import voxspell.engine.LevelData;
 import voxspell.engine.SceneManager;
@@ -56,7 +59,6 @@ public class StatsController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         SceneManager.playMusic();
-
         anchorPane.setBackground(SceneManager.makeBackground());
 
         data = new DataIO();
@@ -82,7 +84,7 @@ public class StatsController implements Initializable {
                 updateTableView(level);
             }
         });
-
+        new AchievementsPopup("Reviewed Stats!", "For reviewing statistics for the first time", Rarity.LEGENDARY);
     }
 
     class returnHandler implements EventHandler<MouseEvent> {

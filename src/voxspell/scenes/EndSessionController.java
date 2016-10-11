@@ -22,6 +22,7 @@ import javafx.util.Callback;
 import voxspell.engine.LevelData;
 import voxspell.engine.SceneManager;
 import voxspell.engine.Word;
+import voxspell.engine.Achievement.Rarity;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -89,13 +90,19 @@ public class EndSessionController implements Initializable {
 
         // enable next stuff
         if (correct >= 9 && !LevelData.isReview() || currentWords.size() == 1 && LevelData.isReview()) {
-            // only enable reward/next level if original quiz was 9/10 and they reviewed 1 word only (or no review)
+        	if (!LevelData.isReview()) {
+        		new AchievementsPopup("First level unlocked!", "For scoring 9 or more on the first level", Rarity.COMMON);
+        	} else {
+        		new AchievementsPopup("Reviewing!", "For attempting to review your mistakes", Rarity.COMMON);
+        	}
+        	// only enable reward/next level if original quiz was 9/10 and they reviewed 1 word only (or no review)
             playVideoButton.setOnMouseClicked(new videoHandler());
             if (!(LevelData.getLevel() == 10)) {
                 nextLevelButton.setOnMouseClicked(new nextLevelHandler());
             } else {
                 // disable next level on 10
                 nextLevelButton.setDisable(true);
+                new AchievementsPopup("10 Levels", "Unlocking all 10 levels", Rarity.EPIC);
             }
         } else {
             nextLevelButton.setDisable(true);

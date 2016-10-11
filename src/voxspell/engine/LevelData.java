@@ -17,6 +17,8 @@ public class LevelData {
     private static ArrayList<Word> currentWordList;
     private static String voice = data.getVoice();
     private static boolean isReview = false;
+    
+    public static String currentWordFile = "./lib/NZCER-spelling-lists.txt";
 
     /**
      * set currentWordList

@@ -28,7 +28,7 @@ public class WordList {
     public WordList(int currentLevel) {
 
         level = currentLevel;
-        readFile("./lib/NZCER-spelling-lists.txt");
+        readFile(LevelData.currentWordFile);
         generateWords();
 
     }

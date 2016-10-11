@@ -72,7 +72,7 @@ public class SceneManager {
     public static void playMusic() {
         if (enableMusic && !welcome.isPlaying()) {
             welcome.setCycleCount(AudioClip.INDEFINITE);
-            welcome.play();
+            welcome.play(0.2);
         }
     }
 

@@ -92,7 +92,7 @@
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                <children>
-                  <TextArea fx:id="outputTextArea" prefHeight="200.0" prefWidth="200.0" stylesheets="@assets/transparentTextArea.css" HBox.hgrow="ALWAYS">
+                  <TextArea fx:id="outputTextArea" prefHeight="200.0" prefWidth="200.0" stylesheets="@../../../../Downloads/VOXSPELL_BETA/src/voxspell/scenes/assets/transparentTextArea.css" HBox.hgrow="ALWAYS">
                      <font>
                         <Font name="Comic Sans MS" size="24.0" />
                      </font></TextArea>
