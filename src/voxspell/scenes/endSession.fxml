@@ -10,16 +10,16 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="voxspell.scenes.EndSessionController">
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@main.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="voxspell.scenes.EndSessionController">
     <children>
         <AnchorPane layoutY="-1.0" prefHeight="400.0" prefWidth="402.0">
             <children>
-                <PieChart fx:id="piechart" labelLineLength="10.0" layoutX="2.0" layoutY="64.0" legendVisible="false" mouseTransparent="true" opacity="0.95" prefHeight="333.0" prefWidth="411.0" style="-fx-border-width: 5px; -fx-font-size: 14px; -fx-font-color: f22525;" />
+                <PieChart fx:id="piechart" labelLineLength="10.0" layoutX="1.0" layoutY="67.0" legendVisible="false" mouseTransparent="true" opacity="0.95" prefHeight="333.0" prefWidth="411.0" style="-fx-border-width: 5px; -fx-font-size: 14px; -fx-font-color: f22525;" />
             <Label fx:id="endMessage" layoutX="14.0" layoutY="14.0" prefHeight="48.0" prefWidth="201.0" text="Label" textAlignment="CENTER">
                <font>
                   <Font name="KacstNaskh" size="19.0" />
                </font></Label>
-            <Button fx:id="playVideoButton" layoutX="240.0" layoutY="12.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="170.0" style="-fx-background-color: b7e7c9; -fx-border-color: palegreen; -fx-border-width: 4px;" text="Play Video">
+            <Button fx:id="playVideoButton" layoutX="240.0" layoutY="12.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0" styleClass="primary" text="Play Video">
                <font>
                   <Font size="18.0" />
                </font>
@@ -30,9 +30,9 @@
             </children>
         </AnchorPane>
           <ListView fx:id="listView" layoutX="423.0" layoutY="273.0" opacity="0.99" prefHeight="119.0" prefWidth="170.0" />
-      <VBox layoutX="423.0" layoutY="11.0" prefHeight="251.0" prefWidth="170.0" spacing="3.0">
+      <VBox alignment="TOP_CENTER" layoutX="423.0" layoutY="11.0" prefHeight="251.0" prefWidth="170.0" spacing="3.0">
          <children>
-                <Button fx:id="nextLevelButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="170.0" style="-fx-background-color: b6e7c9; -fx-border-color: palegreen; -fx-border-width: 4px;" text="Next Level">
+                <Button fx:id="nextLevelButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0" styleClass="primary" text="Next Level">
                <font>
                   <Font size="18.0" />
                </font>
@@ -40,7 +40,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="retryLevelButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="170.0" style="-fx-background-color: add8e6; -fx-border-color: paleturquoise; -fx-border-width: 4px;" text="Retry Level">
+            <Button fx:id="retryLevelButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0" styleClass="secondary" text="Retry Level">
                <font>
                   <Font size="18.0" />
                </font>
@@ -48,14 +48,14 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-                <Button fx:id="reviewButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="170.0" style="-fx-background-color: add8e6; -fx-border-color: paleturquoise; -fx-border-width: 4px;" text="Review Words">
+                <Button fx:id="reviewButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0" text="Review Words">
                <font>
                   <Font size="18.0" />
                </font>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>
-                <Button fx:id="returnButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="170.0" style="-fx-background-color: add8e6; -fx-border-color: paleturquoise; -fx-border-width: 4px;" text="Main Menu">
+                <Button fx:id="returnButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0" text="Main Menu">
                <font>
                   <Font size="18.0" />
                </font>
@@ -63,7 +63,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-                <Button fx:id="viewStatsButton" mnemonicParsing="false" onAction="#showPieChart" prefHeight="50.0" prefWidth="170.0" style="-fx-background-color: add8e6; -fx-border-color: paleturquoise; -fx-border-width: 4px;" text="More Stats">
+                <Button fx:id="viewStatsButton" mnemonicParsing="false" onAction="#showPieChart" prefHeight="25.0" prefWidth="150.0" text="More Stats">
                <font>
                   <Font size="18.0" />
                </font>

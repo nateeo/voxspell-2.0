@@ -23,6 +23,8 @@ public class SceneManager {
     private static AudioClip welcome = new AudioClip(Voxspell.class.getResource("scenes/assets/Welcome.mp3").toExternalForm());
 
     public static boolean enableMusic = true;
+    public static int WINDOW_WIDTH = 900;
+    public static int WINDOW_HEIGHT = 600;
 
     /**
      * Set stage to edit
@@ -58,7 +60,7 @@ public class SceneManager {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            Scene scene = new Scene(root);
+            Scene scene = new Scene(root, WINDOW_WIDTH, WINDOW_HEIGHT);
             classNames.linkStyleSheet(scene);
             stage.setScene(scene);
             stage.show();

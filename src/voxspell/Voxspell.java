@@ -11,9 +11,10 @@ import voxspell.scenes.classNames;
 import java.lang.reflect.Field;
 import java.util.HashMap;
 
+import static voxspell.engine.SceneManager.WINDOW_HEIGHT;
+import static voxspell.engine.SceneManager.WINDOW_WIDTH;
+
 public class Voxspell extends Application {
-    private static int WINDOW_WIDTH = 600;
-    private static int WINDOW_HEIGHT = 400;
 
     @Override
     public void start(Stage primaryStage) throws Exception {

@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.Pane?>
 
-<VBox fx:id="vBox" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="voxspell.scenes.AchievementsController">
+<VBox fx:id="vBox" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="voxspell.scenes.AchievementsController">
    <children>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
          <children>
@@ -19,8 +19,8 @@
             </Label>
          </children>
       </HBox>
-      <HBox fx:id="hBox" prefHeight="175.0" prefWidth="600.0" />
-      <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="600.0">
+      <HBox fx:id="hBox" prefHeight="175.0" prefWidth="900.0" />
+      <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="900.0">
          <children>
             <Button fx:id="mainMenuButton" mnemonicParsing="false" style="-fx-background-color: b6e7c9;" text="Go Back">
                <HBox.margin>
