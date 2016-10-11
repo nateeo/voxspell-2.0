@@ -20,13 +20,14 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import static voxspell.scenes.classNames.setStyle;
+import static voxspell.scenes.classNames.Style;
+
 /**
  * MainController class for the application entry / level selection screen (main.fxml)
  */
 public class MainController implements Initializable {
-    private static final String BASE = "-fx-border-color: rgb(31,65,9); -fx-border-width: 5px; -fx-border-radius: 1px; -fx-background-color: #b6e7c9; ";
-    private static final String ON_HOVER = "-fx-background-color: #83B496;";
-    private static final String ON_EXIT = "-fx-background-color: #b6e7c9;";
+    //private static final String BASE = "-fx-border-color: rgb(31,65,9); -fx-border-width: 5px; -fx-border-radius: 1px; -fx-background-color: #b6e7c9; ";
 
     private ArrayList<Button> buttons = new ArrayList<Button>();
 
@@ -109,7 +110,8 @@ public class MainController implements Initializable {
      */
     class hoverHandler implements EventHandler<MouseEvent> {
         public void handle(MouseEvent event) {
-            ((Button)event.getSource()).setStyle(BASE + ON_HOVER);
+            Button button = (Button)event.getSource();
+            button.getStyleClass().add("hover");
         }
     }
 
@@ -118,7 +120,8 @@ public class MainController implements Initializable {
      */
     class exitHandler implements EventHandler<MouseEvent> {
         public void handle(MouseEvent event) {
-            ((Button)event.getSource()).setStyle(BASE + ON_EXIT);
+            Button button = (Button)event.getSource();
+            button.getStyleClass().remove("hover");
         }
     }
 
@@ -154,7 +157,8 @@ public class MainController implements Initializable {
         buttons.add(level10);
 
         for (Button button : buttons) {
-            button.setStyle(BASE);
+            setStyle(button, Style.LEVEL_BUTTON);
+            System.out.println(button.getStyle());
             button.setOnMouseClicked(levelSelectionHandler);
             button.setOnMouseEntered(hoverHandler);
             button.setOnMouseExited(exitHandler);
@@ -164,10 +168,11 @@ public class MainController implements Initializable {
             Settings settings = new Settings(buttons);
             settings.show();
         });
+        setStyle(settingsButton, Style.BUTTON, Style.NEUTRAL);
 
         // initialise buttons
         viewStatsButton.setOnMouseClicked(statsSelectHandler);
-
+        setStyle(viewStatsButton, Style.BUTTON, Style.SECONDARY);
 
         // disable locked levels
         disable(data.highestLevelEnabled());
@@ -176,6 +181,7 @@ public class MainController implements Initializable {
 
         // achievements
         achievementsButton.setOnMouseClicked((e) -> SceneManager.goTo("achievements.fxml"));
+        setStyle(achievementsButton, Style.BUTTON, Style.TERTIARY);
     }
 
     private void disable(int maxLevel) {

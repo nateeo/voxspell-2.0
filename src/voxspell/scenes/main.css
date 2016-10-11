@@ -1,0 +1,68 @@
+.root {
+    -fx-font-family: "Comic Sans MS";
+}
+
+/** buttons **/
+
+.levelButton {
+    -fx-background-color: #A1E44D;
+    -fx-padding: 5 5 5 5;
+    -fx-border-color: #76A639;
+    -fx-border-width: 4;
+    -fx-border-radius: 2 2 2 2;
+}
+
+.hover {
+    -fx-background-color: #76A639;
+}
+
+.mainMenuButton {
+    -fx-background-color: #7CC6FE;
+}
+
+.dropDownButton {
+
+}
+
+.button {
+    -fx-padding: 5 5 5 5;
+    -fx-border-radius: 2 2 2 2;
+}
+
+.primary {
+    -fx-background-color: #99EDCC;
+}
+
+.secondary {
+    -fx-background-color: #7CC6FE;
+}
+
+.tertiary {
+    -fx-background-color: #A491D3;
+}
+
+.neutral {
+    -fx-background-color: #EDF2F4;
+}
+
+.cancel {
+    -fx-background-color: #FF7E6B;
+}
+
+/** text **/
+
+.title {
+
+}
+
+.subtitle {
+
+}
+
+.displayText {
+
+}
+
+.text {
+
+}

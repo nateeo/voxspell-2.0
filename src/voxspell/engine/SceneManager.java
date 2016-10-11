@@ -8,6 +8,7 @@ import javafx.scene.layout.*;
 import javafx.scene.media.AudioClip;
 import javafx.stage.Stage;
 import voxspell.Voxspell;
+import voxspell.scenes.classNames;
 
 import java.io.IOException;
 
@@ -41,6 +42,11 @@ public class SceneManager {
     public static Background makeAmbientBackground() {
         return backgroundChooser(SECONDARY_BACKGROUND);
     }
+
+    /**
+     * Helper method to transition to new scene. Also links the main css to every scene.
+     * @param fxmlDestination
+     */
     public static void goTo(String fxmlDestination) {
         if (currentStage != null) {
             Stage stage;
@@ -53,6 +59,7 @@ public class SceneManager {
                 e.printStackTrace();
             }
             Scene scene = new Scene(root);
+            classNames.linkStyleSheet(scene);
             stage.setScene(scene);
             stage.show();
         }
