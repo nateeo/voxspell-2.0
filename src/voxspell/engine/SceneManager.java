@@ -26,6 +26,8 @@ public class SceneManager {
     public static int WINDOW_WIDTH = 900;
     public static int WINDOW_HEIGHT = 600;
 
+    private static double VOLUME = 0.2;
+
     /**
      * Set stage to edit
      */
@@ -81,13 +83,24 @@ public class SceneManager {
     public static void playMusic() {
         if (enableMusic && !welcome.isPlaying()) {
             welcome.setCycleCount(AudioClip.INDEFINITE);
-            welcome.play(0.2);
+            welcome.play(VOLUME);
         }
     }
 
     public static void stopMusic() {
         if (welcome.isPlaying()) {
             welcome.stop();
+        }
+    }
+
+    // returns whether or not the music is playing after it has been toggled
+    public static boolean toggleMusic() {
+        if (welcome.isPlaying()) {
+            welcome.stop();
+            return false;
+        } else {
+            welcome.play(VOLUME);
+            return true;
         }
     }
 }

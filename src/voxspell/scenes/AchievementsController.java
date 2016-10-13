@@ -27,6 +27,7 @@ public class AchievementsController implements Initializable {
     private HBox hBox;
     @FXML
     private Button mainMenuButton;
+
     private DataIO dataIO = new DataIO();
     private TreeSet<Achievement> achievements;
 
@@ -49,5 +50,6 @@ public class AchievementsController implements Initializable {
         }
 
         mainMenuButton.setOnMouseClicked((e) -> SceneManager.goTo("main.fxml"));
+        //music button
     }
 }

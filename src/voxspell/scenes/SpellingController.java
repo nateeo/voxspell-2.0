@@ -72,6 +72,7 @@ public class SpellingController implements Initializable {
         public void handle(MouseEvent mouseEvent) {
             setLoading(true);
             festival.read(currentWord, Operations.LISTEN_AGAIN);
+            inputTextField.requestFocus();
         }
     }
 
@@ -192,12 +193,12 @@ public class SpellingController implements Initializable {
                 nextWord();
             } else if (!correct && !currentFaulted) {
                 currentFaulted = true;
-                output("That's wrong. Try again");
+                output("Oops that spelling was wrong. Try again!");
                 incrementLabel(wrongLabel); // wrong as soon as faulted
                 readWord(currentWord);
             } else { // !correct && currentFaulted
                 currentWord.incrementFailed();
-                output("That's wrong. The word was\n" + "\"" + currentWord + "\"");
+                output("Oops! Remember this for next time! \nThe word was\n" + "\"" + currentWord + "\"");
                 currentFaulted = false;
                 nextWord();
             }

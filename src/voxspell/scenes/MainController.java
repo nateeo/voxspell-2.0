@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
@@ -63,6 +64,8 @@ public class MainController implements Initializable {
     private Button viewStatsButton;
     @FXML
     private Button settingsButton;
+    @FXML
+    private Button musicButton;
 
     /**
      * parse button text into level number
@@ -164,9 +167,8 @@ public class MainController implements Initializable {
             button.setOnMouseExited(exitHandler);
         }
 
-        settingsButton.setOnMouseClicked((e) -> {
-            Settings settings = new Settings(buttons);
-            settings.show();
+        settingsButton.setOnAction((e) -> {
+            SceneManager.goTo("settings.fxml");
         });
         setStyle(settingsButton, Style.BUTTON, Style.NEUTRAL);
 
@@ -182,6 +184,16 @@ public class MainController implements Initializable {
         // achievements
         achievementsButton.setOnMouseClicked((e) -> SceneManager.goTo("achievements.fxml"));
         setStyle(achievementsButton, Style.BUTTON, Style.TERTIARY);
+
+        //music button
+        musicButton.setOnAction((e) -> {
+            if (SceneManager.toggleMusic()) {
+                // music is playing now
+                musicButton.setText("MUSIC ON");
+            } else {
+                musicButton.setText("MUSIC OFF");
+            }
+        });
     }
 
     private void disable(int maxLevel) {
