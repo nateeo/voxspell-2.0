@@ -17,8 +17,11 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.util.Callback;
+import voxspell.engine.DataIO;
 import voxspell.engine.LevelData;
 import voxspell.engine.SceneManager;
 import voxspell.engine.Word;
@@ -58,10 +61,12 @@ public class EndSessionController implements Initializable {
 
     private int correct;
     private int incorrect;
+    private DataIO data = DataIO.getInstance();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        SceneManager.playMusic();
+        MediaPlayer mp = new MediaPlayer(new Media("assets/congratulations.mp3"));
+        mp.setOnEndOfMedia(() -> SceneManager.playMusic());
 
         anchorPane.setBackground(SceneManager.makeBackground());
 
@@ -89,7 +94,7 @@ public class EndSessionController implements Initializable {
         }
 
         // enable next stuff
-        if (correct >= 9 && !LevelData.isReview() || currentWords.size() == 1 && LevelData.isReview()) {
+        if (correct >= currentWords.size() - 1 && !LevelData.isReview() || currentWords.size() == 1 && LevelData.isReview()) {
         	if (!LevelData.isReview()) {
         		new AchievementsPopup("First level unlocked!", "For scoring 9 or more on the first level", Rarity.COMMON);
         	} else {
@@ -97,12 +102,14 @@ public class EndSessionController implements Initializable {
         	}
         	// only enable reward/next level if original quiz was 9/10 and they reviewed 1 word only (or no review)
             playVideoButton.setOnMouseClicked(new videoHandler());
-            if (!(LevelData.getLevel() == 10)) {
+            if (!(LevelData.getLevel() == LevelData.getMaxLevel())) {
                 nextLevelButton.setOnMouseClicked(new nextLevelHandler());
+                System.out.println("tramed");
+                data.enableLevel(LevelData.getLevel() + 1);
             } else {
-                // disable next level on 10
+                // disable next level on max
                 nextLevelButton.setDisable(true);
-                new AchievementsPopup("10 Levels", "Unlocking all 10 levels", Rarity.EPIC);
+                new AchievementsPopup("All Levels", "Unlocking all levels", Rarity.EPIC);
             }
         } else {
             nextLevelButton.setDisable(true);

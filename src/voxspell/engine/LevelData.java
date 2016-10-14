@@ -1,5 +1,8 @@
 package voxspell.engine;
 
+import javafx.scene.control.Alert;
+
+import java.io.*;
 import java.util.ArrayList;
 
 /**
@@ -13,18 +16,37 @@ import java.util.ArrayList;
  */
 public class LevelData {
     private static int level = -1;
-    private static DataIO data = new DataIO();
+    private static DataIO data = DataIO.getInstance();
     private static ArrayList<Word> currentWordList;
     private static String voice = data.getVoice();
     private static boolean isReview = false;
+    private static int maxLevel = -1;
+    private static final String DEFAULT = "./lib/NZCER-spelling-lists.txt";
     
-    public static String currentWordFile = "./lib/NZCER-spelling-lists.txt";
+    public static String currentWordFile = DEFAULT;
+    public static String currentDataID = uID(currentWordFile);
 
     /**
      * set currentWordList
      */
     public static void setCurrentWordList(ArrayList<Word> words) {
         currentWordList = words;
+    }
+
+    /**
+     * Set and update currentWordFile (and data)
+     */
+    public static void setCurrentWordFile(String fileLoc) {
+        currentWordFile = fileLoc;
+        currentDataID = uID(currentWordFile);
+    }
+
+    private static String uID(String file) {
+        String base = "default";
+        for (String string : file.split("/")) {
+            base = string;
+        }
+        return base.replace(".", "X");
     }
 
     /**
@@ -48,6 +70,45 @@ public class LevelData {
      */
     public static int getLevel() {
         return level;
+    }
+
+    /**
+     * Get the max level from the wordlist
+     * @return
+     */
+    public static int getMaxLevel() {
+        if (maxLevel == -1) { // calculate it
+            calculateMaxLevel();
+        }
+        return maxLevel;
+    }
+
+    public static void calculateMaxLevel() {
+        if (currentWordFile.equals(DEFAULT)) {
+            maxLevel = 11;
+            return;
+        }
+        File file = new File(currentWordFile);
+        int count = 0;
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            String line;
+            while ((line = br.readLine()) != null) {
+                if (line.contains("%Level")) {
+                    count++;
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Oops!");
+            alert.setHeaderText("Could not open the new spelling list");
+            alert.setContentText("Will revert to default list");
+            alert.showAndWait();
+            currentWordFile = DEFAULT;
+        }
+
+        maxLevel = count;
     }
 
     /**

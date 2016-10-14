@@ -48,7 +48,7 @@ public class WordList {
      */
     private void generateWords() {
         Collections.shuffle(originalList);
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < originalList.size() && i < 10; i++) {
             Word currentWord = new Word(originalList.get(i));
             wordList.add(currentWord);
         }

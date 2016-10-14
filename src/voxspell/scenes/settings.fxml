@@ -12,9 +12,9 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="600.0" prefWidth="900.0" stylesheets="@main.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="voxspell.scenes.SettingsController">
+<VBox fx:id="vBox" prefHeight="600.0" prefWidth="900.0" stylesheets="@main.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="voxspell.scenes.SettingsController">
    <children>
-      <VBox fx:id="vBox" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="488.0" prefWidth="899.0">
+      <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="488.0" prefWidth="899.0">
          <children>
             <GridPane alignment="CENTER">
               <columnConstraints>
@@ -65,7 +65,7 @@
       </VBox>
       <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0">
          <children>
-            <Button fx:id="returnButton" mnemonicParsing="false" prefHeight="62.0" prefWidth="128.0" style="-fx-background-color: b6e7c9;" text="Go Back">
+            <Button fx:id="mainMenuButton" mnemonicParsing="false" prefHeight="62.0" prefWidth="128.0" style="-fx-background-color: b6e7c9;" text="Go Back">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>

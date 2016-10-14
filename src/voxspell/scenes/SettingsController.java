@@ -11,10 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.MenuItem;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
@@ -47,7 +44,7 @@ public class SettingsController implements Initializable {
     @FXML
     VBox vBox;
 
-    DataIO data = new DataIO();
+    DataIO data = DataIO.getInstance();
 
     ArrayList<Button> buttons; // reference to level buttons
 
@@ -56,7 +53,7 @@ public class SettingsController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        vBox.setBackground(SceneManager.makeAmbientBackground());
+        vBox.setBackground(SceneManager.makeBackground());
         voiceMenuButton.setText("Change voice");
         EventHandler<ActionEvent> voiceMenuButtonHandler = new voiceMenuButtonHandler();
         MenuItem defaultVoice = new MenuItem(DEFAULT_VOICE_CHOICE);
@@ -69,9 +66,7 @@ public class SettingsController implements Initializable {
         nzVoice.setOnAction(voiceMenuButtonHandler);
 
         enableAllButton.setOnMouseClicked((e) -> {
-            for (Button button : buttons) {
-                button.setDisable(false);
-            }
+            //TODO
         });
 
         changeList.setOnMouseClicked((e) -> {
@@ -79,7 +74,14 @@ public class SettingsController implements Initializable {
             fileChooser.getExtensionFilters().add(new ExtensionFilter("Text Files", "*.txt"));
             File file = fileChooser.showOpenDialog(changeList.getScene().getWindow());
             if (file != null) {
-                LevelData.currentWordFile = file.getPath();
+                LevelData.setCurrentWordFile(file.getPath());
+                LevelData.calculateMaxLevel(); // update new max level
+                data.loadAll();
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setHeaderText("Successfully changed the spelling list!");
+                alert.setTitle("Success!");
+                alert.setContentText("Loaded previous data associated with this spelling list (if any)");
+                alert.showAndWait();
 
             }
         });

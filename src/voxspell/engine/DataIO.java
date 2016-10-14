@@ -1,26 +1,36 @@
 package voxspell.engine;
 
+import java.util.Observable;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.TreeSet;
 
 /**
- * Class to read and write data to files
+ * Singleton class to read and write data to files
  * Created by nhur714 on 16/09/16.
  */
 public class DataIO {
+    private static DataIO instance = null;
     private ArrayList<Integer> enabledLevels;
     private String voice;
     private ArrayList<ArrayList<Word>> wordData;
     private TreeSet<Achievement> achievements;
 
-    private File LEVEL_DATA = new File(".levelData.ser");
+    private File LEVEL_DATA;
     private File VOICE_DATA = new File(".voiceData.ser");
-    private File WORD_DATA = new File(".wordData.ser");
-    private File ACHIEVEMENT_DATA = new File(".achievementData.ser");
+    private File WORD_DATA;
+    private File ACHIEVEMENT_DATA;
 
-    public DataIO() {
+    public static DataIO getInstance() {
+        if (instance == null) {
+            instance = new DataIO();
+        }
+        return instance;
+    }
+
+    private DataIO() {
         loadAll();
     }
 
@@ -29,10 +39,13 @@ public class DataIO {
      * @param level
      */
     public void enableLevel(int level) {
+        System.out.println("trying to enable" + level);
        if (!enabledLevels.contains(level)) { // add to enabled list if not already enabled
+           System.out.println(level + "not in enabledLevels... adding");
            enabledLevels.add(level);
            saveAll(false);
        }
+        System.out.println("emab;led levels: " + enabledLevels);
     }
 
     /**
@@ -86,6 +99,7 @@ public class DataIO {
      */
     public int highestLevelEnabled() {
         if (enabledLevels.size() == 0) {
+            System.out.println("enabledLevels is empty...");
             return 1; // no unlocks
         }
         return Collections.max(enabledLevels);
@@ -108,6 +122,7 @@ public class DataIO {
      */
     public void saveAll(boolean toSaveWordData) {
         saveObject(LEVEL_DATA, enabledLevels);
+        System.out.println("SAVING LEVEL_DATA TO" + LEVEL_DATA);
         saveObject(VOICE_DATA, voice);
         saveObject(ACHIEVEMENT_DATA, achievements);
         if (toSaveWordData) {
@@ -118,7 +133,13 @@ public class DataIO {
     /**
      * loadAll existing data from file (or initialize if no file exists)
      */
-    private void loadAll() {
+    public void loadAll() {
+        String currentWordFile = LevelData.currentDataID;
+        // initialize data based on spelling list
+        LEVEL_DATA = new File(".levelData" + currentWordFile + ".ser");
+        System.out.println("loading level data from " + LEVEL_DATA);
+        WORD_DATA = new File(".wordData" + currentWordFile + ".ser");
+        ACHIEVEMENT_DATA = new File(".achievementData" + currentWordFile + ".ser");
         enabledLevels = (ArrayList<Integer>) loadObject(LEVEL_DATA, new ArrayList<Integer>());
         voice = (String) loadObject(VOICE_DATA, Festival.DEFAULT);
         achievements = (TreeSet<Achievement>) loadObject(ACHIEVEMENT_DATA, new TreeSet<Achievement>());
@@ -132,6 +153,7 @@ public class DataIO {
      * Reset levels
      */
     public void delete() {
+        System.out.println("deleting level data");
         LEVEL_DATA.delete();
         enabledLevels = new ArrayList<Integer>();
     }

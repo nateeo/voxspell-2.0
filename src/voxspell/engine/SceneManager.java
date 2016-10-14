@@ -26,7 +26,10 @@ public class SceneManager {
     public static int WINDOW_WIDTH = 900;
     public static int WINDOW_HEIGHT = 600;
 
-    private static double VOLUME = 0.2;
+    private static AudioClip click = new AudioClip(Voxspell.class.getResource("scenes/assets/bubble.mp3").toExternalForm());
+
+    private static double VOLUME = 0.15;
+    private static double CLICK_VOLUME = 0.7;
 
     /**
      * Set stage to edit
@@ -52,6 +55,7 @@ public class SceneManager {
      * @param fxmlDestination
      */
     public static void goTo(String fxmlDestination) {
+        click.play(CLICK_VOLUME);
         if (currentStage != null) {
             Stage stage;
             Parent root = null;
@@ -97,8 +101,10 @@ public class SceneManager {
     public static boolean toggleMusic() {
         if (welcome.isPlaying()) {
             welcome.stop();
+            enableMusic = false;
             return false;
         } else {
+            enableMusic = true;
             welcome.play(VOLUME);
             return true;
         }

@@ -52,7 +52,7 @@ public class StatsController implements Initializable {
     @FXML
     private TableColumn<Word, Integer> wrongColumn;
 
-    private DataIO data = new DataIO();
+    private DataIO data = DataIO.getInstance();
     private ObservableList<String> levelList;
     private ArrayList<ArrayList<Word>> wordData = data.getWordData();
 
@@ -61,7 +61,7 @@ public class StatsController implements Initializable {
         SceneManager.playMusic();
         anchorPane.setBackground(SceneManager.makeBackground());
 
-        data = new DataIO();
+        data = DataIO.getInstance();
         updateBarChart("1");
         updateTableView("1");
         resetButton.setOnMouseClicked(new resetHandler());

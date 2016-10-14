@@ -28,7 +28,7 @@ public class AchievementsController implements Initializable {
     @FXML
     private Button mainMenuButton;
 
-    private DataIO dataIO = new DataIO();
+    private DataIO dataIO = DataIO.getInstance();
     private TreeSet<Achievement> achievements;
 
     public void initialize(URL location, ResourceBundle resources) {

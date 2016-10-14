@@ -25,7 +25,7 @@ public class AchievementsPopup {
 
     Button okButton = new Button();
 
-    DataIO data = new DataIO();
+    DataIO data = DataIO.getInstance();
     
     public AchievementsPopup(String name, String description, Rarity rarity) {
     	achievement = new Achievement(name, description, rarity);

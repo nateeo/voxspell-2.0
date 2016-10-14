@@ -82,3 +82,5 @@ All assets are from royalty-free sources
 Loading gif: ajaxload.info
 Background (all backgrounds), achievement images: openclipart.org
 Welcome music: freemusicarchive.org
+Ta-da sound: Mike Koenig (Attribution 3.0)
+Bubble click sound: Self-recorded

@@ -53,7 +53,7 @@ public class SpellingController implements Initializable {
 
 
     // plug in engine modules
-    private DataIO data = new DataIO();
+    private DataIO data = DataIO.getInstance();
     private Festival festival = new Festival(new festivalListener());
 
     // current quiz
@@ -261,9 +261,6 @@ public class SpellingController implements Initializable {
         } else {
             // TODO: finished, GO TO NEXT LEVEL
             // enable next level
-            if (Integer.parseInt(rightLabel.getText()) >= 9 && LevelData.getLevel() < 10) {
-                data.enableLevel(LevelData.getLevel() + 1);
-            }
             // save level stats
             data.addWordList(words, LevelData.getLevel());
             goToEnd();

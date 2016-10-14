@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.AudioClip;
 import javafx.stage.Stage;
@@ -29,11 +30,10 @@ import static voxspell.scenes.classNames.Style;
  */
 public class MainController implements Initializable {
     //private static final String BASE = "-fx-border-color: rgb(31,65,9); -fx-border-width: 5px; -fx-border-radius: 1px; -fx-background-color: #b6e7c9; ";
-
     private ArrayList<Button> buttons = new ArrayList<Button>();
 
     // data IO
-    DataIO data = new DataIO();
+    DataIO data = DataIO.getInstance();
 
     // initialize buttons from FXML
     @FXML
@@ -41,31 +41,13 @@ public class MainController implements Initializable {
     @FXML
     private VBox vBox;
     @FXML
-    private Button level1;
-    @FXML
-    private Button level2;
-    @FXML
-    private Button level3;
-    @FXML
-    private Button level4;
-    @FXML
-    private Button level5;
-    @FXML
-    private Button level6;
-    @FXML
-    private Button level7;
-    @FXML
-    private Button level8;
-    @FXML
-    private Button level9;
-    @FXML
-    private Button level10;
-    @FXML
     private Button viewStatsButton;
     @FXML
     private Button settingsButton;
     @FXML
     private Button musicButton;
+    @FXML
+    private GridPane gridPane;
 
     /**
      * parse button text into level number
@@ -147,17 +129,22 @@ public class MainController implements Initializable {
         EventHandler<MouseEvent> exitHandler = new exitHandler();
         EventHandler<MouseEvent> statsSelectHandler = new statsSelectHandler();
 
+
+        // generate level list dynamically
+        int max = 1;
+        for (int i = 0; i < Math.ceil((double) LevelData.getMaxLevel() / 3); i++) {
+            for (int j = 0; j < 3; j++) {
+                if (max < LevelData.getMaxLevel() + 1) {
+                    Button button = new Button("Level " + max);
+                    gridPane.add(button, j, i);
+                    buttons.add(button);
+                }
+                max++;
+            }
+        }
+
         // add buttons to list, then iterate through list assigning listeners
-        buttons.add(level1);
-        buttons.add(level2);
-        buttons.add(level3);
-        buttons.add(level4);
-        buttons.add(level5);
-        buttons.add(level6);
-        buttons.add(level7);
-        buttons.add(level8);
-        buttons.add(level9);
-        buttons.add(level10);
+
 
         for (Button button : buttons) {
             setStyle(button, Style.LEVEL_BUTTON);
@@ -167,9 +154,6 @@ public class MainController implements Initializable {
             button.setOnMouseExited(exitHandler);
         }
 
-        settingsButton.setOnAction((e) -> {
-            SceneManager.goTo("settings.fxml");
-        });
         setStyle(settingsButton, Style.BUTTON, Style.NEUTRAL);
 
         // initialise buttons
@@ -177,13 +161,17 @@ public class MainController implements Initializable {
         setStyle(viewStatsButton, Style.BUTTON, Style.SECONDARY);
 
         // disable locked levels
-        disable(data.highestLevelEnabled());
+        System.out.println("MAX ENABLED LEVEL: " + LevelData.getMaxEnabledLevel());
+        disable(LevelData.getMaxEnabledLevel());
         SceneManager.playMusic();
 
 
         // achievements
         achievementsButton.setOnMouseClicked((e) -> SceneManager.goTo("achievements.fxml"));
         setStyle(achievementsButton, Style.BUTTON, Style.TERTIARY);
+
+        // settings
+        settingsButton.setOnMouseClicked((e) -> SceneManager.goTo("settings.fxml"));
 
         //music button
         musicButton.setOnAction((e) -> {
@@ -197,8 +185,10 @@ public class MainController implements Initializable {
     }
 
     private void disable(int maxLevel) {
-        for (int i = 9; i > maxLevel - 1; i--) {
-            buttons.get(i).setDisable(true);
+        for (int i = LevelData.getMaxLevel(); i > maxLevel - 1; i--) {
+            if (i < buttons.size()) {
+                buttons.get(i).setDisable(true);
+            }
         }
     }
 }
