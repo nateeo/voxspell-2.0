@@ -1,4 +1,4 @@
-package voxspell.scenes;
+package voxspell.scenes.controllers;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;

@@ -1,7 +1,5 @@
-package voxspell.scenes;
+package voxspell.scenes.controllers;
 
-import javafx.beans.binding.Bindings;
-import javafx.beans.property.DoubleProperty;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;

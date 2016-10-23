@@ -1,7 +1,8 @@
-package voxspell.scenes;
+package voxspell.scenes.controllers;
 
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import voxspell.Voxspell;
 
 import java.util.ArrayList;
 
@@ -44,7 +45,7 @@ public final class classNames {
     }
 
     public static void linkStyleSheet(Scene scene) {
-        scene.getStylesheets().add(classNames.class.getResource("main.css").toExternalForm());
+        scene.getStylesheets().add(Voxspell.class.getResource("scenes/main.css").toExternalForm());
     }
     public static void setStyle(Node node, Style ... styles) {
         ArrayList<String> styleStrings = new ArrayList<String>();

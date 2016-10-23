@@ -1,4 +1,4 @@
-package voxspell.scenes;
+package voxspell.scenes.controllers;
 
 import javafx.concurrent.WorkerStateEvent;
 import javafx.event.ActionEvent;

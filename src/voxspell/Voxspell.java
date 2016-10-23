@@ -6,7 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import voxspell.engine.SceneManager;
-import voxspell.scenes.classNames;
+import voxspell.scenes.controllers.classNames;
 
 import java.lang.reflect.Field;
 import java.util.HashMap;

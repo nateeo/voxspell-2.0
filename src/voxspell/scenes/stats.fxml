@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="voxspell.scenes.StatsController">
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="voxspell.scenes.controllers.StatsController">
 <children>
       <ChoiceBox fx:id="levelChoice" layoutX="322.0" layoutY="29.0" prefHeight="62.0" prefWidth="205.0" style="-fx-background-color: b6e7c9;" AnchorPane.leftAnchor="322.0" AnchorPane.topAnchor="29.0" />
       <BarChart fx:id="barChart" alternativeRowFillVisible="false" animated="false" horizontalZeroLineVisible="false" layoutX="400.0" layoutY="98.0" legendVisible="false" prefHeight="437.0" prefWidth="365.0" style="-fx-bar-fill: green; -fx-font-color: white; -fx-text-label-fill: green;" titleSide="LEFT" verticalGridLinesVisible="false" verticalZeroLineVisible="false" AnchorPane.rightAnchor="164.0" AnchorPane.topAnchor="98.0">

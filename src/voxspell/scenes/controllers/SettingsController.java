@@ -1,4 +1,4 @@
-package voxspell.scenes;
+package voxspell.scenes.controllers;
 
 import java.io.File;
 import java.net.URL;

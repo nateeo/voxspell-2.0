@@ -1,21 +1,14 @@
-package voxspell.scenes;
+package voxspell.scenes.controllers;
 
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.MenuItem;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.media.AudioClip;
-import javafx.stage.Stage;
 import voxspell.engine.DataIO;
-import voxspell.engine.Festival;
 import voxspell.engine.LevelData;
 import voxspell.engine.SceneManager;
 
@@ -23,8 +16,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import static voxspell.scenes.classNames.setStyle;
-import static voxspell.scenes.classNames.Style;
+import static voxspell.scenes.controllers.classNames.setStyle;
 
 /**
  * MainController class for the application entry / level selection screen (main.fxml)
@@ -157,18 +149,18 @@ public class MainController implements Initializable {
 
 
         for (Button button : buttons) {
-            setStyle(button, Style.LEVEL_BUTTON);
+            classNames.setStyle(button, classNames.Style.LEVEL_BUTTON);
             System.out.println(button.getStyle());
             button.setOnMouseClicked(levelSelectionHandler);
             button.setOnMouseEntered(hoverHandler);
             button.setOnMouseExited(exitHandler);
         }
 
-        setStyle(settingsButton, Style.BUTTON, Style.NEUTRAL);
+        classNames.setStyle(settingsButton, classNames.Style.BUTTON, classNames.Style.NEUTRAL);
 
         // initialise buttons
         viewStatsButton.setOnMouseClicked(statsSelectHandler);
-        setStyle(viewStatsButton, Style.BUTTON, Style.SECONDARY);
+        classNames.setStyle(viewStatsButton, classNames.Style.BUTTON, classNames.Style.SECONDARY);
 
         // disable locked levels
         if (!LevelData.developerMode) {
@@ -179,7 +171,7 @@ public class MainController implements Initializable {
 
         // achievements
         achievementsButton.setOnMouseClicked((e) -> SceneManager.goTo("achievements.fxml"));
-        setStyle(achievementsButton, Style.BUTTON, Style.TERTIARY);
+        classNames.setStyle(achievementsButton, classNames.Style.BUTTON, classNames.Style.TERTIARY);
 
         // settings
         settingsButton.setOnMouseClicked((e) -> SceneManager.goTo("settings.fxml"));

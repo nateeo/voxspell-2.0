@@ -8,7 +8,7 @@ import javafx.scene.layout.*;
 import javafx.scene.media.AudioClip;
 import javafx.stage.Stage;
 import voxspell.Voxspell;
-import voxspell.scenes.classNames;
+import voxspell.scenes.controllers.classNames;
 
 import java.io.IOException;
 
