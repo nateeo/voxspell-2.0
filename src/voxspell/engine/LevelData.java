@@ -2,7 +2,10 @@ package voxspell.engine;
 
 import javafx.scene.control.Alert;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -108,7 +111,6 @@ public class LevelData {
             alert.showAndWait();
             currentWordFile = DEFAULT;
         }
-
         maxLevel = count;
     }
 
@@ -156,5 +158,10 @@ public class LevelData {
 
     public static void setIsReview(boolean isReview) {
         LevelData.isReview = isReview;
+    }
+
+    public static void updateWordList(String update) {
+        currentWordFile = update;
+        currentDataID = uID(update);
     }
 }

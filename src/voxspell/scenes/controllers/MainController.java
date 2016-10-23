@@ -5,9 +5,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import voxspell.Voxspell;
 import voxspell.engine.DataIO;
 import voxspell.engine.LevelData;
 import voxspell.engine.SceneManager;
@@ -15,8 +18,6 @@ import voxspell.engine.SceneManager;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-
-import static voxspell.scenes.controllers.classNames.setStyle;
 
 /**
  * MainController class for the application entry / level selection screen (main.fxml)
@@ -117,7 +118,6 @@ public class MainController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        vBox.setBackground(SceneManager.makeBackground());
         // create listeners
         EventHandler<MouseEvent> levelSelectionHandler = new levelSelect();
         EventHandler<MouseEvent> hoverHandler = new hoverHandler();
@@ -129,7 +129,7 @@ public class MainController implements Initializable {
         listText = listText.substring(0, listText.lastIndexOf("."));
         listText = listText.substring(listText.lastIndexOf("/"));
         listText = listText.replaceAll("-|_|/", " ");
-        listLabel.setText(listText);
+        listLabel.setText("current spelling list:" + listText);
 
 
         // generate level list dynamically
@@ -166,7 +166,13 @@ public class MainController implements Initializable {
         if (!LevelData.developerMode) {
             disable(data.highestLevelEnabled());
         }
+
+        // music initialisation
         SceneManager.playMusic();
+        String onOff = SceneManager.isMusicPlaying() ? "ON" : "OFF";
+        musicButton.setGraphic(new ImageView(new Image(Voxspell.class.getResource("scenes/assets/sound" + onOff + ".png").toExternalForm())));
+        musicButton.setOpacity(0.7);
+        musicButton.setStyle("-fx-cursor: hand");
 
 
         // achievements
@@ -180,9 +186,9 @@ public class MainController implements Initializable {
         musicButton.setOnAction((e) -> {
             if (SceneManager.toggleMusic()) {
                 // music is playing now
-                musicButton.setText("MUSIC ON");
+                musicButton.setGraphic(new ImageView(new Image(Voxspell.class.getResource("scenes/assets/soundON.png").toExternalForm())));
             } else {
-                musicButton.setText("MUSIC OFF");
+                musicButton.setGraphic(new ImageView(new Image(Voxspell.class.getResource("scenes/assets/soundOFF.png").toExternalForm())));
             }
         });
     }

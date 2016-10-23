@@ -34,8 +34,6 @@ public class VideoController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
-        vBox.setBackground(SceneManager.makeBackground());
         SceneManager.stopMusic();
 
         String path = new File("./lib/PC10.mp4").getAbsolutePath();

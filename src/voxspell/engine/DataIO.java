@@ -1,7 +1,5 @@
 package voxspell.engine;
 
-import java.util.Observable;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -17,8 +15,10 @@ public class DataIO {
     private String voice;
     private ArrayList<ArrayList<Word>> wordData;
     private TreeSet<Achievement> achievements;
+    private String currentWordList;
 
     private File LEVEL_DATA;
+    private File CURRENT_LIST_DATA = new File(".currentListData.ser");
     private File VOICE_DATA = new File(".voiceData.ser");
     private File WORD_DATA;
     private File ACHIEVEMENT_DATA;
@@ -122,9 +122,10 @@ public class DataIO {
      */
     public void saveAll(boolean toSaveWordData) {
         saveObject(LEVEL_DATA, enabledLevels);
-        System.out.println("SAVING LEVEL_DATA TO" + LEVEL_DATA);
         saveObject(VOICE_DATA, voice);
         saveObject(ACHIEVEMENT_DATA, achievements);
+        saveObject(CURRENT_LIST_DATA, currentWordList);
+        System.out.println("saving currentwordlist: " + currentWordList);
         if (toSaveWordData) {
             saveObject(WORD_DATA, wordData);
         }
@@ -134,6 +135,10 @@ public class DataIO {
      * loadAll existing data from file (or initialize if no file exists)
      */
     public void loadAll() {
+        currentWordList = (String) loadObject(CURRENT_LIST_DATA, "");
+        if (!currentWordList.equals("")) {
+            LevelData.setCurrentWordFile(currentWordList);
+        }
         String currentWordFile = LevelData.currentDataID;
         // initialize data based on spelling list
         LEVEL_DATA = new File(".levelData" + currentWordFile + ".ser");
@@ -215,5 +220,13 @@ public class DataIO {
             free.add(new ArrayList<Word>());
         }
         wordData = free;
+    }
+
+    /**
+     * set current word list
+     */
+    public void setCurrentWordList(String wordList) {
+        currentWordList = wordList;
+        saveObject(CURRENT_LIST_DATA, currentWordList);
     }
 }

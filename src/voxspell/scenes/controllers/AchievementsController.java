@@ -32,7 +32,6 @@ public class AchievementsController implements Initializable {
     private TreeSet<Achievement> achievements;
 
     public void initialize(URL location, ResourceBundle resources) {
-        vBox.setBackground(SceneManager.makeBackground());
         // get achievements from data and render them into a list
         achievements = dataIO.getAchievements();
         ObservableList<Node> list = hBox.getChildren();
@@ -50,6 +49,5 @@ public class AchievementsController implements Initializable {
         }
 
         mainMenuButton.setOnMouseClicked((e) -> SceneManager.goTo("main.fxml"));
-        //music button
     }
 }

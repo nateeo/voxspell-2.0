@@ -1,19 +1,25 @@
 package voxspell.engine;
 
+import javafx.animation.FadeTransition;
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.media.AudioClip;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import voxspell.Voxspell;
 import voxspell.scenes.controllers.classNames;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
- * class with method(s) to change the scene and manage scene background
+ * static class to manage global, persistent scene data and to handle transitions.
  * Created by nhur714 on 22/09/16.
  */
 public class SceneManager {
@@ -30,6 +36,7 @@ public class SceneManager {
 
     private static double VOLUME = 0.15;
     private static double CLICK_VOLUME = 0.7;
+    private static ArrayList<QueuedEvent> queue = new ArrayList<>();
 
     /**
      * Set stage to edit
@@ -51,28 +58,75 @@ public class SceneManager {
     }
 
     /**
+     * Methods to manage the Java FX queued events
+     */
+    public static void addQueuedEvent(QueuedEvent e) {
+        queue.add(e);
+    }
+
+    private static void flushQueue() {
+        for (QueuedEvent e : queue) {
+            e.execute();
+        }
+        queue.clear();
+    }
+
+    /**
      * Helper method to transition to new scene. Also links the main css to every scene.
+     * Concurrently loads the next scene and then fades to the new scene smoothly.
      * @param fxmlDestination
      */
     public static void goTo(String fxmlDestination) {
         click.play(CLICK_VOLUME);
-        if (currentStage != null) {
-            Stage stage;
-            Parent root = null;
-            stage = currentStage;
+        Task<Scene> load = new Task<Scene>() {
+            @Override
+            public Scene call() {
+                Scene scene = null;
+                if (currentStage != null) {
+                    Parent root = null;
 
-            try {
-                root = FXMLLoader.load(Voxspell.class.getResource("scenes/" + fxmlDestination));
-            } catch (IOException e) {
-                e.printStackTrace();
+                    try {
+                        root = FXMLLoader.load(Voxspell.class.getResource("scenes/" + fxmlDestination));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    scene = new Scene(root, WINDOW_WIDTH, WINDOW_HEIGHT, Color.rgb(71, 196, 249));
+                    classNames.linkStyleSheet(scene);
+                }
+                return scene;
             }
-            Scene scene = new Scene(root, WINDOW_WIDTH, WINDOW_HEIGHT);
-            classNames.linkStyleSheet(scene);
-            stage.setScene(scene);
-            stage.show();
-        }
+        };
+
+        load.setOnSucceeded((e) -> {
+            System.out.println("DONE");
+            transitionScene(load.getValue());
+        });
+
+        new Thread(load).start();
     }
 
+    private static void transitionScene(Scene scene) {
+        FadeTransition fade = new FadeTransition(Duration.seconds(0.2), currentStage.getScene().getRoot());
+        fade.setFromValue(0.2);
+        fade.setToValue(0.0);
+        fade.setOnFinished((e) -> showScene(scene));
+        fade.play();
+    }
+
+    /**
+     * Stop the loading animation and load the scene on FX thread, flush the queue
+     */
+    private static void showScene(Scene scene) {
+        currentStage.setScene(scene);
+        Platform.runLater(() -> flushQueue());
+    }
+
+    /**
+     * Helper method to generate different backgrounds
+     *
+     * @param backgroundSource
+     * @return
+     */
     private static Background backgroundChooser(String backgroundSource) {
         Image image = new Image(Voxspell.class.getResource(backgroundSource).toExternalForm());
         BackgroundSize backgroundSize = new BackgroundSize(100, 100, true, true, false, true);
@@ -108,5 +162,9 @@ public class SceneManager {
             welcome.play(VOLUME);
             return true;
         }
+    }
+
+    public static boolean isMusicPlaying() {
+        return welcome.isPlaying();
     }
 }

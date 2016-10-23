@@ -1,27 +1,22 @@
 package voxspell.scenes.controllers;
 
-import java.io.File;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
-
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 import voxspell.engine.DataIO;
 import voxspell.engine.Festival;
 import voxspell.engine.LevelData;
 import voxspell.engine.SceneManager;
+
+import java.io.File;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 /**
  * SettingsController manage voice, sound and level data features
@@ -53,7 +48,6 @@ public class SettingsController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        vBox.setBackground(SceneManager.makeBackground());
         voiceMenuButton.setText("Change voice");
         EventHandler<ActionEvent> voiceMenuButtonHandler = new voiceMenuButtonHandler();
         MenuItem defaultVoice = new MenuItem(DEFAULT_VOICE_CHOICE);
@@ -75,8 +69,18 @@ public class SettingsController implements Initializable {
         });
 
         resetButton.setOnMouseClicked((e) -> {
-            data.resetAchievements();
-            data.resetStats();
+            Dialog<ButtonType> dialog = new Dialog<>();
+            ButtonType confirmType = new ButtonType("Yes", ButtonBar.ButtonData.OK_DONE);
+            ButtonType cancelType = new ButtonType("No!", ButtonBar.ButtonData.CANCEL_CLOSE);
+            dialog.getDialogPane().getButtonTypes().addAll(cancelType, confirmType);
+            dialog.showAndWait().ifPresent((response -> {
+                if (response == confirmType) {
+                    System.out.println("OK");
+                    data.resetAchievements();
+                    data.resetStats();
+                }
+            }));
+
         });
 
         changeList.setOnMouseClicked((e) -> {
@@ -86,12 +90,14 @@ public class SettingsController implements Initializable {
             if (file != null) {
                 LevelData.setCurrentWordFile(file.getPath());
                 LevelData.calculateMaxLevel(); // update new max level
-                data.loadAll();
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setHeaderText("Successfully changed the spelling list!");
                 alert.setTitle("Success!");
-                alert.setContentText("Loaded previous data associated with this spelling list (if any)");
+                alert.setContentText("Loaded saved data from before (if any)");
                 alert.showAndWait();
+                data.setCurrentWordList(file.getPath());
+                data.loadAll();
+                data.saveAll(false);
 
             }
         });

@@ -15,7 +15,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import voxspell.engine.*;
-import voxspell.engine.Achievement.Rarity;
 import voxspell.engine.Festival.Operations;
 
 import java.net.URL;
@@ -50,6 +49,8 @@ public class SpellingController implements Initializable {
     private Label outOfLabel;
     @FXML
     private VBox vBox;
+    @FXML
+    private Button goBackButton;
 
 
     // plug in engine modules
@@ -117,7 +118,6 @@ public class SpellingController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         SceneManager.stopMusic();
         // Initialize words and level label using levelData
-        vBox.setBackground(SceneManager.makeBackground());
         int level = LevelData.getLevel();
         WordList wordList;
         if (LevelData.isReview()) { // get faulted/wrong words from the level
@@ -147,10 +147,12 @@ public class SpellingController implements Initializable {
         submitButton.setOnMouseClicked(new submitHandler());
         inputTextField.setOnAction(new enterSubmitHandler());
         listenAgainButton.setOnMouseClicked(new listenAgainHandler());
+        goBackButton.setOnMouseClicked((e) -> SceneManager.goTo("main.fxml"));
 
         // start quiz
         listenAgainButton.setDisable(false);
         readWord(currentWord);
+
     }
 
     private void readWord(Word word) {

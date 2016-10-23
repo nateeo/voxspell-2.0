@@ -20,11 +20,11 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.util.Callback;
+import voxspell.engine.Achievement.Rarity;
 import voxspell.engine.DataIO;
 import voxspell.engine.LevelData;
 import voxspell.engine.SceneManager;
 import voxspell.engine.Word;
-import voxspell.engine.Achievement.Rarity;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -66,9 +66,6 @@ public class EndSessionController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         MediaPlayer mp = new MediaPlayer(new Media("assets/congratulations.mp3"));
         mp.setOnEndOfMedia(() -> SceneManager.playMusic());
-
-        anchorPane.setBackground(SceneManager.makeBackground());
-
         if (LevelData.isReview()) {
             reviewButton.setText("Review again");
         }
