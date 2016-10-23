@@ -14,6 +14,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import voxspell.Voxspell;
 import voxspell.engine.*;
 import voxspell.engine.Festival.Operations;
 
@@ -24,7 +25,7 @@ import java.util.ResourceBundle;
 // TODO: saveAll next unlocked level and voice data
 
 /**
- * Controller for the spelling quiz scene
+ * Controller for the spelling quiz scene, manages the spelling logic
  * Created by nhur714 on 16/09/16.
  */
 public class SpellingController implements Initializable {
@@ -165,7 +166,7 @@ public class SpellingController implements Initializable {
     private void setLoading(boolean isLoading) {
         if (isLoading) {
             submitButton.setDisable(true);
-            submitButton.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("assets/loading.gif"))));
+            submitButton.setGraphic(new ImageView(new Image(Voxspell.class.getResourceAsStream("scenes/assets/loading.gif"))));
             submitButton.setText("");
             disableEnter = true;
         } else {

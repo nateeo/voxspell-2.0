@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 /**
+ * Controller for statistics screen
  * Created by harrylimp on 19/09/16.
  */
 public class StatsController implements Initializable {
@@ -62,8 +63,11 @@ public class StatsController implements Initializable {
         returnButton.setOnMouseClicked(new returnHandler());
 
         //set up choicebox
-        levelList = FXCollections.observableArrayList("Level 1","Level 2", "Level 3", "Level 4", "Level 5",
-                "Level 6", "Level 7", "Level 8", "Level 9", "Level 10");
+        ArrayList<String> levels = new ArrayList<>();
+        for (int i = 1; i <= LevelData.getMaxLevel(); i++) {
+            levels.add("Level " + i);
+        }
+        levelList = FXCollections.observableArrayList(levels);
         levelChoice.setItems(levelList);
         if (LevelData.getLevel() == -1) {
             levelChoice.setValue("Level 1");

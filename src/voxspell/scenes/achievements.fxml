@@ -11,7 +11,8 @@
    <children>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
          <children>
-            <Label text="Achievements">
+            <Label fx:id="title" style="-fx-font-family: &quot;Comic Sans MS&quot;; -fx-font-size: 48;"
+                   text="Achievements">
                <font>
                   <Font name="Comic Sans MS" size="48.0" />
                </font>
@@ -20,9 +21,10 @@
       </HBox>
        <HBox fx:id="hBox" prefHeight="175.0" prefWidth="900.0" spacing="20.0">
            <padding>
-               <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
            </padding>
        </HBox>
+      <VBox prefHeight="200.0" prefWidth="100.0"/>
       <HBox alignment="BOTTOM_RIGHT" prefHeight="62.0" prefWidth="900.0">
          <children>
             <Button fx:id="mainMenuButton" mnemonicParsing="false" prefHeight="62.0" prefWidth="128.0" style="-fx-background-color: b6e7c9;" text="Go Back">

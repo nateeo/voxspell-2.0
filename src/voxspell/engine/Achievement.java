@@ -75,7 +75,7 @@ public class Achievement implements Serializable, Comparable<Achievement> {
         pane.getChildren().add(vBox);
         vBox.setAlignment(Pos.CENTER);
         vBox.setPadding(new Insets(10));
-        pane.setStyle("-fx-background-color: rgba(255,255,255,0.9); -fx-border-color: " + rarity.color + "; -fx-border-width: 3px;");
+        pane.setStyle("-fx-background-color: rgba(255,255,255); -fx-border-color: " + rarity.color + "; -fx-border-width: 3px;");
         
         return pane;
     }

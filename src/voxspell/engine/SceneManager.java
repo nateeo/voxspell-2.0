@@ -78,6 +78,7 @@ public class SceneManager {
      */
     public static void goTo(String fxmlDestination) {
         click.play(CLICK_VOLUME);
+        System.out.println("GO TO: " + fxmlDestination);
         Task<Scene> load = new Task<Scene>() {
             @Override
             public Scene call() {
@@ -90,7 +91,7 @@ public class SceneManager {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    scene = new Scene(root, WINDOW_WIDTH, WINDOW_HEIGHT, Color.rgb(71, 196, 249));
+                    scene = new Scene(root, WINDOW_WIDTH, WINDOW_HEIGHT, Color.rgb(255, 255, 255, 0.1));
                     classNames.linkStyleSheet(scene);
                 }
                 return scene;
@@ -99,25 +100,24 @@ public class SceneManager {
 
         load.setOnSucceeded((e) -> {
             System.out.println("DONE");
-            transitionScene(load.getValue());
+            showScene(load.getValue());
         });
 
-        new Thread(load).start();
-    }
+        load.setOnFailed((e) -> load.getException().printStackTrace());
 
-    private static void transitionScene(Scene scene) {
-        FadeTransition fade = new FadeTransition(Duration.seconds(0.2), currentStage.getScene().getRoot());
-        fade.setFromValue(0.2);
-        fade.setToValue(0.0);
-        fade.setOnFinished((e) -> showScene(scene));
-        fade.play();
+        new Thread(load).start();
     }
 
     /**
      * Stop the loading animation and load the scene on FX thread, flush the queue
      */
     private static void showScene(Scene scene) {
+        FadeTransition fade = new FadeTransition(Duration.seconds(1.3), scene.getRoot());
+        fade.setFromValue(0.4);
+        fade.setToValue(1.0);
         currentStage.setScene(scene);
+        fade.play();
+
         Platform.runLater(() -> flushQueue());
     }
 

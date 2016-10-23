@@ -27,6 +27,8 @@ public class AchievementsController implements Initializable {
     private HBox hBox;
     @FXML
     private Button mainMenuButton;
+    @FXML
+    private Label title;
 
     private DataIO dataIO = DataIO.getInstance();
     private TreeSet<Achievement> achievements;
@@ -34,6 +36,7 @@ public class AchievementsController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         // get achievements from data and render them into a list
         achievements = dataIO.getAchievements();
+        title.setStyle("-fx-font-size: 48px");
         ObservableList<Node> list = hBox.getChildren();
 
         if (achievements.isEmpty()) {

@@ -20,17 +20,16 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.util.Callback;
+import voxspell.Voxspell;
 import voxspell.engine.Achievement.Rarity;
-import voxspell.engine.DataIO;
-import voxspell.engine.LevelData;
-import voxspell.engine.SceneManager;
-import voxspell.engine.Word;
+import voxspell.engine.*;
 
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 /**
+ * Controller to manage the end of spelling quiz scene
  * Created by harrylimp on 21/09/16.
  */
 public class EndSessionController implements Initializable {
@@ -64,8 +63,18 @@ public class EndSessionController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        MediaPlayer mp = new MediaPlayer(new Media("assets/congratulations.mp3"));
+        MediaPlayer mp = new MediaPlayer(new Media(Voxspell.class.getResource("scenes/assets/congratulations.mp3").toExternalForm()));
         mp.setOnEndOfMedia(() -> SceneManager.playMusic());
+
+        //queue the sound reward
+        SceneManager.addQueuedEvent(new QueuedEvent() {
+            MediaPlayer reward = mp;
+
+            public void execute() {
+                mp.play();
+            }
+        });
+
         if (LevelData.isReview()) {
             reviewButton.setText("Review again");
         }
@@ -100,12 +109,11 @@ public class EndSessionController implements Initializable {
             playVideoButton.setOnMouseClicked(new videoHandler());
             if (!(LevelData.getLevel() == LevelData.getMaxLevel())) {
                 nextLevelButton.setOnMouseClicked(new nextLevelHandler());
-                System.out.println("tramed");
                 data.enableLevel(LevelData.getLevel() + 1);
             } else {
                 // disable next level on max
                 nextLevelButton.setDisable(true);
-                new AchievementsPopup("All Levels", "Unlocking all levels", Rarity.EPIC);
+                new AchievementsPopup("All Levels", "For unlocking all levels", Rarity.EPIC);
             }
         } else {
             nextLevelButton.setDisable(true);

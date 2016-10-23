@@ -11,7 +11,7 @@
    <children>
       <VBox fx:id="vBox" prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
          <children>
-            <HBox fx:id="hBox" alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+            <HBox fx:id="hBox" alignment="CENTER" prefHeight="10.0" prefWidth="900.0" VBox.vgrow="SOMETIMES">
                <children>
                   <Text fx:id="levelLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="Level #" wrappingWidth="434.16015625" HBox.hgrow="ALWAYS">
                      <font>
@@ -21,7 +21,8 @@
                         <Insets left="25.0" />
                      </HBox.margin>
                   </Text>
-                  <VBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="139.0" style="-fx-background-color: rgba(255,255,255,0.7);" HBox.hgrow="ALWAYS">
+                  <VBox alignment="CENTER" prefHeight="100.0" prefWidth="139.0"
+                        style="-fx-background-color: rgba(255,255,255,0.7);" HBox.hgrow="ALWAYS">
                      <children>
                         <Label fx:id="statisticsLabel" alignment="CENTER" text="Stats" VBox.vgrow="ALWAYS">
                            <VBox.margin>
@@ -31,7 +32,7 @@
                               <Font name="Comic Sans MS" size="18.0" />
                            </font>
                         </Label>
-                        <HBox prefHeight="100.0" prefWidth="200.0">
+                        <HBox prefHeight="20.0" prefWidth="292.0">
                            <children>
                               <Label alignment="CENTER" text="Right:" textFill="#4ad31c">
                                  <HBox.margin>
@@ -83,21 +84,29 @@
                            </children>
                         </HBox>
                      </children>
-                     <padding>
-                        <Insets top="10.0" />
-                     </padding>
                   </VBox>
-                  <Button fx:id="goBackButton" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="100.0"
-                          prefWidth="102.0" styleClass="cancel" stylesheets="@main.css" text="Button"
-                          HBox.hgrow="ALWAYS"/>
+                  <Button fx:id="goBackButton" alignment="CENTER" mnemonicParsing="false" prefHeight="100.0"
+                          prefWidth="150.0" style="-fx-background-color: #FF7E6B;" text="Go back" HBox.hgrow="ALWAYS">
+                     <cursor>
+                        <Cursor fx:constant="HAND"/>
+                     </cursor>
+                     <font>
+                        <Font name="Comic Sans MS" size="18.0"/>
+                     </font>
+                  </Button>
                </children>
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                <children>
-                  <TextArea fx:id="outputTextArea" prefHeight="200.0" prefWidth="200.0" stylesheets="@assets/transparentTextArea.css" HBox.hgrow="ALWAYS">
+                  <TextArea fx:id="outputTextArea" minWidth="-Infinity" prefHeight="302.0" prefWidth="900.0"
+                            stylesheets="@assets/transparentTextArea.css" HBox.hgrow="ALWAYS">
                      <font>
                         <Font name="Comic Sans MS" size="24.0" />
-                     </font></TextArea>
+                     </font>
+                     <HBox.margin>
+                        <Insets/>
+                     </HBox.margin>
+                  </TextArea>
                </children>
             </HBox>
          </children>

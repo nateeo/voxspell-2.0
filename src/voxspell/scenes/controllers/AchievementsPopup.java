@@ -6,8 +6,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import voxspell.Voxspell;
 import voxspell.engine.Achievement;
 import voxspell.engine.Achievement.Rarity;
 import voxspell.engine.DataIO;
@@ -20,6 +23,7 @@ import voxspell.engine.SceneManager;
  * TODO: add sound
  */
 public class AchievementsPopup implements QueuedEvent {
+	public static MediaPlayer mp = new MediaPlayer(new Media(Voxspell.class.getResource("scenes/assets/congratulations.mp3").toExternalForm()));
 	Stage stage;
 	VBox vBox;
 	HBox hBox;
@@ -40,9 +44,7 @@ public class AchievementsPopup implements QueuedEvent {
 		}
     }
 
-	/**
-	 * entry method
-	 */
+	@Override
 	public void execute() {
 		setUp();
 		show();
@@ -53,8 +55,10 @@ public class AchievementsPopup implements QueuedEvent {
 		stage.showAndWait();
 	}
 
-    
-    public void setUp() {
+	/**
+	 * Set up the achievements popup
+	 */
+	public void setUp() {
 		stage = new Stage();
 		vBox = new VBox(2);
 		hBox = new HBox();

@@ -17,6 +17,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
+ * Controller for the video reward scene
  * Created by harrylimp on 22/09/16.
  */
 public class VideoController implements Initializable {
