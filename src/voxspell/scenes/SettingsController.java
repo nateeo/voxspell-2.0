@@ -66,7 +66,17 @@ public class SettingsController implements Initializable {
         nzVoice.setOnAction(voiceMenuButtonHandler);
 
         enableAllButton.setOnMouseClicked((e) -> {
-            //TODO
+            LevelData.developerMode = true;
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText("All levels temporarily unlocked");
+            alert.setTitle("Success!");
+            alert.setContentText("Unlocked all levels for the current session");
+            alert.showAndWait();
+        });
+
+        resetButton.setOnMouseClicked((e) -> {
+            data.resetAchievements();
+            data.resetStats();
         });
 
         changeList.setOnMouseClicked((e) -> {

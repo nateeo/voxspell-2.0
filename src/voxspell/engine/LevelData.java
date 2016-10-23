@@ -25,6 +25,7 @@ public class LevelData {
     
     public static String currentWordFile = DEFAULT;
     public static String currentDataID = uID(currentWordFile);
+    public static boolean developerMode = false;
 
     /**
      * set currentWordList

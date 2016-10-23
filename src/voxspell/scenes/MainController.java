@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.input.MouseEvent;
@@ -48,6 +49,8 @@ public class MainController implements Initializable {
     private Button musicButton;
     @FXML
     private GridPane gridPane;
+    @FXML
+    private Label listLabel;
 
     /**
      * parse button text into level number
@@ -129,12 +132,19 @@ public class MainController implements Initializable {
         EventHandler<MouseEvent> exitHandler = new exitHandler();
         EventHandler<MouseEvent> statsSelectHandler = new statsSelectHandler();
 
+        // get list and display name
+        String listText = LevelData.currentWordFile;
+        listText = listText.substring(0, listText.lastIndexOf("."));
+        listText = listText.substring(listText.lastIndexOf("/"));
+        listText = listText.replaceAll("-|_|/", " ");
+        listLabel.setText(listText);
+
 
         // generate level list dynamically
         int max = 1;
         for (int i = 0; i < Math.ceil((double) LevelData.getMaxLevel() / 3); i++) {
             for (int j = 0; j < 3; j++) {
-                if (max < LevelData.getMaxLevel() + 1) {
+                if (max < LevelData.getMaxLevel()) {
                     Button button = new Button("Level " + max);
                     gridPane.add(button, j, i);
                     buttons.add(button);
@@ -161,8 +171,9 @@ public class MainController implements Initializable {
         setStyle(viewStatsButton, Style.BUTTON, Style.SECONDARY);
 
         // disable locked levels
-        System.out.println("MAX ENABLED LEVEL: " + LevelData.getMaxEnabledLevel());
-        disable(LevelData.getMaxEnabledLevel());
+        if (!LevelData.developerMode) {
+            disable(data.highestLevelEnabled());
+        }
         SceneManager.playMusic();
 
 
