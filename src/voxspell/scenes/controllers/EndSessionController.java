@@ -53,6 +53,12 @@ public class EndSessionController implements Initializable {
     @FXML
     private ListView<String> listView;
     @FXML
+    private Label goldLabel;
+    @FXML
+    private Label silverLabel;
+    @FXML
+    private Label bronzeLabel;
+    @FXML
     private Label endMessage;
 
     private static ArrayList<String> correctList = new ArrayList<>();
@@ -131,6 +137,12 @@ public class EndSessionController implements Initializable {
         LevelData.setIsReview(false);
         showPieChart();
         showListView();
+
+        // show coins earned
+        goldLabel.setText("0"); // can't earn gold from spelling quiz
+        silverLabel.setText("" + LevelData.getSilverCoinsEarned());
+        bronzeLabel.setText("" + LevelData.getBronzeCoinsEarned());
+
     }
 
     class returnHandler implements EventHandler<MouseEvent> {

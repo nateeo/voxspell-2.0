@@ -4,6 +4,7 @@
 <?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 <AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@main.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="voxspell.scenes.controllers.EndSessionController">
@@ -102,5 +103,27 @@
                 <Font name="Comic Sans MS" size="48.0"/>
             </font>
         </Label>
+        <Label layoutX="616.0" layoutY="35.0" text="You got"/>
+        <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="692.0" layoutY="31.0" pickOnBounds="true"
+                   preserveRatio="true">
+            <image>
+                <Image url="@assets/goldCoin.png"/>
+            </image>
+        </ImageView>
+        <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="756.0" layoutY="31.0" pickOnBounds="true"
+                   preserveRatio="true">
+            <image>
+                <Image url="@assets/silverCoin.png"/>
+            </image>
+        </ImageView>
+        <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="820.0" layoutY="31.0" pickOnBounds="true"
+                   preserveRatio="true">
+            <image>
+                <Image url="@assets/bronzeCoin.png"/>
+            </image>
+        </ImageView>
+        <Label fx:id="goldLabel" layoutX="719.0" layoutY="36.0" prefHeight="23.0" prefWidth="32.0" text="Label"/>
+        <Label fx:id="silverLabel" layoutX="788.0" layoutY="36.0" prefHeight="23.0" prefWidth="32.0" text="Label"/>
+        <Label fx:id="bronzeLabel" layoutX="852.0" layoutY="36.0" prefHeight="23.0" prefWidth="32.0" text="Label"/>
     </children>
 </AnchorPane>

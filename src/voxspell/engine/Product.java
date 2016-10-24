@@ -2,11 +2,14 @@ package voxspell.engine;
 
 import javafx.concurrent.WorkerStateEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.AudioClip;
+import voxspell.Voxspell;
 
 import java.io.Serializable;
 
@@ -33,11 +36,17 @@ public class Product implements Serializable {
     }
 
     public Pane renderProduct(Money money, EventHandler<WorkerStateEvent> evnt) {
+        AudioClip buySound = new AudioClip(Voxspell.class.getResource("scenes/assets/Coin01.mp3").toExternalForm());
         hook = evnt;
         Pane pane = new Pane();
-        VBox vBox = new VBox(5);
+        pane.setStyle("-fx-background-color: rgba(255, 255, 255, 0.8); " +
+                "-fx-border-color: black; -fx-border-width: 5; -fx-padding: 10");
+        VBox vBox = new VBox(20);
+        vBox.setAlignment(Pos.CENTER);
+        vBox.setStyle("-fx-padding: 20; -fx-align: center");
         Label title = new Label(name);
-        Label info = new Label("This is a new " + (type == ProductType.VIDEO ? "video" : "music") + "item that you can use");
+        title.setStyle("-fx-font-size: 20; -fx-text-align: center");
+        Label info = new Label("This is a new " + (type == ProductType.VIDEO ? "video" : "music") + " item that you can use");
         Label purchased = new Label(unlocked ? "Bought!" : "");
         Button button = new Button();
         String buttonText = "";
@@ -47,6 +56,8 @@ public class Product implements Serializable {
 
         toggleOn = (e) -> {
             if (!isActive) {
+                button.getStyleClass().remove("primary");
+                button.getStyleClass().add("cancel");
                 if (type == ProductType.MUSIC) {
                     SceneManager.changeMusic(fileName);
                     button.setText("Turn off");
@@ -56,6 +67,8 @@ public class Product implements Serializable {
                 }
                 isActive = true;
             } else {
+                button.getStyleClass().remove("cancel");
+                button.getStyleClass().add("primary");
                 if (type == ProductType.MUSIC) {
                     SceneManager.changeMusic("Welcome.mp3");
                     button.setText("Turn on");
@@ -68,6 +81,7 @@ public class Product implements Serializable {
             hook.handle(null);
         };
         handleBuy = (e) -> {
+            buySound.play();
             money.deduct(price, 1);
             if (type == ProductType.MUSIC) {
                 SceneManager.changeMusic(fileName);
@@ -75,6 +89,7 @@ public class Product implements Serializable {
                 SceneManager.changeVideo(fileName);
             }
             button.setText("Turn off");
+            button.getStyleClass().add("cancel");
             button.setOnMouseClicked(toggleOn);
             isActive = true;
             unlocked = true;
@@ -84,10 +99,11 @@ public class Product implements Serializable {
 
         if (unlocked) {
             buttonText = isActive ? "Turn off" : "Turn on";
+            button.getStyleClass().add(isActive ? "cancel" : "primary");
             button.setOnMouseClicked(toggleOn);
         } else {
             // buy
-            buttonText = "Buy";
+            buttonText = "Buy for " + price + " silver coins";
             if (!money.enoughFor(price, 1)) {
                 button.setDisable(true);
             } else {

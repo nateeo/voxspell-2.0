@@ -25,6 +25,8 @@ public class LevelData {
     private static boolean isReview = false;
     private static boolean congratulationsMusic = false;
     private static int maxLevel = -1;
+    private static int silverCoinsEarned = 0;
+    private static int bronzeCoinsEarned = 0;
     private static final String DEFAULT = "./lib/NZCER-spelling-lists.txt";
     
     public static String currentWordFile = DEFAULT;
@@ -86,6 +88,26 @@ public class LevelData {
             calculateMaxLevel();
         }
         return maxLevel;
+    }
+
+    public static int getSilverCoinsEarned() {
+        int result = silverCoinsEarned;
+        silverCoinsEarned = 0;
+        return result;
+    }
+
+    public static int getBronzeCoinsEarned() {
+        int result = bronzeCoinsEarned;
+        bronzeCoinsEarned = 0;
+        return result;
+    }
+
+    public static void addSilver() {
+        silverCoinsEarned++;
+    }
+
+    public static void addBronze() {
+        bronzeCoinsEarned++;
     }
 
     public static void calculateMaxLevel() {

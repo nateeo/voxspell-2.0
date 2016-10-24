@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import voxspell.engine.*;
 
@@ -21,6 +22,12 @@ import java.util.ResourceBundle;
 public class ShopController implements Initializable {
     @FXML
     private Button mainMenuButton;
+    @FXML
+    private Label goldLabel;
+    @FXML
+    private Label silverLabel;
+    @FXML
+    private Label bronzeLabel;
     @FXML
     private HBox shopBox;
 
@@ -39,15 +46,26 @@ public class ShopController implements Initializable {
             // update display and save
             data.saveObject(new File(".shopData.ser"), shop);
             data.saveMoney();
+            updateMoney();
         };
 
         // load the shop
         money = data.getMoney();
+        updateMoney();
         shop = (Shop) data.loadObject(new File(".shopData.ser"), new Shop(updateMoney));
         shop.setListener(updateMoney); // if already existing
         ObservableList<Node> list = shopBox.getChildren();
         for (Product product : shop.getProducts()) {
             list.add(product.renderProduct(data.getMoney(), updateMoney));
         }
+    }
+
+    /**
+     * Update the coin values
+     */
+    private void updateMoney() {
+        goldLabel.setText("" + money.getGold());
+        silverLabel.setText("" + money.getSilver());
+        bronzeLabel.setText("" + money.getBronze());
     }
 }

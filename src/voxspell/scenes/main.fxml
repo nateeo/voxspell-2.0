@@ -8,119 +8,139 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-<VBox fx:id="vBox" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="voxspell.scenes.controllers.MainController">
+<?import javafx.scene.text.TextFlow?>
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="voxspell.scenes.controllers.MainController">
     <children>
-        <HBox alignment="CENTER">
+        <VBox fx:id="vBox" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0">
             <children>
-                <Text fx:id="titleLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to VOXSPELL"
-                      textAlignment="CENTER" HBox.hgrow="ALWAYS">
-                    <font>
-                        <Font name="Comic Sans MS" size="48.0" />
-                    </font>
-                    <HBox.margin>
-                        <Insets top="10.0" />
-                    </HBox.margin>
-                </Text>
-            </children>
-        </HBox>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-         <children>
-            <Label fx:id="listLabel" text="Label" />
-         </children>
-      </HBox>
-      <VBox alignment="CENTER" prefHeight="423.0" prefWidth="900.0">
-         <children>
-            <HBox alignment="CENTER" stylesheets="@main.css">
+                <HBox alignment="CENTER">
+                    <children>
+                        <Text fx:id="titleLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to VOXSPELL"
+                              textAlignment="CENTER" HBox.hgrow="ALWAYS">
+                            <font>
+                                <Font name="Comic Sans MS" size="48.0"/>
+                            </font>
+                            <HBox.margin>
+                                <Insets top="10.0"/>
+                            </HBox.margin>
+                        </Text>
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                      <GridPane fx:id="gridPane" alignment="CENTER" layoutX="100.0" layoutY="57.0" prefHeight="200.0" prefWidth="400.0">
-                          <columnConstraints>
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" />
-                              <ColumnConstraints hgrow="SOMETIMES" />
-                          </columnConstraints>
-                          <rowConstraints>
-                              <RowConstraints vgrow="SOMETIMES" />
-                              <RowConstraints vgrow="SOMETIMES" />
-                              <RowConstraints vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                          </rowConstraints>
-                     <HBox.margin>
-                        <Insets top="25.0" />
-                     </HBox.margin>
-                      </GridPane>
+                   <Label fx:id="listLabel" text="Label"/>
                </children>
             </HBox>
-         </children>
-      </VBox>
-      <HBox alignment="BOTTOM_RIGHT" prefHeight="25.0" prefWidth="900.0">
-         <children>
-            <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                <VBox alignment="CENTER" prefHeight="423.0" prefWidth="900.0">
                <children>
-                  <HBox alignment="CENTER_RIGHT" prefHeight="26.0" prefWidth="100.0">
+                   <HBox alignment="CENTER" stylesheets="@main.css">
                      <children>
-                        <Button fx:id="achievementsButton" alignment="CENTER" mnemonicParsing="false" text="Achievements">
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
+                         <GridPane fx:id="gridPane" alignment="CENTER" layoutX="100.0" layoutY="57.0" prefHeight="200.0"
+                                   prefWidth="400.0">
+                             <columnConstraints>
+                                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                 <ColumnConstraints hgrow="SOMETIMES"/>
+                                 <ColumnConstraints hgrow="SOMETIMES"/>
+                             </columnConstraints>
+                             <rowConstraints>
+                                 <RowConstraints vgrow="SOMETIMES"/>
+                                 <RowConstraints vgrow="SOMETIMES"/>
+                                 <RowConstraints vgrow="SOMETIMES"/>
+                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                             </rowConstraints>
                            <HBox.margin>
-                              <Insets right="10.0" />
+                               <Insets top="25.0"/>
                            </HBox.margin>
-                        </Button>
-                        <Button fx:id="viewStatsButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" text="View stats">
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                           <HBox.margin>
-                              <Insets right="10.0" />
-                           </HBox.margin>
-                        </Button>
+                         </GridPane>
                      </children>
                   </HBox>
-                   <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
-                       <children>
-                           <Button fx:id="shopButton" mnemonicParsing="false" prefHeight="27.0" prefWidth="105.0"
-                                   text="Shop!">
-                               <HBox.margin>
-                                   <Insets right="10.0"/>
-                               </HBox.margin>
-                               <graphic>
-                                   <ImageView fitHeight="17.0" fitWidth="112.0" pickOnBounds="true"
-                                              preserveRatio="true">
-                                       <image>
-                                           <Image url="@assets/goldCoin.png"/>
-                                       </image>
-                                   </ImageView>
-                               </graphic>
-                           </Button>
-                           <Button fx:id="settingsButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0"
-                                   text="Settings">
-                               <cursor>
-                                   <Cursor fx:constant="HAND"/>
-                               </cursor>
-                               <HBox.margin>
-                                   <Insets right="10.0"/>
-                               </HBox.margin>
-                           </Button>
-                       </children>
-                     <VBox.margin>
-                         <Insets top="20.0"/>
-                     </VBox.margin>
-                   </HBox>
                </children>
             </VBox>
-         </children></HBox>
-      <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="900.0" stylesheets="@main.css">
+                <HBox alignment="BOTTOM_RIGHT" prefHeight="25.0" prefWidth="900.0">
+                    <children>
+                        <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                            <children>
+                                <HBox alignment="CENTER_RIGHT" prefHeight="26.0" prefWidth="100.0">
+                                    <children>
+                                        <Button fx:id="achievementsButton" alignment="CENTER" mnemonicParsing="false"
+                                                text="Achievements">
+                                            <opaqueInsets>
+                                                <Insets/>
+                                            </opaqueInsets>
+                                            <cursor>
+                                                <Cursor fx:constant="HAND"/>
+                                            </cursor>
+                                            <HBox.margin>
+                                                <Insets right="10.0"/>
+                                            </HBox.margin>
+                                        </Button>
+                                        <Button fx:id="viewStatsButton" mnemonicParsing="false" prefHeight="25.0"
+                                                prefWidth="149.0" text="View stats">
+                                            <cursor>
+                                                <Cursor fx:constant="HAND"/>
+                                            </cursor>
+                                            <HBox.margin>
+                                                <Insets right="10.0"/>
+                                            </HBox.margin>
+                                        </Button>
+                                    </children>
+                                </HBox>
+                                <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
+                                    <children>
+                                        <Button fx:id="shopButton" mnemonicParsing="false" prefHeight="27.0"
+                                                prefWidth="105.0" text="Shop!">
+                                            <HBox.margin>
+                                                <Insets right="10.0"/>
+                                            </HBox.margin>
+                                            <graphic>
+                                                <ImageView fitHeight="17.0" fitWidth="112.0" pickOnBounds="true"
+                                                           preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@assets/goldCoin.png"/>
+                                                    </image>
+                                                </ImageView>
+                                            </graphic>
+                                        </Button>
+                                        <Button fx:id="settingsButton" mnemonicParsing="false" prefHeight="25.0"
+                                                prefWidth="149.0" text="Settings">
+                                            <cursor>
+                                                <Cursor fx:constant="HAND"/>
+                                            </cursor>
+                                            <HBox.margin>
+                                                <Insets right="10.0"/>
+                                            </HBox.margin>
+                                        </Button>
+                                    </children>
+                                    <VBox.margin>
+                                        <Insets top="20.0"/>
+                                    </VBox.margin>
+                                </HBox>
+                            </children>
+                        </VBox>
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="900.0" stylesheets="@main.css">
+                    <children>
+                        <Button fx:id="musicButton" mnemonicParsing="false" opacity="0.3" prefHeight="33.0"
+                                prefWidth="40.0" style="-fx-background-color: white;" HBox.hgrow="ALWAYS">
+                            <HBox.margin>
+                                <Insets bottom="10.0" left="10.0"/>
+                            </HBox.margin>
+                        </Button>
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+        <Pane fx:id="textPane" layoutX="6.0" layoutY="117.0" prefHeight="436.0" prefWidth="214.0"
+              AnchorPane.leftAnchor="6.0" AnchorPane.topAnchor="117.0">
          <children>
-             <Button fx:id="musicButton" mnemonicParsing="false" opacity="0.3" prefHeight="33.0" prefWidth="40.0"
-                     style="-fx-background-color: white;" HBox.hgrow="ALWAYS">
-               <HBox.margin>
-                  <Insets bottom="10.0" left="10.0" />
-               </HBox.margin>
-            </Button>
+             <TextFlow fx:id="textFlow" layoutX="7.0" layoutY="14.0" prefHeight="417.0" prefWidth="200.0">
+                 <children>
+                     <Text fx:id="text" strokeType="OUTSIDE" strokeWidth="0.0"/>
+                 </children>
+             </TextFlow>
          </children>
-      </HBox>
+        </Pane>
     </children>
-</VBox>
+</AnchorPane>

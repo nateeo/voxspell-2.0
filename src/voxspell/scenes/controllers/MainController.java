@@ -9,12 +9,15 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import voxspell.Voxspell;
 import voxspell.engine.DataIO;
 import voxspell.engine.LevelData;
 import voxspell.engine.SceneManager;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -35,6 +38,8 @@ public class MainController implements Initializable {
     @FXML
     private VBox vBox;
     @FXML
+    private Text text;
+    @FXML
     private Button viewStatsButton;
     @FXML
     private Button settingsButton;
@@ -44,6 +49,8 @@ public class MainController implements Initializable {
     private GridPane gridPane;
     @FXML
     private Label listLabel;
+    @FXML
+    private Pane textPane;
     @FXML
     private Button shopButton;
 
@@ -197,6 +204,17 @@ public class MainController implements Initializable {
                 musicButton.setGraphic(new ImageView(new Image(Voxspell.class.getResource("scenes/assets/soundOFF.png").toExternalForm())));
             }
         });
+
+        File festival = new File(".festival.scm");
+        if (!festival.exists()) {
+            textPane.setStyle("-fx-background-color: rgba(255,255,255,0.8)");
+            text.setStyle("-fx-font-size: 18px");
+            text.setText("Hello I see that you are new!" +
+                    "\n\nTo play VOXSPELL, you earn COINS by spelling words right." +
+                    "\n\nIf you spell enough right, you go to the next level which is harder!" +
+                    "\n\nYou can use the coins in the SHOP to buy cool things!");
+        }
+
     }
 
     private void disable(int maxLevel) {

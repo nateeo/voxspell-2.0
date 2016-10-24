@@ -22,11 +22,11 @@ public class Money implements Serializable {
     }
 
     public void addSilver(int amount) {
-        money.set(1, money.get(0) + amount);
+        money.set(1, money.get(1) + amount);
     }
 
     public void addBronze(int amount) {
-        money.set(2, money.get(0) + amount);
+        money.set(2, money.get(2) + amount);
     }
 
     public int getGold() {

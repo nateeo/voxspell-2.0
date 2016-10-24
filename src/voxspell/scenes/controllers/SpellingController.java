@@ -55,6 +55,8 @@ public class SpellingController implements Initializable {
     private DataIO data = DataIO.getInstance();
     private Festival festival = new Festival(new festivalListener());
     private Money money = data.getMoney();
+    private int silverCoinsEarned = 0;
+    private int bronzeCoinsEarned = 0;
 
     // sound FX
     private AudioClip silver = new AudioClip(Voxspell.class.getResource("scenes/assets/Rise01.mp3").toExternalForm());
@@ -211,6 +213,7 @@ public class SpellingController implements Initializable {
                 coinView.setImage(silverImage);
                 gold.play(0.2);
                 money.addSilver(1);
+                LevelData.addSilver();
                 incrementLabel(rightLabel);
                 nextWord();
             } else if (correct && currentFaulted) {
@@ -219,6 +222,7 @@ public class SpellingController implements Initializable {
                 coinView.setImage(bronzeImage);
                 silver.play(0.2);
                 money.addBronze(1);
+                LevelData.addBronze();
                 currentFaulted = false;
                 nextWord();
             } else if (!correct && !currentFaulted) {

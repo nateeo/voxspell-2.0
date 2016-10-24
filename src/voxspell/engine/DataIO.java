@@ -41,13 +41,10 @@ public class DataIO {
      * @param level
      */
     public void enableLevel(int level) {
-        System.out.println("trying to enable" + level);
        if (!enabledLevels.contains(level)) { // add to enabled list if not already enabled
-           System.out.println(level + "not in enabledLevels... adding");
            enabledLevels.add(level);
            saveAll(false);
        }
-        System.out.println("emab;led levels: " + enabledLevels);
     }
 
     /**

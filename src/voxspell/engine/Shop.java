@@ -30,8 +30,8 @@ public class Shop implements Serializable {
 
     private void makeNewProducts() {
         products = new ArrayList<>();
-        products.add(new Product("Elephants Dream Video Reward", "Elephants Dream-Mobile.mp4", ProductType.VIDEO, 1, hook));
-        products.add(new Product("New Background Music", "Welcome2.mp3", ProductType.MUSIC, 0, hook));
+        products.add(new Product("Elephants Dream Video Reward", "Elephants Dream-Mobile.mp4", ProductType.VIDEO, 25, hook));
+        products.add(new Product("New Background Music", "Welcome2.mp3", ProductType.MUSIC, 10, hook));
 
     }
 }
