@@ -1,30 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.media.*?>
-<?import java.lang.*?>
+<?import javafx.scene.*?>
 <?import javafx.scene.layout.*?>
-
+<?import javafx.scene.media.MediaView?>
 <VBox fx:id="vBox" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-: ;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="voxspell.scenes.controllers.VideoController">
    <children>
       <MediaView fx:id="mv" fitHeight="300.0" fitWidth="300.0">
          <VBox.margin>
             <Insets bottom="10.0" top="10.0" />
          </VBox.margin></MediaView>
-      <HBox prefHeight="70.0" prefWidth="570.0" spacing="12.0">
+       <HBox alignment="CENTER" prefHeight="70.0" prefWidth="570.0" spacing="12.0" stylesheets="@main.css">
          <children>
-            <Button mnemonicParsing="false" onAction="#play" prefHeight="95.0" prefWidth="85.0" style="-fx-background-color: b6e7c9; -fx-border-color: black; -fx-border-width: 4px;" text="PLAY" />
-            <Button mnemonicParsing="false" onAction="#pause" prefHeight="96.0" prefWidth="85.0" style="-fx-background-color: b6e7c9; -fx-border-color: black; -fx-border-width: 4px;" text="PAUSE" />
-            <Button mnemonicParsing="false" onAction="#fast" prefHeight="95.0" prefWidth="85.0" style="-fx-background-color: b6e7c9; -fx-border-color: black; -fx-border-width: 4px;" text="FAST" />
-            <Button mnemonicParsing="false" onAction="#slow" prefHeight="95.0" prefWidth="85.0" style="-fx-background-color: b6e7c9; -fx-border-color: black; -fx-border-width: 4px;" text="SLOW" />
-            <Button mnemonicParsing="false" onAction="#reload" prefHeight="95.0" prefWidth="85.0" style="-fx-background-color: b6e7c9; -fx-border-color: black; -fx-border-width: 4px;" text="RELOAD" />
-            <Button fx:id="exitButton" mnemonicParsing="false" prefHeight="95.0" prefWidth="85.0" style="-fx-background-color: firebrick; -fx-border-color: red; -fx-border-width: 4px;" text="EXIT" />
+             <Button fx:id="playButton" mnemonicParsing="false" onAction="#play" prefHeight="95.0" prefWidth="85.0"
+                     styleClass="primary" stylesheets="@main.css" text="Play">
+                 <cursor>
+                     <Cursor fx:constant="HAND"/>
+                 </cursor>
+             </Button>
+             <Button fx:id="pauseButton" mnemonicParsing="false" onAction="#pause" prefHeight="96.0" prefWidth="85.0"
+                     styleClass="secondary" text="Pause">
+                 <cursor>
+                     <Cursor fx:constant="HAND"/>
+                 </cursor>
+             </Button>
+             <Button mnemonicParsing="false" onAction="#fast" prefHeight="95.0" prefWidth="85.0" styleClass="primary"
+                     text="Fast">
+                 <cursor>
+                     <Cursor fx:constant="HAND"/>
+                 </cursor>
+             </Button>
+             <Button mnemonicParsing="false" onAction="#slow" prefHeight="95.0" prefWidth="85.0" styleClass="secondary"
+                     text="Slow">
+                 <cursor>
+                     <Cursor fx:constant="HAND"/>
+                 </cursor>
+             </Button>
+             <Button mnemonicParsing="false" onAction="#reload" prefHeight="95.0" prefWidth="85.0" styleClass="cancel"
+                     text="Reload">
+                 <cursor>
+                     <Cursor fx:constant="HAND"/>
+                 </cursor>
+             </Button>
          </children>
          <VBox.margin>
             <Insets bottom="30.0" left="15.0" right="15.0" />
          </VBox.margin>
+       </HBox>
+       <HBox alignment="BOTTOM_RIGHT" prefHeight="62.0" prefWidth="900.0">
+           <children>
+               <Button fx:id="exitButton" mnemonicParsing="false" prefHeight="62.0" prefWidth="128.0"
+                       style="-fx-background-color: b6e7c9;" text="Go Back">
+                   <cursor>
+                       <Cursor fx:constant="HAND"/>
+                   </cursor>
+                   <HBox.margin>
+                       <Insets right="10.0"/>
+                   </HBox.margin>
+               </Button>
+           </children>
       </HBox>
    </children>
 </VBox>

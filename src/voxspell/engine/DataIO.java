@@ -216,7 +216,7 @@ public class DataIO {
      */
     private void initialiseWordData() {
         ArrayList<ArrayList<Word>> free = new ArrayList<ArrayList<Word>>();
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < LevelData.getMaxLevel(); i++) {
             free.add(new ArrayList<Word>());
         }
         wordData = free;

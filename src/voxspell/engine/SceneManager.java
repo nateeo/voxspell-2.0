@@ -112,7 +112,7 @@ public class SceneManager {
      * Stop the loading animation and load the scene on FX thread, flush the queue
      */
     private static void showScene(Scene scene) {
-        FadeTransition fade = new FadeTransition(Duration.seconds(1.3), scene.getRoot());
+        FadeTransition fade = new FadeTransition(Duration.seconds(0.9), scene.getRoot());
         fade.setFromValue(0.4);
         fade.setToValue(1.0);
         currentStage.setScene(scene);

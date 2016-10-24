@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * Static ('singleton') class to store global application state
+ * Static ('singleton') class to store global application state between scenes
  *
  * Created by nhur714 on 16/09/16.
  */
@@ -23,6 +23,7 @@ public class LevelData {
     private static ArrayList<Word> currentWordList;
     private static String voice = data.getVoice();
     private static boolean isReview = false;
+    private static boolean congratulationsMusic = false;
     private static int maxLevel = -1;
     private static final String DEFAULT = "./lib/NZCER-spelling-lists.txt";
     
@@ -163,5 +164,17 @@ public class LevelData {
     public static void updateWordList(String update) {
         currentWordFile = update;
         currentDataID = uID(update);
+    }
+
+    public static void queueCongratulations() {
+        congratulationsMusic = true;
+    }
+
+    public static void flushCongratulations() {
+        congratulationsMusic = false;
+    }
+
+    public static boolean congratulationsIsQueued() {
+        return congratulationsMusic;
     }
 }

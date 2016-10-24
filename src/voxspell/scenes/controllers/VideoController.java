@@ -6,7 +6,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
@@ -31,12 +30,18 @@ public class VideoController implements Initializable {
     private Button exitButton;
 
     @FXML
-    private VBox vBox;
+    private Button playButton;
+
+    @FXML
+    private Button pauseButton;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         SceneManager.stopMusic();
 
+
+        // set video and autoplay
         String path = new File("./lib/PC10.mp4").getAbsolutePath();
         me = new Media(new File(path).toURI().toString());
         mp = new MediaPlayer(me);
@@ -44,6 +49,7 @@ public class VideoController implements Initializable {
         mv.setFitWidth(600);
         mv.setPreserveRatio(true);
         mp.setAutoPlay(true);
+        playButton.setDisable(true);
 
 
         exitButton.setOnMouseClicked(new VideoController.returnHandler());
@@ -73,10 +79,17 @@ public class VideoController implements Initializable {
     public void play(ActionEvent event) {
         mp.play();
         mp.setRate(1);
+        toggleButtons(true);
     }
 
     public void pause(ActionEvent event) {
         mp.pause();
+        toggleButtons(false);
+    }
+
+    private void toggleButtons(boolean isPlaying) {
+        playButton.setDisable(isPlaying);
+        pauseButton.setDisable(!isPlaying);
     }
 
     public void fast(ActionEvent event) {
@@ -90,6 +103,7 @@ public class VideoController implements Initializable {
     public void reload(ActionEvent event) {
         mp.seek(mp.getStartTime());
         mp.stop();
+        mp.play();
     }
 
 }

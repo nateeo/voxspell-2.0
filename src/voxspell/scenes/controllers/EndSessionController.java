@@ -64,14 +64,22 @@ public class EndSessionController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         MediaPlayer mp = new MediaPlayer(new Media(Voxspell.class.getResource("scenes/assets/congratulations.mp3").toExternalForm()));
-        mp.setOnEndOfMedia(() -> SceneManager.playMusic());
+        mp.setOnEndOfMedia(() -> {
+            SceneManager.playMusic();
+            LevelData.flushCongratulations();
+        });
+        mp.setVolume(0.3);
 
         //queue the sound reward
         SceneManager.addQueuedEvent(new QueuedEvent() {
             MediaPlayer reward = mp;
 
             public void execute() {
-                mp.play();
+                if (LevelData.congratulationsIsQueued()) {
+                    mp.play();
+                } else {
+                    SceneManager.playMusic();
+                }
             }
         });
 
@@ -185,6 +193,7 @@ public class EndSessionController implements Initializable {
         } else {
             endMessage.setText("Well done!");
         }
+        endMessage.setStyle("-fx-font-family: \"Comic Sans MS\"; -fx-font-size: 48");
     }
 
     /**

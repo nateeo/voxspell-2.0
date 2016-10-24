@@ -64,7 +64,7 @@ public class StatsController implements Initializable {
 
         //set up choicebox
         ArrayList<String> levels = new ArrayList<>();
-        for (int i = 1; i <= LevelData.getMaxLevel(); i++) {
+        for (int i = 1; i < LevelData.getMaxLevel(); i++) {
             levels.add("Level " + i);
         }
         levelList = FXCollections.observableArrayList(levels);

@@ -130,7 +130,7 @@ public class Voxspell extends Application {
                 loadProgress.progressProperty().unbind();
                 loadProgress.setProgress(1);
                 initStage.toFront();
-                FadeTransition fadeSplash = new FadeTransition(Duration.seconds(0.5), splashLayout);
+                FadeTransition fadeSplash = new FadeTransition(Duration.seconds(1), splashLayout);
                 fadeSplash.setFromValue(1.0);
                 fadeSplash.setToValue(0.0);
                 fadeSplash.setOnFinished(actionEvent -> initStage.hide());

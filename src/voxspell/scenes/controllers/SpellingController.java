@@ -160,6 +160,7 @@ public class SpellingController implements Initializable {
         Operations op = currentFaulted ? Operations.TRY_AGAIN : Operations.SPELL;
         setLoading(true);
         festival.read(word, op);
+        System.out.println(word);
 
     }
 
@@ -295,7 +296,9 @@ public class SpellingController implements Initializable {
         outputTextArea.setText("\n" + message);
     }
 
+    // transition to end of scene and queue the congratulations music
     private void goToEnd() {
+        LevelData.queueCongratulations();
         SceneManager.goTo("endSession.fxml");
     }
 }

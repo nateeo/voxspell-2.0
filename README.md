@@ -27,6 +27,8 @@ be told and asked to retry without penalty (and vice versa).
 
 Scoring 9 or more on a level enables you to watch a video reward.
 
+You can change the spelling list to a custom one in Settings.
+
 ###reviewing
 You can review all the words you got wrong at the end of each level you have completed. You can also review
 the words you got wrong in the previous review quiz. Unless you were reviewing after scoring 9/10, you cannot
@@ -42,8 +44,9 @@ advancing through the levels will net you achievements. For full information, se
 The stats are intended for parents/teachers to review the words that the user has gotten wrong. A brief
 display of the words spelt during the current level will appear at the end. 
 
-Full statistics of all
-sessions are available. These are resettable.
+Full statistics of all sessions are available. These are resettable.
+
+Statistics are stored separately with each spelling list.
 
 ##project structure
 
@@ -57,21 +60,24 @@ src
         │   ├── DataIO.java                         // deals with file IO and saving
         │   ├── Festival.java                       // deals with festival tts and voice changing
         │   ├── LevelData.java                      // static link class to store global application state (levels, etc.)
+        │   ├── QueuedEvent                         // interface to represent queued FX thread event
         │   ├── SceneManager.java                   // class that handles scene transfers
         │   ├── Word.java                           // class to represent a word
         │   └── WordList.java                       // class to parse file and get lists of words
         └── scenes ** package for front-end and controllers **
-            ├── assets ** folder for images **
-            ├── MainController.java                 // controller for main/welcome scene
-            ├── AchievementsPopup.java              // popup to show unlocked achievement
-            ├── Settings.java                       // popup for voice/level settings
-            ├── EndSessionController.java           // end of level controller
-            ├── SpellingController.java             // controller for spelling scene
-            ├── StatsController.java                // controller for statistic scene
-            ├── VideoController.java                // controller for video reward scene
+            ├── assets ** folder for images, sounds **
+            ├── controllers
+            │   ├── MainController.java             // controller for main/welcome scene
+            │   ├── AchievementsPopup.java          // popup to show unlocked achievement
+            │   ├── SettingsController.java         // =voice/level settings
+            │   ├── EndSessionController.java       // end of level controller
+            │   ├── SpellingController.java         // controller for spelling scene
+            │   ├── StatsController.java            // controller for statistic scene
+            │   ├── VideoController.java            // controller for video reward scene
             ├── achievements.fxml                   // scene to show all achievements
             ├── endSession.fxml                     // scene on reaching the end of a level
             ├── main.fxml                           // main/welcome scene for level selection
+            ├── settings.fxml                       // settings for lists/voices/stats
             ├── spelling.fxml                       // spelling scene for quizzes
             ├── stats.fxml                          // statistics scene
             └── video.fxml                          // video reward scene
