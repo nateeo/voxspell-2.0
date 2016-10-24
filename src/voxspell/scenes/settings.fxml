@@ -20,7 +20,8 @@
                   <RowConstraints maxHeight="25.0" minHeight="0.0" prefHeight="23.0" vgrow="SOMETIMES"/>
               </rowConstraints>
                <children>
-                  <Button fx:id="resetButton" mnemonicParsing="false" prefHeight="31.0" prefWidth="190.0" styleClass="cancel" text="Reset everything">
+                   <Button fx:id="resetButton" mnemonicParsing="false" prefHeight="31.0" prefWidth="190.0"
+                           styleClass="cancel" text="Reset statistics">
                      <GridPane.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </GridPane.margin>

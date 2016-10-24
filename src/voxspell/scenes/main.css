@@ -12,6 +12,7 @@
     -fx-border-color: #76A639;
     -fx-border-width: 4;
     -fx-border-radius: 2 2 2 2;
+    -fx-cursor: hand;
 }
 
 .hover {
@@ -30,6 +31,7 @@
     -fx-padding: 5 5 5 5;
     -fx-border-radius: 2 2 2 2;
     -fx-font-size: 18;
+    -fx-cursor: hand;
 }
 
 .primary {
@@ -54,8 +56,13 @@
 
 /** text **/
 
-.title {
+.text {
+    -fx-font-size: 18px;
+}
 
+.mainTitle {
+    -fx-font-family: "Comic Sans MS";
+    -fx-font-size: 48px;
 }
 
 .subtitle {
@@ -64,8 +71,4 @@
 
 .displayText {
 
-}
-
-.text {
-    -fx-font-size: 18px;
 }

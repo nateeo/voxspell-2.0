@@ -5,14 +5,11 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.VBox;
+import javafx.scene.media.AudioClip;
 import javafx.scene.text.Text;
 import voxspell.Voxspell;
 import voxspell.engine.*;
@@ -49,7 +46,7 @@ public class SpellingController implements Initializable {
     @FXML
     private Label outOfLabel;
     @FXML
-    private VBox vBox;
+    private ImageView coinView;
     @FXML
     private Button goBackButton;
 
@@ -57,6 +54,16 @@ public class SpellingController implements Initializable {
     // plug in engine modules
     private DataIO data = DataIO.getInstance();
     private Festival festival = new Festival(new festivalListener());
+    private Money money = data.getMoney();
+
+    // sound FX
+    private AudioClip silver = new AudioClip(Voxspell.class.getResource("scenes/assets/Rise01.mp3").toExternalForm());
+    private AudioClip gold = new AudioClip(Voxspell.class.getResource("scenes/assets/Rise02.mp3").toExternalForm());
+    private AudioClip oops = new AudioClip(Voxspell.class.getResource("scenes/assets/Downer01.mp3").toExternalForm());
+
+    // coin images
+    Image silverImage = new Image(Voxspell.class.getResource("scenes/assets/silverCoin.png").toExternalForm());
+    Image bronzeImage = new Image(Voxspell.class.getResource("scenes/assets/bronzeCoin.png").toExternalForm());
 
     // current quiz
     private ArrayList<Word> words;
@@ -148,7 +155,19 @@ public class SpellingController implements Initializable {
         submitButton.setOnMouseClicked(new submitHandler());
         inputTextField.setOnAction(new enterSubmitHandler());
         listenAgainButton.setOnMouseClicked(new listenAgainHandler());
-        goBackButton.setOnMouseClicked((e) -> SceneManager.goTo("main.fxml"));
+        goBackButton.setOnMouseClicked((e) -> {
+            Dialog<ButtonType> dialog = new Dialog<>();
+            ButtonType confirmType = new ButtonType("Yes", ButtonBar.ButtonData.OK_DONE);
+            ButtonType cancelType = new ButtonType("No!", ButtonBar.ButtonData.CANCEL_CLOSE);
+            dialog.getDialogPane().getButtonTypes().addAll(cancelType, confirmType);
+            dialog.setHeaderText("Are you sure?");
+            dialog.setContentText("You will lose any coins that you've earned!");
+            dialog.showAndWait().ifPresent((response -> {
+                if (response == confirmType) {
+                    SceneManager.goTo("main.fxml");
+                }
+            }));
+        });
 
         // start quiz
         listenAgainButton.setDisable(false);
@@ -180,6 +199,7 @@ public class SpellingController implements Initializable {
 
     private void submit() {
         String userInput = inputTextField.getText().trim();
+        coinView.setImage(null);
         inputTextField.clear();
         inputTextField.requestFocus();
         boolean valid = checkInputValid(userInput);
@@ -187,21 +207,29 @@ public class SpellingController implements Initializable {
             boolean correct = checkWord(userInput);
             if (correct && !currentFaulted) {
                 currentWord.incrementMastered();
-                output("Correct");
+                output("Correct. You earned a silver coin!");
+                coinView.setImage(silverImage);
+                gold.play(0.2);
+                money.addSilver(1);
                 incrementLabel(rightLabel);
                 nextWord();
             } else if (correct && currentFaulted) {
                 currentWord.incrementFaulted();
-                output("That's right!");
+                output("That's right! You earned a bronze coin!");
+                coinView.setImage(bronzeImage);
+                silver.play(0.2);
+                money.addBronze(1);
                 currentFaulted = false;
                 nextWord();
             } else if (!correct && !currentFaulted) {
                 currentFaulted = true;
+                oops.play(0.1);
                 output("Oops that spelling was wrong. Try again!");
                 incrementLabel(wrongLabel); // wrong as soon as faulted
                 readWord(currentWord);
             } else { // !correct && currentFaulted
                 currentWord.incrementFailed();
+                oops.play();
                 output("Oops! Remember this for next time! \nThe word was\n" + "\"" + currentWord + "\"");
                 currentFaulted = false;
                 nextWord();
@@ -298,6 +326,7 @@ public class SpellingController implements Initializable {
 
     // transition to end of scene and queue the congratulations music
     private void goToEnd() {
+        data.saveMoney();
         LevelData.queueCongratulations();
         SceneManager.goTo("endSession.fxml");
     }

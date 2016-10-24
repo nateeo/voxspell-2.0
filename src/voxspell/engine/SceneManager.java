@@ -15,6 +15,7 @@ import javafx.util.Duration;
 import voxspell.Voxspell;
 import voxspell.scenes.controllers.classNames;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -33,6 +34,11 @@ public class SceneManager {
     public static int WINDOW_HEIGHT = 600;
 
     private static AudioClip click = new AudioClip(Voxspell.class.getResource("scenes/assets/bubble.mp3").toExternalForm());
+    private static String video = new File("./lib/PC10.mp4").getAbsolutePath();
+    private static String currentVideo;
+    private static File VIDEO_FILE = new File(".video.ser");
+    private static File AUDIO_FILE = new File(".audio.ser");
+    private static String currentAudio;
 
     private static double VOLUME = 0.15;
     private static double CLICK_VOLUME = 0.7;
@@ -166,5 +172,33 @@ public class SceneManager {
 
     public static boolean isMusicPlaying() {
         return welcome.isPlaying();
+    }
+
+    public static void changeMusic(String name) {
+        welcome.stop();
+        welcome = new AudioClip(Voxspell.class.getResource("scenes/assets/" + name).toExternalForm());
+        welcome.play(VOLUME);
+        currentAudio = name;
+        DataIO.getInstance().saveObject(AUDIO_FILE, currentAudio);
+    }
+
+    public static void changeVideo(String name) {
+        video = new File("./lib/" + name).getAbsolutePath();
+        currentVideo = name;
+        DataIO.getInstance().saveObject(VIDEO_FILE, currentVideo);
+    }
+
+    public static String getVideo() {
+        return video;
+    }
+
+    /**
+     * Loads assets during splash screen
+     */
+    public static void loadAssets() {
+        currentAudio = (String) DataIO.getInstance().loadObject(AUDIO_FILE, "Welcome.mp3");
+        currentVideo = (String) DataIO.getInstance().loadObject(VIDEO_FILE, "PC10.mp4");
+        welcome = new AudioClip(Voxspell.class.getResource("scenes/assets/" + currentAudio).toExternalForm());
+        video = new File("./lib/" + currentVideo).getAbsolutePath();
     }
 }

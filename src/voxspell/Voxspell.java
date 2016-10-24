@@ -73,6 +73,7 @@ public class Voxspell extends Application {
                 SceneManager.setStage(primaryStage);
                 updateProgress(30, 100);
                 updateMessage("Loading assets");
+                SceneManager.loadAssets();
                 Parent root = FXMLLoader.load(getClass().getResource("scenes/main.fxml")); // change this to your scene
                 updateMessage("Populating scene");
                 updateProgress(100, 100);

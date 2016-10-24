@@ -36,6 +36,10 @@ access the next level by simply reviewing.
 If you qualify for the next level (getting 9 out of 10 on the quiz) and then review the one word you got wrong,
 you still have access to the video reward and next level.
 
+###shop!
+You earn coins every time you spell words. Use these coins to unlock new videos and items! You can also get bonus
+coins for completing a level with a high accuracy.
+
 ###achievements
 You can unlock achievements by completing levels and doing other things! Basically improving your spelling and
 advancing through the levels will net you achievements. For full information, see the manual.
@@ -59,6 +63,7 @@ src
         │   ├── Achievement.java                    // represents an achievement
         │   ├── DataIO.java                         // deals with file IO and saving
         │   ├── Festival.java                       // deals with festival tts and voice changing
+        │   ├── Money.java                          // represents player's gold earned
         │   ├── LevelData.java                      // static link class to store global application state (levels, etc.)
         │   ├── QueuedEvent                         // interface to represent queued FX thread event
         │   ├── SceneManager.java                   // class that handles scene transfers
@@ -69,7 +74,8 @@ src
             ├── controllers
             │   ├── MainController.java             // controller for main/welcome scene
             │   ├── AchievementsPopup.java          // popup to show unlocked achievement
-            │   ├── SettingsController.java         // =voice/level settings
+            │   ├── SettingsController.java         // voice/level settings
+            │   ├── MainController.java             // controller for shopping scene
             │   ├── EndSessionController.java       // end of level controller
             │   ├── SpellingController.java         // controller for spelling scene
             │   ├── StatsController.java            // controller for statistic scene
@@ -78,6 +84,7 @@ src
             ├── endSession.fxml                     // scene on reaching the end of a level
             ├── main.fxml                           // main/welcome scene for level selection
             ├── settings.fxml                       // settings for lists/voices/stats
+            │   shop.fxml                           // shopping scene
             ├── spelling.fxml                       // spelling scene for quizzes
             ├── stats.fxml                          // statistics scene
             └── video.fxml                          // video reward scene
@@ -90,4 +97,6 @@ Background (all backgrounds), achievement images: openclipart.org
 Welcome music: freemusicarchive.org
 Ta-da sound: Mike Koenig (Attribution 3.0)
 Bubble click sound: Self-recorded
-Music icons: self-made
+Music icons, coin icons: self-made
+Spelling effect sounds: public domain (opengameart.org)
+All videos used are from the Blender Foundation (CC)

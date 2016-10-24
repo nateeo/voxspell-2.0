@@ -42,7 +42,7 @@ public class VideoController implements Initializable {
 
 
         // set video and autoplay
-        String path = new File("./lib/PC10.mp4").getAbsolutePath();
+        String path = SceneManager.getVideo();
         me = new Media(new File(path).toURI().toString());
         mp = new MediaPlayer(me);
         mv.setMediaPlayer(mp);

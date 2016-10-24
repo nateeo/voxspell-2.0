@@ -14,10 +14,12 @@ public class DataIO {
     private ArrayList<Integer> enabledLevels;
     private String voice;
     private ArrayList<ArrayList<Word>> wordData;
+    private Money money;
     private TreeSet<Achievement> achievements;
     private String currentWordList;
 
     private File LEVEL_DATA;
+    private File MONEY_DATA = new File(".moneyData.ser");
     private File CURRENT_LIST_DATA = new File(".currentListData.ser");
     private File VOICE_DATA = new File(".voiceData.ser");
     private File WORD_DATA;
@@ -125,7 +127,7 @@ public class DataIO {
         saveObject(VOICE_DATA, voice);
         saveObject(ACHIEVEMENT_DATA, achievements);
         saveObject(CURRENT_LIST_DATA, currentWordList);
-        System.out.println("saving currentwordlist: " + currentWordList);
+        saveMoney();
         if (toSaveWordData) {
             saveObject(WORD_DATA, wordData);
         }
@@ -152,6 +154,7 @@ public class DataIO {
         if (wordData.isEmpty()) {
             initialiseWordData();  // initialise if wordData is empty;
         }
+        money = (Money) loadObject(MONEY_DATA, new Money());
     }
 
     /**
@@ -180,9 +183,20 @@ public class DataIO {
         achievements = new TreeSet<Achievement>();
     }
 
+    /**
+     * methods to handle money
+     */
+    public void saveMoney() {
+        saveObject(MONEY_DATA, money);
+    }
+
+    public Money getMoney() {
+        return money;
+    }
+
     // helper methods for file IO
 
-    private void saveObject (File file, Object object) {
+    public void saveObject(File file, Object object) {
         try {
             ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(file));
             os.writeObject(object);
@@ -192,7 +206,7 @@ public class DataIO {
 
     }
 
-    private Object loadObject (File file, Object defaultReturn) {
+    public Object loadObject(File file, Object defaultReturn) {
         try {
             ObjectInputStream is = new ObjectInputStream(new FileInputStream(file));
             Object result = is.readObject();

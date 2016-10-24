@@ -97,11 +97,21 @@ public class StatsController implements Initializable {
 
         @Override
         public void handle(MouseEvent mouseEvent) {
-            String levelSelected = (Integer.toString(LevelData.getLevel()));
-            data.resetStats();
-            wordData = data.getWordData();
-            updateBarChart(levelSelected);
-            updateTableView(levelSelected);
+            Dialog<ButtonType> dialog = new Dialog<>();
+            ButtonType confirmType = new ButtonType("Yes", ButtonBar.ButtonData.OK_DONE);
+            ButtonType cancelType = new ButtonType("No!", ButtonBar.ButtonData.CANCEL_CLOSE);
+            dialog.getDialogPane().getButtonTypes().addAll(cancelType, confirmType);
+            dialog.setHeaderText("Are you sure?");
+            dialog.setContentText("All statistics will be deleted!");
+            dialog.showAndWait().ifPresent((response -> {
+                if (response == confirmType) {
+                    String levelSelected = (Integer.toString(LevelData.getLevel()));
+                    data.resetStats();
+                    wordData = data.getWordData();
+                    updateBarChart(levelSelected);
+                    updateTableView(levelSelected);
+                }
+            }));
         }
     }
 

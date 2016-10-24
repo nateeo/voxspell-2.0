@@ -44,6 +44,8 @@ public class MainController implements Initializable {
     private GridPane gridPane;
     @FXML
     private Label listLabel;
+    @FXML
+    private Button shopButton;
 
     /**
      * parse button text into level number
@@ -161,7 +163,6 @@ public class MainController implements Initializable {
         // initialise buttons
         viewStatsButton.setOnMouseClicked(statsSelectHandler);
         classNames.setStyle(viewStatsButton, classNames.Style.BUTTON, classNames.Style.SECONDARY);
-
         // disable locked levels
         if (!LevelData.developerMode) {
             disable(data.highestLevelEnabled());
@@ -173,6 +174,11 @@ public class MainController implements Initializable {
         musicButton.setGraphic(new ImageView(new Image(Voxspell.class.getResource("scenes/assets/sound" + onOff + ".png").toExternalForm())));
         musicButton.setOpacity(0.7);
         musicButton.setStyle("-fx-cursor: hand");
+
+        //shop
+        classNames.setStyle(shopButton, classNames.Style.BUTTON, classNames.Style.NEUTRAL);
+        shopButton.setStyle("-fx-cursor: hand");
+        shopButton.setOnMouseClicked((e) -> SceneManager.goTo("shop.fxml"));
 
 
         // achievements

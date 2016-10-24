@@ -3,6 +3,8 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -77,14 +79,36 @@
                         </Button>
                      </children>
                   </HBox>
-                  <Button fx:id="settingsButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" text="Settings">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
+                   <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
+                       <children>
+                           <Button fx:id="shopButton" mnemonicParsing="false" prefHeight="27.0" prefWidth="105.0"
+                                   text="Shop!">
+                               <HBox.margin>
+                                   <Insets right="10.0"/>
+                               </HBox.margin>
+                               <graphic>
+                                   <ImageView fitHeight="17.0" fitWidth="112.0" pickOnBounds="true"
+                                              preserveRatio="true">
+                                       <image>
+                                           <Image url="@assets/goldCoin.png"/>
+                                       </image>
+                                   </ImageView>
+                               </graphic>
+                           </Button>
+                           <Button fx:id="settingsButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0"
+                                   text="Settings">
+                               <cursor>
+                                   <Cursor fx:constant="HAND"/>
+                               </cursor>
+                               <HBox.margin>
+                                   <Insets right="10.0"/>
+                               </HBox.margin>
+                           </Button>
+                       </children>
                      <VBox.margin>
-                        <Insets right="10.0" top="10.0" />
+                         <Insets top="20.0"/>
                      </VBox.margin>
-                  </Button>
+                   </HBox>
                </children>
             </VBox>
          </children></HBox>
