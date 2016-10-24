@@ -159,7 +159,6 @@ public class MainController implements Initializable {
 
         for (Button button : buttons) {
             classNames.setStyle(button, classNames.Style.LEVEL_BUTTON);
-            System.out.println(button.getStyle());
             button.setOnMouseClicked(levelSelectionHandler);
             button.setOnMouseEntered(hoverHandler);
             button.setOnMouseExited(exitHandler);

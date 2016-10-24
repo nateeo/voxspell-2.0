@@ -35,6 +35,12 @@ public class Product implements Serializable {
         isActive = false;
     }
 
+    /**
+     * Render a product, giving it enable/disable buttons as well as a buy button
+     * @param money
+     * @param evnt
+     * @return
+     */
     public Pane renderProduct(Money money, EventHandler<WorkerStateEvent> evnt) {
         AudioClip buySound = new AudioClip(Voxspell.class.getResource("scenes/assets/Coin01.mp3").toExternalForm());
         hook = evnt;

@@ -17,6 +17,10 @@ public class Money implements Serializable {
         }
     }
 
+    /**
+     * Methods to modify money
+     */
+
     public void addGold(int amount) {
         money.set(0, money.get(0) + amount);
     }

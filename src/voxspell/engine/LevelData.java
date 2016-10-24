@@ -90,6 +90,9 @@ public class LevelData {
         return maxLevel;
     }
 
+    /**
+     * Methods to handle current session's coin earnings
+     */
     public static int getSilverCoinsEarned() {
         int result = silverCoinsEarned;
         silverCoinsEarned = 0;
@@ -110,6 +113,9 @@ public class LevelData {
         bronzeCoinsEarned++;
     }
 
+    /**
+     * This method reads the spelling list and determines the maximum levels
+     */
     public static void calculateMaxLevel() {
         if (currentWordFile.equals(DEFAULT)) {
             maxLevel = 11;
@@ -175,6 +181,9 @@ public class LevelData {
         return wordList;
     }
 
+    /**
+     * Method to handle review state
+     */
     public static boolean isReview() {
         return isReview;
     }
@@ -188,6 +197,9 @@ public class LevelData {
         currentDataID = uID(update);
     }
 
+    /**
+     * Queue congratulations music after any popups/effects
+     */
     public static void queueCongratulations() {
         congratulationsMusic = true;
     }

@@ -64,9 +64,12 @@ src
         │   ├── DataIO.java                         // deals with file IO and saving
         │   ├── Festival.java                       // deals with festival tts and voice changing
         │   ├── Money.java                          // represents player's gold earned
+        │   ├── Product.java                        // represents an unlockable
+        │   ├── ProductType.java                    // enum for different unlockables
         │   ├── LevelData.java                      // static link class to store global application state (levels, etc.)
         │   ├── QueuedEvent                         // interface to represent queued FX thread event
         │   ├── SceneManager.java                   // class that handles scene transfers
+        │   ├── Shop.java                           // persistent representation of the shop
         │   ├── Word.java                           // class to represent a word
         │   └── WordList.java                       // class to parse file and get lists of words
         └── scenes ** package for front-end and controllers **

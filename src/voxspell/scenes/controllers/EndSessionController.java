@@ -213,8 +213,8 @@ public class EndSessionController implements Initializable {
      */
     public void showPieChart() {
         ObservableList<PieChart.Data> list = FXCollections.observableArrayList(
-                new javafx.scene.chart.PieChart.Data("Correct", correct * 10),
-                new javafx.scene.chart.PieChart.Data("Incorrect", incorrect * 10)
+                new PieChart.Data("Correct", correct * 10),
+                new PieChart.Data("Incorrect", incorrect * 10)
         );
         piechart.setData(list);
 

@@ -1,0 +1,28 @@
+%Level 1
+Dog
+Cat
+Pig
+Cow
+Duck
+Rat
+%Level 2
+Owl
+Mouse
+Goat
+Fish
+Goose
+Rabbit
+%Level 3
+Chicken
+Donkey
+Parrot
+%Level 4
+Falcon
+Peacock
+Penguin
+Whale
+%Level 5
+Giraffe
+Elephant
+Dolphin
+Hippopotamus

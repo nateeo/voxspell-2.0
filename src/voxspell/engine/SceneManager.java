@@ -84,7 +84,6 @@ public class SceneManager {
      */
     public static void goTo(String fxmlDestination) {
         click.play(CLICK_VOLUME);
-        System.out.println("GO TO: " + fxmlDestination);
         Task<Scene> load = new Task<Scene>() {
             @Override
             public Scene call() {
@@ -105,7 +104,6 @@ public class SceneManager {
         };
 
         load.setOnSucceeded((e) -> {
-            System.out.println("DONE");
             showScene(load.getValue());
         });
 

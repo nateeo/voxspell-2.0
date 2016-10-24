@@ -163,7 +163,7 @@ public class SpellingController implements Initializable {
             ButtonType cancelType = new ButtonType("No!", ButtonBar.ButtonData.CANCEL_CLOSE);
             dialog.getDialogPane().getButtonTypes().addAll(cancelType, confirmType);
             dialog.setHeaderText("Are you sure?");
-            dialog.setContentText("You will lose any coins that you've earned!");
+            dialog.setContentText("All your stats will be lost!");
             dialog.showAndWait().ifPresent((response -> {
                 if (response == confirmType) {
                     SceneManager.goTo("main.fxml");
@@ -177,14 +177,20 @@ public class SpellingController implements Initializable {
 
     }
 
+    /**
+     * Handle festival calls to read the word
+     * @param word
+     */
     private void readWord(Word word) {
         Operations op = currentFaulted ? Operations.TRY_AGAIN : Operations.SPELL;
         setLoading(true);
         festival.read(word, op);
-        System.out.println(word);
-
     }
 
+    /**
+     * Set the loading state for the button
+     * @param isLoading
+     */
     private void setLoading(boolean isLoading) {
         if (isLoading) {
             submitButton.setDisable(true);
@@ -199,6 +205,9 @@ public class SpellingController implements Initializable {
         }
     }
 
+    /**
+     * Handle user spelling submissions and check if they are correct
+     */
     private void submit() {
         String userInput = inputTextField.getText().trim();
         coinView.setImage(null);

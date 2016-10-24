@@ -77,7 +77,6 @@ public class SettingsController implements Initializable {
             dialog.setContentText("All achievements and statistics will be deleted!");
             dialog.showAndWait().ifPresent((response -> {
                 if (response == confirmType) {
-                    System.out.println("OK");
                     data.resetAchievements();
                     data.resetStats();
                 }

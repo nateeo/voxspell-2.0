@@ -52,7 +52,7 @@ public class VideoController implements Initializable {
         playButton.setDisable(true);
 
 
-        exitButton.setOnMouseClicked(new VideoController.returnHandler());
+        exitButton.setOnMouseClicked(new returnHandler());
 
         /*(Image image1 = new Image(getClass().getResourceAsStream("assets/playPic.png"));
         playButton.setGraphic(new ImageView(image1));
@@ -76,6 +76,10 @@ public class VideoController implements Initializable {
         }
     }
 
+    /**
+     * Methods to control playback
+     * @param event
+     */
     public void play(ActionEvent event) {
         mp.play();
         mp.setRate(1);

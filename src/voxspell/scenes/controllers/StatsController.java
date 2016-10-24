@@ -115,6 +115,10 @@ public class StatsController implements Initializable {
         }
     }
 
+    /**
+     * Methods to update the graphs according to the selected level
+     * @param level
+     */
     public void updateBarChart(String level) {
         barChart.getData().clear();
         ArrayList<Word> selectedWords = extractWords(Integer.parseInt(level));

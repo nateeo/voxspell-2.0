@@ -98,7 +98,6 @@ public class DataIO {
      */
     public int highestLevelEnabled() {
         if (enabledLevels.size() == 0) {
-            System.out.println("enabledLevels is empty...");
             return 1; // no unlocks
         }
         return Collections.max(enabledLevels);
@@ -141,7 +140,6 @@ public class DataIO {
         String currentWordFile = LevelData.currentDataID;
         // initialize data based on spelling list
         LEVEL_DATA = new File(".levelData" + currentWordFile + ".ser");
-        System.out.println("loading level data from " + LEVEL_DATA);
         WORD_DATA = new File(".wordData" + currentWordFile + ".ser");
         ACHIEVEMENT_DATA = new File(".achievementData" + currentWordFile + ".ser");
         enabledLevels = (ArrayList<Integer>) loadObject(LEVEL_DATA, new ArrayList<Integer>());
@@ -158,7 +156,6 @@ public class DataIO {
      * Reset levels
      */
     public void delete() {
-        System.out.println("deleting level data");
         LEVEL_DATA.delete();
         enabledLevels = new ArrayList<Integer>();
     }

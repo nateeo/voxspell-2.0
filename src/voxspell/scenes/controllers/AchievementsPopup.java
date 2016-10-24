@@ -20,7 +20,6 @@ import voxspell.engine.SceneManager;
 /**
  * Achievements popup notification - automatically saves the constructed achievement
  * Created by nhur714 on 10/10/2016.
- * TODO: add sound
  */
 public class AchievementsPopup implements QueuedEvent {
 	public static MediaPlayer mp = new MediaPlayer(new Media(Voxspell.class.getResource("scenes/assets/congratulations.mp3").toExternalForm()));

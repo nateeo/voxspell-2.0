@@ -28,6 +28,9 @@ public class Shop implements Serializable {
         return products;
     }
 
+    /**
+     * Generate a list of basic products
+     */
     private void makeNewProducts() {
         products = new ArrayList<>();
         products.add(new Product("Elephants Dream Video Reward", "Elephants Dream-Mobile.mp4", ProductType.VIDEO, 25, hook));
