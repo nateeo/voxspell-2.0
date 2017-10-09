@@ -7,19 +7,19 @@ voxspell 1.0 (prototype) was developed by Nathan Hur and Harry Lim.
 This version is for evaluation purposes and has a Evaluation-only unlock all level mode (see usage guide)
 
 
-##quick start
+## quick start
 Download/clone as .zip, extract and run the run.sh script
 (requires Oracle Java 1.8 and festival text-to-speech)
 
-##brief usage guide
+## brief usage guide
 
-###levels
+### levels
 Only level 1 is unlocked on first launch. The next level is automatically and permanently unlocked when
 at least 9 out of 10 words are spelt correctly on the previous level. You can pick any unlocked level
 to start the quiz on. The developer only button temporarily enables all levels. You can reset all
 of your unlocked levels with the reset button.
 
-###spelling
+### spelling
 You can listen to the word again without penalty by clicking the "Hear again" button. Entering invalid
 characters will not count as a wrong spelling and you will be allowed to try again without penalty.
 Some words contain apostrophes - if your spelling does not contain it while the word does, you will
@@ -29,22 +29,22 @@ Scoring 9 or more on a level enables you to watch a video reward.
 
 You can change the spelling list to a custom one in Settings.
 
-###reviewing
+### reviewing
 You can review all the words you got wrong at the end of each level you have completed. You can also review
 the words you got wrong in the previous review quiz. Unless you were reviewing after scoring 9/10, you cannot
 access the next level by simply reviewing.
 If you qualify for the next level (getting 9 out of 10 on the quiz) and then review the one word you got wrong,
 you still have access to the video reward and next level.
 
-###shop!
+### shop!
 You earn coins every time you spell words. Use these coins to unlock new videos and items! You can also get bonus
 coins for completing a level with a high accuracy.
 
-###achievements
+### achievements
 You can unlock achievements by completing levels and doing other things! Basically improving your spelling and
 advancing through the levels will net you achievements. For full information, see the manual.
 
-###statistics
+### statistics
 The stats are intended for parents/teachers to review the words that the user has gotten wrong. A brief
 display of the words spelt during the current level will appear at the end. 
 
@@ -52,7 +52,7 @@ Full statistics of all sessions are available. These are resettable.
 
 Statistics are stored separately with each spelling list.
 
-##project structure
+## project structure
 
 ```
 src
